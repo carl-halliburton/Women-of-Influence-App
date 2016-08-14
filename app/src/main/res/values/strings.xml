@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">WomenOfInfluence</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Women Of Influence</string>
+    <string name="action_notification">Notifications</string>
     <string name="title_activity_feedback">Feedback</string>
-    <string name="title_activity_video_gallery">VideoGallery</string>
-    <string name="title_activity_search_results">SearchResults</string>
+    <string name="title_activity_video_gallery">Video Gallery</string>
+    <string name="title_activity_search_results">Search Results</string>
 </resources>

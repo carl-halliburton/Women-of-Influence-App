@@ -34,9 +34,13 @@ public class Home extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_notification) {
             return true;
         }
+        else if(id == R.id.title_activity_video_gallery)
+            return true;
+        else if(id == R.id.title_activity_feedback)
+            return true;
 
         return super.onOptionsItemSelected(item);
     }
