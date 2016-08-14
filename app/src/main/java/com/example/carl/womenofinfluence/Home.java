@@ -15,9 +15,9 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
+       //disables the action bar text
         setSupportActionBar(toolbar);
-        //getActionBar().setDisplayShowTitleEnabled(false); //disables theaction bar text
+
     }
 
     @Override
