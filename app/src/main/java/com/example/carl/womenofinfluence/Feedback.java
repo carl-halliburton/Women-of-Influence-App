@@ -1,5 +1,6 @@
 package com.example.carl.womenofinfluence;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,11 +18,12 @@ public class Feedback extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+        setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
-        //getActionBar().setDisplayShowTitleEnabled(false); //disables theaction bar text
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
