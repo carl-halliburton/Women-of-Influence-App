@@ -16,6 +16,7 @@ public class SearchResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
+        setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -24,28 +25,25 @@ public class SearchResults extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_notification) {
-            return true;
-        }
-        else if(id == R.id.title_activity_video_gallery) {
-            startActivity(new Intent(SearchResults.this, VideoGallery.class));
-            return true;
-        }
-        else if(id == R.id.title_activity_feedback) {
-            startActivity(new Intent(SearchResults.this, Feedback.class));
-            return true;
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case R.id.action_home:
+                startActivity(new Intent(SearchResults.this, Home.class));
+                return true;
+            case R.id.action_notification:
+                return true;
+            case R.id.title_activity_video_gallery:
+                startActivity(new Intent(SearchResults.this, VideoGallery.class));
+                return true;
+            case R.id.title_activity_feedback:
+                startActivity(new Intent(SearchResults.this, Feedback.class));
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

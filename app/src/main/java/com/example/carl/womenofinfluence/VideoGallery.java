@@ -14,17 +14,15 @@ public class VideoGallery extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_gallery);
+        setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
         setSupportActionBar(toolbar);
-        //getActionBar().setDisplayShowTitleEnabled(false); //disables theaction bar text
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -32,8 +30,8 @@ public class VideoGallery extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+            case R.id.action_home:
+                startActivity(new Intent(VideoGallery.this, Home.class));
                 return true;
             case R.id.action_notification:
                 return true;
