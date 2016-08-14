@@ -1,5 +1,6 @@
 package com.example.carl.womenofinfluence;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -38,11 +39,13 @@ public class Feedback extends AppCompatActivity {
         if (id == R.id.action_notification) {
             return true;
         }
-        else if(id == R.id.title_activity_video_gallery)
+        else if(id == R.id.title_activity_video_gallery) {
+            startActivity(new Intent(Feedback.this, VideoGallery.class));
             return true;
-        else if(id == R.id.title_activity_feedback)
+        }
+        else if(id == R.id.title_activity_feedback) {
             return true;
-
+        }
         return super.onOptionsItemSelected(item);
     }
 
