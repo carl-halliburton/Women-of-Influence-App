@@ -3,5 +3,12 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_video_gallery">VideoGallery</string>
-    <string name="title_activity_search_results">SearchResults</string>
+    <string name="title_activity_search_results">Search Results</string>
+    <string name="app_main_title">Pearls of Wisdom</string>
+    <string name="app_sub_title">Women of Influence with Opinions</string>
+    <string name="home_blurb">Blurb placeholder text</string>
+    <string name="video_gallery_link">Video Gallery</string>
+    <string name="more_videos">Click here for more videos</string>
+    <string name="feedback_link">Contact us</string>
+
 </resources>

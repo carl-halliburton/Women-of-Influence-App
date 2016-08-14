@@ -15,5 +15,86 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/app_main_title"
+        android:textSize="30sp"
+        android:id="@+id/homeMainTitle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/app_sub_title"
+        android:id="@+id/homeSubTitle"
+        android:layout_below="@+id/homeMainTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_blurb"
+        android:id="@+id/homeBlurb"
+        android:textAlignment="center"
+        android:layout_below="@+id/homeSubTitle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/video_gallery_link"
+        android:id="@+id/buttonVideoGallery"
+        android:layout_below="@+id/homeBlurb"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="54dp"
+        android:layout_marginStart="54dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/more_videos"
+        android:id="@+id/moreVideos"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/buttonVideoGallery"
+        android:layout_alignStart="@+id/buttonVideoGallery" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/feedback_link"
+        android:id="@+id/feedbackButton"
+        android:layout_below="@+id/moreVideos"
+        android:layout_alignLeft="@+id/moreVideos"
+        android:layout_alignStart="@+id/moreVideos" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&lt;Placeholder video link>"
+        android:id="@+id/textView"
+        android:textColor="#000000"
+        android:background="#ffd6ae"
+        android:height="150sp"
+        android:layout_below="@+id/buttonVideoGallery"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/buttonVideoGallery"
+        android:layout_alignEnd="@+id/buttonVideoGallery" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="&lt;Most Recent video text>"
+        android:id="@+id/recentVideoText"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignRight="@+id/homeBlurb"
+        android:layout_alignEnd="@+id/homeBlurb"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_toRightOf="@+id/textView" />
+
 </RelativeLayout>
