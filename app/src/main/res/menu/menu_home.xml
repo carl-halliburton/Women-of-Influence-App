@@ -2,6 +2,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.carl.womenofinfluence.Home">
+
+    <item
+        android:id="@+id/action_search"
+        android:title="Search"
+        android:icon="@mipmap/ic_search_white"
+        android:layout_alignParentRight="true"
+        app:showAsAction="always"/>
+
+
     <item
         android:id="@+id/action_notification"
         android:orderInCategory="100"
