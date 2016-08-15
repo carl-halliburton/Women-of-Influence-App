@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Pearls of Wisdom"
-        android:id="@+id/textView4"
+        android:id="@+id/mainTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -37,8 +37,87 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Women of Influence with Opinions"
-        android:id="@+id/textView5"
-        android:layout_below="@+id/textView4"
+        android:id="@+id/subTitle"
+        android:layout_below="@+id/mainTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Blurb"
+        android:id="@+id/blurbText"
+        android:layout_below="@+id/subTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Video Gallery"
+        android:id="@+id/videoGalleryLink"
+        android:layout_below="@+id/blurbText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/background_material_light" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recent Video Link"
+        android:id="@+id/recentVideoLink"
+        android:height="150dp"
+        android:width="200sp"
+        android:layout_below="@+id/videoGalleryLink"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Recent video text."
+        android:id="@+id/recentVideoText"
+        android:layout_alignTop="@+id/recentVideoLink"
+        android:layout_toRightOf="@+id/recentVideoLink"
+        android:layout_alignBottom="@+id/recentVideoLink"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingLeft="10sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click here for more videos"
+        android:id="@+id/moreVideosLink"
+        android:layout_below="@+id/recentVideoLink"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/recentVideoText"
+        android:layout_alignEnd="@+id/recentVideoText"
+        android:textAlignment="textStart"
+        android:gravity="start" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact us"
+        android:id="@+id/contactLink"
+        android:layout_below="@+id/moreVideosLink"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/background_material_light" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click here to give feedback or share your stories"
+        android:id="@+id/contactLink2"
+        android:layout_below="@+id/contactLink"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="textStart"
+        android:background="@color/background_material_light"
+        android:gravity="start" />
 </RelativeLayout>
