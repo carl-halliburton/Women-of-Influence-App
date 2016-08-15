@@ -20,7 +20,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></LinearLayout>
+            android:layout_height="match_parent"/>
     </ScrollView>
 
     <TextView
@@ -33,14 +33,16 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Women of Influence with Opinions"
         android:id="@+id/subTitle"
         android:layout_below="@+id/mainTitle"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingBottom="30sp"
+        android:gravity="center" />
 
     <TextView
         android:layout_width="match_parent"
