@@ -19,7 +19,7 @@ public class SearchResults extends AppCompatActivity {
         setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_home_white);
+        toolbar.setNavigationIcon(R.mipmap.ic_home_white); // inserts home icon on the left of the toolbar
     }
 
     @Override
