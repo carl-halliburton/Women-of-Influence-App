@@ -61,7 +61,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/background_material_light"
-        android:onClick="videoGalleryButtonOnClick" />
+        android:onClick="videoGalleryButtonOnClick"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:layout_width="wrap_content"
@@ -110,7 +111,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/background_material_light"
-        android:onClick="feedbackButtonOnClick" />
+        android:onClick="feedbackButtonOnClick"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:layout_width="wrap_content"
@@ -123,5 +125,6 @@
         android:textAlignment="textStart"
         android:background="@color/background_material_light"
         android:gravity="start"
-        android:onClick="feedbackButtonOnClick" />
+        android:onClick="feedbackButtonOnClick"
+        style="?android:attr/borderlessButtonStyle" />
 </RelativeLayout>
