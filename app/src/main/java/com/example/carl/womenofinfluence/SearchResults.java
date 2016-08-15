@@ -19,7 +19,7 @@ public class SearchResults extends AppCompatActivity {
         setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        toolbar.setNavigationIcon(R.mipmap.ic_home_white);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class SearchResults extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
-            case R.id.action_home:
+            case android.R.id.home:
                 startActivity(new Intent(SearchResults.this, Home.class));
                 return true;
             case R.id.action_notification:

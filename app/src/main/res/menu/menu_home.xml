@@ -4,11 +4,11 @@
     tools:context="com.example.carl.womenofinfluence.Home">
 
     <item
-        android:id="@+id/action_search"
-        android:title="Search"
-        android:icon="@mipmap/ic_search_white"
-        android:layout_alignParentRight="true"
-        app:showAsAction="always"/>
+    android:id="@+id/action_search"
+    android:title="Search"
+    android:icon="@mipmap/ic_search_white"
+    android:layout_alignParentRight="true"
+    app:showAsAction="always"/>
 
 
     <item

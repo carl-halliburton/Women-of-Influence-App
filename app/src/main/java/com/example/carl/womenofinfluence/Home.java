@@ -17,6 +17,8 @@ public class Home extends AppCompatActivity {
         setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
     }
 
     @Override
