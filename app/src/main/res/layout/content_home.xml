@@ -60,7 +60,8 @@
         android:layout_below="@+id/blurbText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/background_material_light" />
+        android:background="@color/background_material_light"
+        android:onClick="videoGalleryButtonOnClick" />
 
     <Button
         android:layout_width="wrap_content"
@@ -97,7 +98,8 @@
         android:layout_alignRight="@+id/recentVideoText"
         android:layout_alignEnd="@+id/recentVideoText"
         android:textAlignment="textStart"
-        android:gravity="start" />
+        android:gravity="start"
+        android:onClick="videoGalleryButtonOnClick" />
 
     <Button
         android:layout_width="wrap_content"
@@ -107,7 +109,8 @@
         android:layout_below="@+id/moreVideosLink"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/background_material_light" />
+        android:background="@color/background_material_light"
+        android:onClick="feedbackButtonOnClick" />
 
     <Button
         android:layout_width="wrap_content"
@@ -119,5 +122,6 @@
         android:layout_alignParentStart="true"
         android:textAlignment="textStart"
         android:background="@color/background_material_light"
-        android:gravity="start" />
+        android:gravity="start"
+        android:onClick="feedbackButtonOnClick" />
 </RelativeLayout>
