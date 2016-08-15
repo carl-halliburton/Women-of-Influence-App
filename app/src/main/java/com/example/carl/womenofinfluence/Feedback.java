@@ -1,11 +1,13 @@
 package com.example.carl.womenofinfluence;
 
 import android.app.ActionBar;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -39,6 +41,10 @@ public class Feedback extends AppCompatActivity {
                 startActivity(new Intent(Feedback.this, Home.class));
                 return true;
             case R.id.action_notification:
+                if(item.isChecked())
+                    isChecked(item);
+                else
+                    isUnChecked(item);
                 return true;
             case R.id.title_activity_video_gallery:
                 startActivity(new Intent(Feedback.this, VideoGallery.class));
@@ -47,6 +53,37 @@ public class Feedback extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void isChecked(MenuItem item) {
+        // If item already checked then unchecked it
+        item.setChecked(false);
+        new AlertDialog.Builder(this)
+                .setTitle("Notifications Off")
+                .setMessage("Notifications have been turned off")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    public void isUnChecked(MenuItem item) {
+        // If item is unchecked then checked it
+        item.setChecked(true);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Notifications On")
+                .setMessage("Notifications have been turned on")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 }
