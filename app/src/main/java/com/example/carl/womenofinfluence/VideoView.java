@@ -18,8 +18,10 @@ public class VideoView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_view);
+        setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_home_white);
         //notify = new Notification();
     }
 
@@ -34,6 +36,9 @@ public class VideoView extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                startActivity(new Intent(VideoView.this, Home.class));
+                return true;
             case R.id.action_notification:
                 if(item.isChecked())
                     isChecked(item);

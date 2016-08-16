@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class VideoGallery extends AppCompatActivity {
 
@@ -81,5 +82,9 @@ public class VideoGallery extends AppCompatActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    public void viewVideoLink(View v) {
+        startActivity(new Intent(VideoGallery.this, VideoView.class));
     }
 }
