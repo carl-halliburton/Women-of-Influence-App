@@ -51,7 +51,6 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(Home.this, Feedback.class));
                 return true;
             case R.id.action_search:
-                startActivity(new Intent(Home.this, SearchResults.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);

@@ -51,6 +51,8 @@ public class Feedback extends AppCompatActivity {
                 return true;
             case R.id.title_activity_feedback:
                 return true;
+            case R.id.action_search:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
