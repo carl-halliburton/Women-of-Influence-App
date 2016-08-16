@@ -3,27 +3,23 @@ package com.example.carl.womenofinfluence;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
 
-public class Home extends AppCompatActivity {
-
-    //private Notification notify;
+public class VideoView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        setTitle(null);
+        setContentView(R.layout.activity_video_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         //notify = new Notification();
     }
 
@@ -45,13 +41,13 @@ public class Home extends AppCompatActivity {
                     isUnChecked(item);
                 return true;
             case R.id.title_activity_video_gallery:
-                startActivity(new Intent(Home.this, VideoGallery.class));
+                startActivity(new Intent(VideoView.this, VideoGallery.class));
                 return true;
             case R.id.title_activity_feedback:
-                startActivity(new Intent(Home.this, Feedback.class));
+                startActivity(new Intent(VideoView.this, Feedback.class));
                 return true;
             case R.id.action_search:
-                startActivity(new Intent(Home.this, SearchResults.class));
+                startActivity(new Intent(VideoView.this, SearchResults.class));
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -88,15 +84,4 @@ public class Home extends AppCompatActivity {
                 .show();
     }
 
-    public void videoGalleryButtonOnClick(View v) {
-        startActivity(new Intent(Home.this, VideoGallery.class));
-    }
-
-    public void feedbackButtonOnClick(View v) {
-        startActivity(new Intent(Home.this, Feedback.class));
-    }
-
-    public void viewVideoLink(View v) {
-        startActivity(new Intent(Home.this, VideoView.class));
-    }
 }

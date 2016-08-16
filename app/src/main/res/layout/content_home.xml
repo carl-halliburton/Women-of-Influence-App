@@ -58,6 +58,7 @@
             android:text="Current Video Placeholder"
             android:id="@+id/button"
             android:layout_below="@+id/textBlurb"
+            android:onClick="viewVideoLink"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -76,6 +77,7 @@
             android:id="@+id/button2"
             android:layout_below="@+id/textView3"
             android:layout_centerHorizontal="true"
+            android:onClick="videoGalleryButtonOnClick"
             android:layout_gravity="left" />
 
         <Button
@@ -86,6 +88,7 @@
             android:layout_below="@+id/button2"
             android:layout_alignLeft="@+id/button2"
             android:layout_alignStart="@+id/button2"
+            android:onClick="feedbackButtonOnClick"
             android:layout_gravity="left"/>
 
         <TextView

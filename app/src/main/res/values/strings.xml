@@ -4,4 +4,6 @@
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_video_gallery">Video Gallery</string>
     <string name="title_activity_search_results">Search Results</string>
+    <string name="title_activity_ideo_view">ideoView</string>
+    <string name="title_activity_video_view">VideoView</string>
 </resources>
