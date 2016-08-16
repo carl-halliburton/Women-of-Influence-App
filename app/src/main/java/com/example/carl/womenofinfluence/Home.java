@@ -14,7 +14,7 @@ import android.widget.CheckBox;
 
 public class Home extends AppCompatActivity {
 
-    //private Notification notify;
+    private Notification notify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,8 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //notify = new Notification();
+        notify = new Notification(this); //manages the notification check/uncheck and
+                                         // sending notifications to user
     }
 
     @Override
@@ -40,9 +41,9 @@ public class Home extends AppCompatActivity {
             // Respond to the action bar's Up/Home button
             case R.id.action_notification:
                 if(item.isChecked())
-                    isChecked(item);
+                    notify.isChecked(item);
                 else
-                    isUnChecked(item);
+                    notify.isUnChecked(item);
                 return true;
             case R.id.title_activity_video_gallery:
                 startActivity(new Intent(Home.this, VideoGallery.class));
@@ -55,7 +56,7 @@ public class Home extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+/*
     public void isChecked(MenuItem item) {
         // If item already checked then unchecked it
         item.setChecked(false);
@@ -86,7 +87,7 @@ public class Home extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
-
+*/
     public void videoGalleryButtonOnClick(View v) {
         startActivity(new Intent(Home.this, VideoGallery.class));
     }

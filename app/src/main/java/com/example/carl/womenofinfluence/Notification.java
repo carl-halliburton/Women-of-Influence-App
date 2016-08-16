@@ -1,5 +1,7 @@
 package com.example.carl.womenofinfluence;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
@@ -11,14 +13,16 @@ import android.view.MenuItem;
  */
 public class Notification {
 
-    public Notification() {
+    private Context context;
 
+    public Notification(Context curContext) {
+        context = curContext;
     }
-/*
+
     public void isChecked(MenuItem item) {
         // If item already checked then unchecked it
         item.setChecked(false);
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(context)
                 .setTitle("Notifications Off")
                 .setMessage("Notifications have been turned off")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -34,7 +38,7 @@ public class Notification {
         // If item is unchecked then checked it
         item.setChecked(true);
 
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(context)
                 .setTitle("Notifications On")
                 .setMessage("Notifications have been turned on")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -45,5 +49,4 @@ public class Notification {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
-*/
 }
