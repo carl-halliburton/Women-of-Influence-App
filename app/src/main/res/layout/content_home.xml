@@ -9,122 +9,96 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.carl.womenofinfluence.Home"
+    tools:context="com.example.carl.womenofinfluence.VideoGallery"
     tools:showIn="@layout/activity_home">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ScrollView01"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></LinearLayout>
-    </ScrollView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Pearls of Wisdom"
-        android:id="@+id/mainTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Women of Influence with Opinions"
-        android:id="@+id/subTitle"
-        android:layout_below="@+id/mainTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
+        android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Blurb"
-        android:id="@+id/blurbText"
-        android:layout_below="@+id/subTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Video Gallery"
-        android:id="@+id/videoGalleryLink"
-        android:layout_below="@+id/blurbText"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/background_material_light"
-        android:onClick="videoGalleryButtonOnClick"
-        style="?android:attr/borderlessButtonStyle" />
+        android:gravity="center" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recent Video Link"
-        android:id="@+id/recentVideoLink"
-        android:height="150dp"
-        android:width="200sp"
-        android:layout_below="@+id/videoGalleryLink"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Pearls of Wisdom"
+            android:id="@+id/textTitle"
+            android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Recent video text."
-        android:id="@+id/recentVideoText"
-        android:layout_alignTop="@+id/recentVideoLink"
-        android:layout_toRightOf="@+id/recentVideoLink"
-        android:layout_alignBottom="@+id/recentVideoLink"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:paddingLeft="10sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Women of Influence with Opinion"
+            android:id="@+id/textSubTitle" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click here for more videos"
-        android:id="@+id/moreVideosLink"
-        android:layout_below="@+id/recentVideoLink"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/recentVideoText"
-        android:layout_alignEnd="@+id/recentVideoText"
-        android:textAlignment="textStart"
-        android:gravity="start"
-        android:onClick="videoGalleryButtonOnClick" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contact us"
-        android:id="@+id/contactLink"
-        android:layout_below="@+id/moreVideosLink"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/background_material_light"
-        android:onClick="feedbackButtonOnClick"
-        style="?android:attr/borderlessButtonStyle" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Blurb - Place a description of the app here"
+            android:id="@+id/textBlurb"
+            android:layout_alignTop="@+id/scrollView"
+            android:layout_alignLeft="@+id/scrollView"
+            android:layout_alignStart="@+id/scrollView"
+            android:layout_marginTop="70dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click here to give feedback or share your stories"
-        android:id="@+id/contactLink2"
-        android:layout_below="@+id/contactLink"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textAlignment="textStart"
-        android:background="@color/background_material_light"
-        android:gravity="start"
-        android:onClick="feedbackButtonOnClick"
-        style="?android:attr/borderlessButtonStyle" />
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:text="Current Video Placeholder"
+            android:id="@+id/button"
+            android:layout_below="@+id/textBlurb"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Video Text"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/button"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Video Gallary - All Previous Videos"
+            android:id="@+id/button2"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="left" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contact Us"
+            android:id="@+id/button3"
+            android:layout_below="@+id/button2"
+            android:layout_alignLeft="@+id/button2"
+            android:layout_alignStart="@+id/button2"
+            android:layout_gravity="left"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Give us your feedback or share your stories"
+            android:id="@+id/textView5"
+            android:layout_below="@+id/button3"
+            android:layout_alignLeft="@+id/button3"
+            android:layout_alignStart="@+id/button3"
+            android:layout_gravity="left" />
+
+    </LinearLayout>
+</ScrollView>
 </RelativeLayout>

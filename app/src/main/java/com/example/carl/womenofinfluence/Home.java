@@ -14,6 +14,8 @@ import android.widget.CheckBox;
 
 public class Home extends AppCompatActivity {
 
+    //private Notification notify;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,7 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        //notify = new Notification();
     }
 
     @Override
