@@ -55,7 +55,7 @@
         android:layout_marginTop="37dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
@@ -69,7 +69,7 @@
         android:layout_alignParentEnd="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
@@ -82,7 +82,7 @@
         android:layout_alignEnd="@+id/ScrollView01" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="324dp"
         android:layout_height="wrap_content"
         android:id="@+id/fieldSubject"
         android:hint="Subject"
@@ -93,8 +93,8 @@
         android:layout_alignParentEnd="true" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/fieldMessage"
@@ -116,18 +116,6 @@
         android:layout_alignRight="@+id/txtScreenTitle"
         android:layout_alignEnd="@+id/txtScreenTitle" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/feedbackField"
-        android:layout_below="@+id/fieldSubject"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/ScrollView01"
-        android:layout_alignEnd="@+id/ScrollView01"
-        android:height="175sp"
-        android:hint="Feedback/Comments/Queries..."
-        android:gravity="top" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
