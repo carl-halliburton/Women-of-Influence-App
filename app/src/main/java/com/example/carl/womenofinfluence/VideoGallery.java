@@ -55,4 +55,8 @@ public class VideoGallery extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void viewVideoLink(View v) {
+        startActivity(new Intent(VideoGallery.this, VideoView.class));
+    }
 }
