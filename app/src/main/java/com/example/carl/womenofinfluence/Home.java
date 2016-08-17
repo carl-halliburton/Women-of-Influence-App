@@ -95,4 +95,8 @@ public class Home extends AppCompatActivity {
     public void feedbackButtonOnClick(View v) {
         startActivity(new Intent(Home.this, Feedback.class));
     }
+
+    public void viewVideoLink(View v) {
+        startActivity(new Intent(Home.this, VideoView.class));
+    }
 }
