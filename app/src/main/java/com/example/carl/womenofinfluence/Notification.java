@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.view.Menu;
 import android.view.MenuItem;
 
 /**
@@ -13,15 +14,15 @@ import android.view.MenuItem;
  */
 public class Notification {
 
-    private Context context;
+    private static Boolean status = false;
 
-    public Notification(Context curContext) {
-        context = curContext;
+    public Notification() {
     }
 
-    public void isChecked(MenuItem item) {
+    public void isChecked(MenuItem item, Context context) {
         // If item already checked then unchecked it
         item.setChecked(false);
+        status = false;
         new AlertDialog.Builder(context)
                 .setTitle("Notifications Off")
                 .setMessage("Notifications have been turned off")
@@ -34,9 +35,10 @@ public class Notification {
                 .show();
     }
 
-    public void isUnChecked(MenuItem item) {
+    public void isUnChecked(MenuItem item, Context context) {
         // If item is unchecked then checked it
         item.setChecked(true);
+        status = true;
 
         new AlertDialog.Builder(context)
                 .setTitle("Notifications On")
@@ -49,4 +51,28 @@ public class Notification {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void checkBox(MenuItem item, Context context) {
+        item.setChecked(true);
+    }
+
+    public void unCheckBox(MenuItem item, Context context) {
+        item.setChecked(false);
+    }
+
+    public void checkNotificationStatus(Menu menu) {
+        if (status == true) {
+            MenuItem item = menu.findItem(R.id.action_notification);
+            item.setChecked(true);
+        }
+        else  if (status == false) {
+            MenuItem item = menu.findItem(R.id.action_notification);
+            item.setChecked(false);
+        }
+    }
 }
+

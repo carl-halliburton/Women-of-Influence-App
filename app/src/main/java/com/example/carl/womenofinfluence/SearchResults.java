@@ -15,7 +15,7 @@ import android.view.View;
 
 public class SearchResults extends AppCompatActivity {
 
-    private Notification notify;
+    private Singleton tempSingleton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +26,15 @@ public class SearchResults extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_home_white); // inserts home icon on the left of the toolbar
 
-        notify = new Notification(this); //manages the notification check/uncheck and
-                                        // sending notifications to user
+        tempSingleton = Singleton.getInstance();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        tempSingleton.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -45,10 +46,10 @@ public class SearchResults extends AppCompatActivity {
                 startActivity(new Intent(SearchResults.this, Home.class));
                 return true;
             case R.id.action_notification:
-                if(item.isChecked())
-                    notify.isChecked(item);
+                if (item.isChecked())
+                    tempSingleton.getNotify().isChecked(item, this);
                 else
-                    notify.isUnChecked(item);
+                    tempSingleton.getNotify().isUnChecked(item, this);
                 return true;
             case R.id.title_activity_video_gallery:
                 startActivity(new Intent(SearchResults.this, VideoGallery.class));
