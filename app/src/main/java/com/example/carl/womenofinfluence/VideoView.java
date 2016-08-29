@@ -5,16 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
 
 public class VideoView extends AppCompatActivity {
 
     private Singleton tempSingleton;
+    private WebView myWebview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,16 @@ public class VideoView extends AppCompatActivity {
         toolbar.setNavigationIcon(R.mipmap.ic_home_white);
 
         tempSingleton = Singleton.getInstance();
+
+        //implementation of WebView for the video
+        myWebview = (WebView) findViewById(R.id.webView);
+        myWebview.setWebViewClient(new WebViewClientSettings());
+
+        myWebview.getSettings().setLoadsImagesAutomatically(true);
+        myWebview.getSettings().setJavaScriptEnabled(true);
+        myWebview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        //should be changed later to handle other video links (Currently loads a video for testing)
+        myWebview.loadUrl("https://player.vimeo.com/video/179155110?player_id=player&title=0&byline=0&portrait=0&autoplay=1&api=1");
     }
 
     @Override
@@ -60,5 +74,11 @@ public class VideoView extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //full screen onClick method (currently incomplete)
+    public void onClickFullscreen( View v )
+    {
+        myWebview.setLayoutParams(new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT));
     }
 }

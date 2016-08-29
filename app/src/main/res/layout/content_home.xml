@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Blurb - Place a description of the app here"
+            android:text="\@string/blurb_place_a_description_of_the_app_here"
             android:id="@+id/textBlurb"
             android:layout_alignTop="@+id/scrollView"
             android:layout_alignLeft="@+id/scrollView"

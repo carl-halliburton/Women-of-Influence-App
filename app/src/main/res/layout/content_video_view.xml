@@ -22,23 +22,40 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:text="Current Video Placeholder"
-        android:id="@+id/button4"
-        android:layout_marginTop="75dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Video Label Text Here"
         android:id="@+id/textView4"
-        android:layout_below="@+id/button4"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="400sp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayout"
+        android:weightSum="1">
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="250sp"
+            android:id="@+id/webView" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Full Screen"
+        android:id="@+id/fullScreenButton"
+        android:layout_below="@+id/textView4"
+        android:layout_alignRight="@+id/linearLayout"
+        android:layout_alignEnd="@+id/linearLayout" />
 
 </RelativeLayout>
 
