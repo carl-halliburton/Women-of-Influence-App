@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Pearls of Wisdom"
-        android:id="@+id/textView"
+        android:id="@+id/appTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -38,7 +38,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Video Gallery"
         android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/appTitle"
         android:layout_centerHorizontal="true"
         android:paddingBottom="30sp" />
 
