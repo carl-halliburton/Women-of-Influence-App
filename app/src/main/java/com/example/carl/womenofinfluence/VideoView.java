@@ -52,7 +52,9 @@ public class VideoView extends AppCompatActivity {
         myWebview.getSettings().setJavaScriptEnabled(true);
         myWebview.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         //should be changed later to handle other video links (Currently loads a video for testing)
-        myWebview.loadUrl("https://player.vimeo.com/video/179155110?player_id=player&title=0&byline=0&portrait=0&autoplay=1&api=1");
+        //myWebview.loadUrl("https://player.vimeo.com/video/179155110?player_id=player&title=0&byline=0&portrait=0&autoplay=1&api=1");
+        myWebview.loadUrl("https://www.youtube.com/embed/k8sSJV3XC0M");
+
     }
 
     @Override
