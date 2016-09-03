@@ -30,7 +30,8 @@
         <activity
             android:name=".ViewVideo"
             android:label="@string/title_activity_video_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"></activity>
     </application>
 
 </manifest>
