@@ -60,6 +60,6 @@ public class VideoGallery extends AppCompatActivity {
     }
 
     public void viewVideoLink(View v) {
-        startActivity(new Intent(VideoGallery.this, VideoView.class));
+        startActivity(new Intent(VideoGallery.this, ViewVideo.class));
     }
 }

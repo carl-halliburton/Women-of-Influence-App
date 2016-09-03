@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.carl.womenofinfluence.VideoView">
+    tools:context="com.example.carl.womenofinfluence.ViewVideo">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,6 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_video_view" />
+    <include layout="@layout/content_view_video" />
 
 </android.support.design.widget.CoordinatorLayout>

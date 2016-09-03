@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.carl.womenofinfluence.VideoView"
-    tools:showIn="@layout/activity_video_view">
+    tools:context="com.example.carl.womenofinfluence.ViewVideo"
+    tools:showIn="@layout/activity_view_video">
 
 
     <TextView
@@ -22,23 +22,25 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:text="Current Video Placeholder"
-        android:id="@+id/button4"
-        android:layout_marginTop="75dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Video Label Text Here"
         android:id="@+id/textView4"
-        android:layout_below="@+id/button4"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:id="@+id/videoView"
+        android:layout_above="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
 
