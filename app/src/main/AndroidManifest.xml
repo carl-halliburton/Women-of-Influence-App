@@ -26,7 +26,7 @@
             android:name=".SearchResults"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".VideoView"
+            android:name=".ViewVideo"
             android:label="@string/title_activity_video_view"
             android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation|screenSize" ></activity>

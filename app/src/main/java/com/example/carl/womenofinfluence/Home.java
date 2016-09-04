@@ -68,6 +68,6 @@ public class Home extends AppCompatActivity {
     }
 
     public void viewVideoLink(View v) {
-        startActivity(new Intent(Home.this, VideoView.class));
+        startActivity(new Intent(Home.this, ViewVideo.class));
     }
 }
