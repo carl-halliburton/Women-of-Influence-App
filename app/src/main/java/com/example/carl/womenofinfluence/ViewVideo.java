@@ -1,8 +1,10 @@
 package com.example.carl.womenofinfluence;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +24,7 @@ import android.widget.VideoView;
 public class ViewVideo extends AppCompatActivity {
 
     private Singleton tempSingleton;
+    private String ACCESS_TOKEN;
 
     //vid view imp objects
     //videoPath object will need to get the link from API and be
@@ -38,6 +42,7 @@ public class ViewVideo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_home_white);
+        ACCESS_TOKEN = retrieveAccessToken();
 
 
 
@@ -86,6 +91,21 @@ public class ViewVideo extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //TODO Possible cut down on duplicate code since the Home, VideoGallery and ViewVideo need this method.
+    private String retrieveAccessToken() {
+        //check if ACCESS_TOKEN is stored on previous app launches
+        SharedPreferences prefs = getSharedPreferences("com.example.carl.womenofinfluence", Context.MODE_PRIVATE);
+        String accessToken = prefs.getString("access-token", null);
+        if (accessToken == null) {
+            Log.d("AccessToken Status", "No token found");
+            return null;
+        } else {
+            //accessToken already exists
+            Log.d("AccessToken Status", "Token exists");
+            return accessToken;
+        }
     }
 
     //vid view imp play method
