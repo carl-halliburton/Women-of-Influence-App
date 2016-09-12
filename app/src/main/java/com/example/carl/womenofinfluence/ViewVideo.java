@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -57,6 +58,18 @@ public class ViewVideo extends AppCompatActivity {
         PlayVideo();
 
         tempSingleton = Singleton.getInstance();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            //hide toolbar when in landscape
+            getSupportActionBar().hide();
+        } else {
+            //show toolbar when in portrait
+            getSupportActionBar().show();
+        }
     }
 
     @Override
