@@ -1,6 +1,5 @@
 package com.example.carl.womenofinfluence;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;

@@ -1,15 +1,11 @@
 package com.example.carl.womenofinfluence;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +45,7 @@ public class VideoGallery extends AppCompatActivity {
         videoDatas = new ArrayList<VideoData>();
         fileLister.execute();
         try {
-            fileLister.get(10000, TimeUnit.MILLISECONDS);
+            fileLister.get(10000, TimeUnit.MILLISECONDS); //wait 10 seconds for execution.
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -87,6 +82,7 @@ public class VideoGallery extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
             //create the TextViews for the video descriptions
             //TODO add the description String to VideoData class and set the text here.
             galleryDescriptions.add(new TextView(this));
@@ -97,6 +93,21 @@ public class VideoGallery extends AppCompatActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT));
             galleryView.addView(galleryDescriptions.get(i));
             i++;
+        }
+
+        //if there are no videos on server
+        if(videoDatas.size() == 0)
+        {
+            new AlertDialog.Builder(VideoGallery.this)
+                    .setTitle(getString(R.string.server_connection_error_title))
+                    .setMessage(R.string.server_connection_error)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
     }
 
@@ -130,10 +141,6 @@ public class VideoGallery extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void viewVideoLink(View v) {
-        startActivity(new Intent(VideoGallery.this, VideoView.class));
     }
 
     //TODO refreshes dropbox files in the background. However the new info would still need to be retrieved with setVideoData()

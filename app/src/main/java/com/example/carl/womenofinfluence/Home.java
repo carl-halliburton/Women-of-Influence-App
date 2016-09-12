@@ -1,22 +1,15 @@
 package com.example.carl.womenofinfluence;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.CheckBox;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +22,7 @@ public class Home extends AppCompatActivity {
     private Singleton tempSingleton;
     private FileLister fileLister;
     private List<VideoData> videoDatas;
+    private Button featureVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,27 +34,10 @@ public class Home extends AppCompatActivity {
 
         tempSingleton = Singleton.getInstance();
 
-        fileLister = new FileLister(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
-                getApplicationContext());
-        videoDatas = new ArrayList<VideoData>();
-        fileLister.execute();
-        try {
-            fileLister.get(10000, TimeUnit.MILLISECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
-            e.printStackTrace();
-        }
-        videoDatas = fileLister.getVideoDatas();
-
         if (getString(R.string.ACCESS_TOKEN).equals("ACCESS_TOKEN")) {
             new AlertDialog.Builder(Home.this)
-                    .setTitle("ACCESS TOKEN NOT SET")
-                    .setMessage("Invalid access token detected. Please use a valid token in the" +
-                            " strings.xml file. You will not be able to recieve videos until this is" +
-                            " resolved. If you are a user please contact the developers.")
+                    .setTitle(getString(R.string.access_token_error_title))
+                    .setMessage(getString(R.string.access_token_error_description))
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
@@ -68,6 +45,41 @@ public class Home extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        }
+        else {
+            fileLister = new FileLister(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
+                    getApplicationContext());
+            videoDatas = new ArrayList<VideoData>();
+            fileLister.execute();
+            try {
+                fileLister.get(10000, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (TimeoutException e) {
+                e.printStackTrace();
+            }
+            videoDatas = fileLister.getVideoDatas();
+
+            if(videoDatas.size() == 0)
+            {
+                new AlertDialog.Builder(Home.this)
+                        .setTitle(getString(R.string.server_connection_error_title))
+                        .setMessage(R.string.server_connection_error)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+            else {
+                //set the first video in the list as the featured video
+                featureVideo = (Button) findViewById(R.id.featureVideoBtn);
+                featureVideo.setText(videoDatas.get(0).getName());
+            }
         }
     }
 
@@ -111,8 +123,26 @@ public class Home extends AppCompatActivity {
         startActivity(new Intent(Home.this, Feedback.class));
     }
 
-    public void viewVideoLink(View v) {
-        startActivity(new Intent(Home.this, ViewVideo.class));
+    public void viewVideoFeaturedLink(View v) {
+        if(videoDatas.size() == 0)
+        {
+            new AlertDialog.Builder(Home.this)
+                    .setTitle(getString(R.string.server_connection_error_title))
+                    .setMessage(getString(R.string.server_connection_error))
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else {
+            //Proceed to ViewVideo
+            Intent intent = new Intent(Home.this, ViewVideo.class);
+            intent.putExtra("videoIndex", videoDatas.get(0));
+            startActivity(intent);
+        }
     }
 
     //TODO refreshes dropbox files in the background. However the new info would still need to be retrieved with setVideoData()
