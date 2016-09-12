@@ -20,19 +20,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 public class ViewVideo extends AppCompatActivity {
 
     private Singleton tempSingleton;
-    private String ACCESS_TOKEN;
-
-    //vid view imp objects
-    //videoPath object will need to get the link from API and be
-    private String videoPath ="https://dl.dropboxusercontent.com/s/841m59miku0qcmr/3%20Fires%20Gone%20Out%20%23_converted%281%29.mp4?dl=0";
+    private VideoData videoData;
 
     private static ProgressDialog progressDialog;
-    String videourl;
     VideoView videoView;
 
     @Override
@@ -43,17 +39,19 @@ public class ViewVideo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_home_white);
-        ACCESS_TOKEN = retrieveAccessToken();
-
-
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
 
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            videoData = (VideoData) extras.getSerializable("videoIndex");
+        }
+
         //progress dialog shows when video is buffering
         progressDialog = ProgressDialog.show(ViewVideo.this, "", "Buffering video...", true);
         progressDialog.setCancelable(true);
-
 
         PlayVideo();
 
@@ -106,21 +104,6 @@ public class ViewVideo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //TODO Possible cut down on duplicate code since the Home, VideoGallery and ViewVideo need this method.
-    private String retrieveAccessToken() {
-        //check if ACCESS_TOKEN is stored on previous app launches
-        SharedPreferences prefs = getSharedPreferences("com.example.carl.womenofinfluence", Context.MODE_PRIVATE);
-        String accessToken = prefs.getString("access-token", null);
-        if (accessToken == null) {
-            Log.d("AccessToken Status", "No token found");
-            return null;
-        } else {
-            //accessToken already exists
-            Log.d("AccessToken Status", "Token exists");
-            return accessToken;
-        }
-    }
-
     //vid view imp play method
     private void PlayVideo()
     {
@@ -130,7 +113,7 @@ public class ViewVideo extends AppCompatActivity {
             MediaController mediaController = new MediaController(ViewVideo.this);
             mediaController.setAnchorView(videoView);
 
-            Uri video = Uri.parse(videoPath);
+            Uri video = Uri.parse(videoData.getTempUrl());
             videoView.setMediaController(mediaController);
             videoView.setVideoURI(video);
             videoView.requestFocus();
@@ -143,8 +126,6 @@ public class ViewVideo extends AppCompatActivity {
                     videoView.start();
                 }
             });
-
-
         }
         catch(Exception e)
         {

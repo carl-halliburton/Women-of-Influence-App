@@ -18,10 +18,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 public class Home extends AppCompatActivity {
 
     private Singleton tempSingleton;
     private FileLister fileLister;
+    private List<VideoData> videoDatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +38,37 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fileLister = new FileLister(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)));
-
         tempSingleton = Singleton.getInstance();
+
+        fileLister = new FileLister(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
+                getApplicationContext());
+        videoDatas = new ArrayList<VideoData>();
+        fileLister.execute();
+        try {
+            fileLister.get(10000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+        videoDatas = fileLister.getVideoDatas();
+
+        if (getString(R.string.ACCESS_TOKEN).equals("ACCESS_TOKEN")) {
+            new AlertDialog.Builder(Home.this)
+                    .setTitle("ACCESS TOKEN NOT SET")
+                    .setMessage("Invalid access token detected. Please use a valid token in the" +
+                            " strings.xml file. You will not be able to recieve videos until this is" +
+                            " resolved. If you are a user please contact the developers.")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 
     @Override
@@ -78,5 +113,16 @@ public class Home extends AppCompatActivity {
 
     public void viewVideoLink(View v) {
         startActivity(new Intent(Home.this, ViewVideo.class));
+    }
+
+    //TODO refreshes dropbox files in the background. However the new info would still need to be retrieved with setVideoData()
+    public void refreshDropboxFiles(){
+        fileLister.execute();
+        setVideoData();
+    }
+
+    //TODO should be set after fileLister.execute();. since .excute runs in the background it will need to be implemented to wait for .execute
+    public void setVideoData(){
+        videoDatas = fileLister.getVideoDatas();
     }
 }

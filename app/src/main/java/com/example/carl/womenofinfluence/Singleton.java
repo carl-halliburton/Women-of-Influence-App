@@ -1,11 +1,5 @@
 package com.example.carl.womenofinfluence;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-
-import com.dropbox.core.v2.users.FullAccount;
-
 /**
  * Created by carl on 25/08/2016.
  */
@@ -18,7 +12,6 @@ public class Singleton {
 
     private Singleton() {
         notify = new Notification();
-
     }
     public static Singleton getInstance() {
         if(instance == null) {
