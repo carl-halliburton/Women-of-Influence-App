@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,9 +68,10 @@ public class VideoGallery extends AppCompatActivity {
             galleryLinks.add(new Button(this));
             galleryLinks.get(i).setText(link.getName());
             galleryLinks.get(i).setId(i);
-            galleryLinks.get(i).setLayoutParams(new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            //set button size
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300);
+            galleryLinks.get(i).setLayoutParams(layoutParams);
+
             galleryView.addView(galleryLinks.get(i));
 
             //set the link for the video button
@@ -86,11 +88,11 @@ public class VideoGallery extends AppCompatActivity {
             //create the TextViews for the video descriptions
             //TODO add the description String to VideoData class and set the text here.
             galleryDescriptions.add(new TextView(this));
-            galleryDescriptions.get(i).setText("Placeholder video description for " +
-                    link.getName());
+            galleryDescriptions.get(i).setText(link.getName());
             galleryDescriptions.get(i).setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
+            galleryDescriptions.get(i).setGravity(Gravity.CENTER);
             galleryView.addView(galleryDescriptions.get(i));
             i++;
         }
