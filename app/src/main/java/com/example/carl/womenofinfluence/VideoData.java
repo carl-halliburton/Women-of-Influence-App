@@ -22,5 +22,4 @@ public class VideoData implements Serializable{
     public String getTempUrl() {
         return tempUrl;
     }
-
 }

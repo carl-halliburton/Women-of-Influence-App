@@ -1,17 +1,42 @@
 <resources>
+    //API keys and access tokens
+    <string name="APP_KEY">kisksq4wddv8ymj</string>
+    <string name="ACCESS_TOKEN">VWHcpuWtMSAAAAAAAAAAHFy0r1_0D1n-7i3knvaoaBtF70Cqwawgin0Qa2EOoKOc</string>
+
     <string name="app_name">Pearls</string>
     <string name="main_title">Pearls of Wisdom</string>
     <string name="sub_title">Women of Influence with Opinions</string>
+    <string name="blurb">Blurb - Place a description of the app here</string>
+
     <string name="action_notification">Notifications</string>
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_video_gallery">Video Gallery</string>
     <string name="title_activity_search_results">Search Results</string>
     <string name="title_activity_video_view">Video Player</string>
     <string name="title_activity_app_startup">AppStartup</string>
-    <string name="server_connection_error_title">Can\'t find videos</string>
-    <string name="server_connection_error">Unable to find videos on server. If you are a user please check your WIFI connection and try again later.</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_search">Search</string>
+
+    //Error Messages
     <string name="access_token_error_title">WARNING: ACCESS TOKEN NOT SET</string>
     <string name="access_token_error_description">Invalid access token detected. Without a valid token this application will not run properly. If you are a user please reinstall the app. If you are still experiencing this issue please contact support.</string>
-    <string name="APP_KEY">kisksq4wddv8ymj</string>
-    <string name="ACCESS_TOKEN">VWHcpuWtMSAAAAAAAAAAHFy0r1_0D1n-7i3knvaoaBtF70Cqwawgin0Qa2EOoKOc</string>
+    <string name="server_connection_error_title">Can\'t find videos</string>
+    <string name="server_connection_error">Unable to find videos on server. If you are a user please check your WIFI connection and try again later.</string>
+
+
+    //Feedback
+    <string name="fb_text_desc">Ask a question, let us know what you think</string>
+    <string name="fb_hint_name">Name</string>
+    <string name="fb_hint_email">Email</string>
+    <string name="fb_hint_subject">Subject</string>
+    <string name="fb_hint_message">Message</string>
+
+    //buttons
+    <string name="fb_btn_submit">Submit</string>
+    <string name="hm_btn_contact_us">Contact Us</string>
+
+    //text
+    <string name="hm_feedback_text">Give us your feedback or share your stories</string>
+    <string name="text_video_gallery_desc">Browse our videos below.</string>
+
 </resources>
