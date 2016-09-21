@@ -39,5 +39,4 @@
         android:title="@string/title_activity_feedback"
         android:src="@drawable/ic_perm_contact_calendar_black"
         app:showAsAction="never" />
-
 </menu>

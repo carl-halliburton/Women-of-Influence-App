@@ -38,5 +38,6 @@
     //text
     <string name="hm_feedback_text">Give us your feedback or share your stories</string>
     <string name="text_video_gallery_desc">Browse our videos below.</string>
+    <string name="galleryButton_thumbnailDesc">Thumbnail</string>
 
 </resources>

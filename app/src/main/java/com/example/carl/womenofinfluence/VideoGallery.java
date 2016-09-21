@@ -66,7 +66,8 @@ public class VideoGallery extends AppCompatActivity {
             //TODO change the TYPE Button to ImageButton when images are ready to be added for each video.
             //create the button for the video link
             galleryLinks.add(new Button(this));
-            galleryLinks.get(i).setText(link.getName());
+
+            galleryLinks.get(i).setText(link.getName().replaceFirst("[.][^.]+$", ""));
             galleryLinks.get(i).setId(i);
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300);
@@ -88,7 +89,7 @@ public class VideoGallery extends AppCompatActivity {
             //create the TextViews for the video descriptions
             //TODO add the description String to VideoData class and set the text here.
             galleryDescriptions.add(new TextView(this));
-            galleryDescriptions.get(i).setText(link.getName());
+            galleryDescriptions.get(i).setText(link.getName().replaceFirst("[.][^.]+$", ""));
             galleryDescriptions.get(i).setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));

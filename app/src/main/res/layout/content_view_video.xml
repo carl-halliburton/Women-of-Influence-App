@@ -19,46 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginTop="10dp"
         android:text="Video Title"
         android:id="@+id/txtVideoTitle"
-        android:gravity="center" />
-
-    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/gridLayoutShareBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:rowCount="1"
-        android:orientation="horizontal"
-        android:layout_below="@+id/txtVideoTitle"
-        tools:context=".GridXMLActivity" >
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_column="0"
-            android:id="@+id/imageShareFacebook"
-            android:layout_margin="10dp"
-            android:src="@drawable/mail" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_column="0"
-            android:id="@+id/imageShareEmail"
-            android:layout_margin="10dp"
-            android:src="@drawable/facebook" />
-
-     </GridLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Video Description"
-        android:id="@+id/txtVideoDesc"
-        android:layout_below="@+id/gridLayoutShareBtn"
         android:gravity="center" />
 
 </RelativeLayout>
