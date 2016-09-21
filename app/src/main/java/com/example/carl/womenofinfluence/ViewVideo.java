@@ -16,7 +16,7 @@ import android.widget.VideoView;
 
 public class ViewVideo extends AppCompatActivity {
 
-    private Singleton tempSingleton;
+    private GlobalAppData appData;
     private VideoData videoData;
 
     private static ProgressDialog progressDialog;
@@ -46,7 +46,7 @@ public class ViewVideo extends AppCompatActivity {
 
         PlayVideo();
 
-        tempSingleton = Singleton.getInstance();
+        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class ViewVideo extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
-        tempSingleton.getNotify().checkNotificationStatus(menu);
+        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -79,9 +79,9 @@ public class ViewVideo extends AppCompatActivity {
                 return true;
             case R.id.action_notification:
                 if (item.isChecked())
-                    tempSingleton.getNotify().isChecked(item, this);
+                    appData.getNotify().isChecked(item, this);
                 else
-                    tempSingleton.getNotify().isUnChecked(item, this);
+                    appData.getNotify().isUnChecked(item, this);
                 return true;
             case R.id.title_activity_video_gallery:
                 startActivity(new Intent(ViewVideo.this, VideoGallery.class));

@@ -19,9 +19,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Home extends AppCompatActivity {
 
-    private Singleton tempSingleton;
-    private FileLister fileLister;
-    private List<VideoData> videoDatas;
+    private GlobalAppData appData;
     private Button featureVideo;
 
     @Override
@@ -32,54 +30,25 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tempSingleton = Singleton.getInstance();
+        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this);
 
-        if (getString(R.string.ACCESS_TOKEN).equals("ACCESS_TOKEN")) {
+        if(appData.getVideoData().size() == 0)
+        {
             new AlertDialog.Builder(Home.this)
-                    .setTitle(getString(R.string.access_token_error_title))
-                    .setMessage(getString(R.string.access_token_error_description))
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+                .setTitle(getString(R.string.server_connection_error_title))
+                .setMessage(R.string.server_connection_error)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                         // continue with delete
+                }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
         }
         else {
-            fileLister = new FileLister(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
-                    getApplicationContext());
-            videoDatas = new ArrayList<VideoData>();
-            fileLister.execute();
-            try {
-                fileLister.get(10000, TimeUnit.MILLISECONDS);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (TimeoutException e) {
-                e.printStackTrace();
-            }
-            videoDatas = fileLister.getVideoDatas();
-
-            if(videoDatas.size() == 0)
-            {
-                new AlertDialog.Builder(Home.this)
-                        .setTitle(getString(R.string.server_connection_error_title))
-                        .setMessage(R.string.server_connection_error)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // continue with delete
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-            }
-            else {
-                //set the first video in the list as the featured video
-                featureVideo = (Button) findViewById(R.id.featureVideoBtn);
-                featureVideo.setText(videoDatas.get(0).getName());
-            }
+            //set the first video in the list as the featured video
+            featureVideo = (Button) findViewById(R.id.featureVideoBtn);
+            featureVideo.setText(appData.getVideoData().get(0).getName());
         }
     }
 
@@ -88,7 +57,7 @@ public class Home extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
-        tempSingleton.getNotify().checkNotificationStatus(menu);
+        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -99,9 +68,9 @@ public class Home extends AppCompatActivity {
             // Respond to the action bar's Up/Home button
             case R.id.action_notification:
                 if (item.isChecked())
-                    tempSingleton.getNotify().isChecked(item, this);
+                    appData.getNotify().isChecked(item, this);
                 else
-                    tempSingleton.getNotify().isUnChecked(item, this);
+                    appData.getNotify().isUnChecked(item, this);
                 return true;
             case R.id.title_activity_video_gallery:
                 startActivity(new Intent(Home.this, VideoGallery.class));
@@ -124,7 +93,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void viewVideoFeaturedLink(View v) {
-        if(videoDatas.size() == 0)
+        if(appData.getVideoData().size() == 0)
         {
             new AlertDialog.Builder(Home.this)
                     .setTitle(getString(R.string.server_connection_error_title))
@@ -140,19 +109,8 @@ public class Home extends AppCompatActivity {
         else {
             //Proceed to ViewVideo
             Intent intent = new Intent(Home.this, ViewVideo.class);
-            intent.putExtra("videoIndex", videoDatas.get(0));
+            intent.putExtra("videoIndex", appData.getVideoData().get(0));
             startActivity(intent);
         }
-    }
-
-    //TODO refreshes dropbox files in the background. However the new info would still need to be retrieved with setVideoData()
-    public void refreshDropboxFiles(){
-        fileLister.execute();
-        setVideoData();
-    }
-
-    //TODO should be set after fileLister.execute();. since .excute runs in the background it will need to be implemented to wait for .execute
-    public void setVideoData(){
-        videoDatas = fileLister.getVideoDatas();
     }
 }

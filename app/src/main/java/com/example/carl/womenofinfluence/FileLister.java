@@ -54,6 +54,10 @@ public class FileLister extends AsyncTask {
         Toast.makeText(context, "Get video data task complete", Toast.LENGTH_SHORT).show();
     }
 
+    public void setContext(Context context){
+        this.context = context;
+    }
+
     public List<VideoData> getVideoDatas() {
         return videoDatas;
     }
