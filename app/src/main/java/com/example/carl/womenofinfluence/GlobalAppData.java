@@ -20,6 +20,7 @@ public class GlobalAppData {
     private Notification notify;
     private Boolean notificationStatus = false;
     private FileLister fileLister;
+    private List<VideoData> videoDatas;
 
     private GlobalAppData( String ACCESS_TOKEN, Context context ) {
         notify = new Notification();
@@ -52,6 +53,8 @@ public class GlobalAppData {
             } catch (TimeoutException e) {
                 e.printStackTrace();
             }
+            videoDatas = new ArrayList<VideoData>();
+            videoDatas = fileLister.getVideoDatas();
         }
     }
     public static GlobalAppData getInstance( String ACCESS_TOKEN, Context context ) {
@@ -79,11 +82,18 @@ public class GlobalAppData {
     }
 
     public List<VideoData> getVideoData(){
-        return fileLister.getVideoDatas();
+        return videoDatas;
+    }
+
+    //TODO refreshes video list after the fileLister is refreshed.
+    public void refreshVideoList(){
+        videoDatas = fileLister.getVideoDatas();
     }
 
     //TODO refreshes dropbox files in the background. Need to define when to run it.
-    public void refreshDropboxFiles(){
+    public void refreshDropboxFiles( String ACCESS_TOKEN, Context context ){
+        fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
+                context);
         fileLister.execute();
     }
 }
