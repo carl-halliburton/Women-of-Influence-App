@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "614143573607",
+    "firebase_url": "https://pearls-144309.firebaseio.com",
+    "project_id": "pearls-144309",
+    "storage_bucket": "pearls-144309.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614143573607:android:06ec97a7a8897687",
+        "android_client_info": {
+          "package_name": "com.example.carl.womenofinfluence"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614143573607-e7i0h8fd8sa2g2ue2o1tohtab5posfto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtDJmUNx244qoMDGhyhMPQDWdxpu4LGKY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,7 @@
 package com.example.carl.womenofinfluence;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +27,10 @@ public class Home extends AppCompatActivity {
 
     private GlobalAppData appData;
     private Button featureVideo;
+
+    //Creating a broadcast receiver for gcm registration
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +60,9 @@ public class Home extends AppCompatActivity {
             featureVideo = (Button) findViewById(R.id.featureVideoBtn);
             featureVideo.setText(appData.getVideoData().get(0).getName());
         }
+
+        //TODO move this notification method elsewhere
+        setUpNotifications(getApplicationContext());
     }
 
     @Override
@@ -112,5 +125,66 @@ public class Home extends AppCompatActivity {
             intent.putExtra("videoIndex", appData.getVideoData().get(0));
             startActivity(intent);
         }
+    }
+
+    public void setUpNotifications(Context context) {
+        //Initializing our broadcast receiver
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+
+            //When the broadcast received
+            //We are sending the broadcast from GCMRegistrationIntentService
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //If the broadcast has received with success
+                //that means device is registered successfully
+                if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
+                    //Getting the registration token from the intent
+                    String token = intent.getStringExtra("token");
+                    //Displaying the token as toast
+                    Toast.makeText(context, "Registration token:" + token, Toast.LENGTH_LONG).show();
+
+                    //if the intent is not with success then displaying error messages
+                } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
+                    Toast.makeText(context, "GCM registration error!", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(context, "Error occurred", Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+
+        //If play service is available
+        if (checkPlayServices(context)) {
+            //Starting intent to register device
+            Intent itent = new Intent(this, GCMRegistrationIntentService.class);
+            startService(itent);
+        }
+    }
+
+    private boolean checkPlayServices(Context context) {
+        GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
+
+        //Checking play service is available or not
+        int resultCode = googleAPI.isGooglePlayServicesAvailable(context);
+
+        //if play service is not available
+        if(resultCode != ConnectionResult.SUCCESS) {
+            //If play service is supported but not installed
+            if(googleAPI.isUserResolvableError(resultCode)) {
+                //Displaying message that play service is not installed
+                Toast.makeText(context, "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
+                googleAPI.getErrorDialog(this, resultCode,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+
+                //If play service is not supported
+                //Displaying an error message
+            } else {
+                Toast.makeText(context, "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
+            }
+
+            return false;
+        }
+
+        return true;
     }
 }

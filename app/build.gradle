@@ -26,7 +26,10 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.dropbox.core:dropbox-core-sdk:2.1.1'
     compile 'com.android.support:design:24.2.1'
-    compile 'com.google.android.gms:play-services-appindexing:9.4.0'
     compile 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.11'
     compile 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.11'
+    compile "com.google.android.gms:play-services-gcm:9.4.0"
+    compile 'com.android.volley:volley:1.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
