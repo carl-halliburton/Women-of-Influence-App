@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeoutException;
 public class Home extends AppCompatActivity {
 
     private GlobalAppData appData;
-    private Button featureVideo;
+    private ImageButton featureVideo;
 
     //Creating a broadcast receiver for gcm registration
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -57,8 +58,7 @@ public class Home extends AppCompatActivity {
         }
         else {
             //set the first video in the list as the featured video
-            featureVideo = (Button) findViewById(R.id.featureVideoBtn);
-            featureVideo.setText(appData.getVideoData().get(0).getName());
+            featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
         }
 
         //TODO move this notification method elsewhere

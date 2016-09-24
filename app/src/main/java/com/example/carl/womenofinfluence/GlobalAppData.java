@@ -73,6 +73,7 @@ public class GlobalAppData {
         return notify;
     }
 
+
     public void setContext(Context context) {
         fileLister.setContext(context);
     }
@@ -99,6 +100,18 @@ public class GlobalAppData {
         fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
                 context);
         fileLister.execute();
+
+        try {
+            fileLister.get(10000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+
+        refreshVideoList();
     }
 
 

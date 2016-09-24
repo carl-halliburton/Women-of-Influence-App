@@ -12,21 +12,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 public class VideoGallery extends AppCompatActivity {
 
     private GlobalAppData appData;
-    private List<Button> galleryLinks;
-    private List<TextView> galleryDescriptions;
-    private LinearLayout galleryView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +35,63 @@ public class VideoGallery extends AppCompatActivity {
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
 
+        loadGsllery();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        appData.getNotify().checkNotificationStatus(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                startActivity(new Intent(VideoGallery.this, Home.class));
+                return true;
+            case R.id.action_notification:
+                if (item.isChecked())
+                    appData.getNotify().isChecked(item, this);
+                else
+                    appData.getNotify().isUnChecked(item, this);
+                return true;
+            case R.id.title_activity_video_gallery:
+                startActivity(new Intent(VideoGallery.this, VideoGallery.class));
+                return true;
+            case R.id.title_activity_feedback:
+                startActivity(new Intent(VideoGallery.this, Feedback.class));
+                return true;
+            case R.id.menu_refresh:
+                refreshContent();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void loadGsllery() {
+        List<ImageButton> galleryLinks;
+        List<TextView> galleryDescriptions;
+        LinearLayout galleryView;
+
         //create video gallery buttons
         galleryView = (LinearLayout) findViewById(R.id.gallery);
-        galleryLinks = new ArrayList<Button>();
-        galleryDescriptions = new ArrayList<TextView>();
+        galleryLinks = new ArrayList<>();
+        galleryDescriptions = new ArrayList<>();
         int i = 0;
 
         for (VideoData link : appData.getVideoData()) {
             //TODO change the TYPE Button to ImageButton when images are ready to be added for each video.
             //create the button for the video link
-            galleryLinks.add(new Button(this));
+            galleryLinks.add(new ImageButton(this));
 
-            galleryLinks.get(i).setText(link.getName().replaceFirst("[.][^.]+$", ""));
+            //set Thumbnail
+            galleryLinks.get(i).setBackground( getResources().getDrawable(R.drawable.video_place_holder));
+
             galleryLinks.get(i).setId(i);
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300);
@@ -88,44 +129,16 @@ public class VideoGallery extends AppCompatActivity {
                     .setTitle(getString(R.string.server_connection_error_title))
                     .setMessage(R.string.server_connection_error)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                        }
+                        public void onClick(DialogInterface dialog, int which) {}
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-
-        appData.getNotify().checkNotificationStatus(menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                startActivity(new Intent(VideoGallery.this, Home.class));
-                return true;
-            case R.id.action_notification:
-                if (item.isChecked())
-                    appData.getNotify().isChecked(item, this);
-                else
-                    appData.getNotify().isUnChecked(item, this);
-                return true;
-            case R.id.title_activity_video_gallery:
-                startActivity(new Intent(VideoGallery.this, VideoGallery.class));
-                return true;
-            case R.id.title_activity_feedback:
-                startActivity(new Intent(VideoGallery.this, Feedback.class));
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void refreshContent() {
+        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+        loadGsllery();
+        Toast.makeText(getApplicationContext(), "Gallery refreshed", Toast.LENGTH_SHORT).show();
     }
 }

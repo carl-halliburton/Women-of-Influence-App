@@ -44,14 +44,15 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
-        <Button
+        <ImageButton
             android:layout_width="250dp"
             android:layout_height="200dp"
             android:text="Current Video Placeholder"
             android:id="@+id/featureVideoBtn"
             android:onClick="viewVideoFeaturedLink"
             android:layout_marginTop="30dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/video_place_holder"/>
 
         <TextView
             android:layout_width="wrap_content"
