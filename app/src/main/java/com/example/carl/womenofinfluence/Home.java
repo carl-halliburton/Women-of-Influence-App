@@ -46,15 +46,15 @@ public class Home extends AppCompatActivity {
         if(appData.getVideoData().size() == 0)
         {
             new AlertDialog.Builder(Home.this)
-                .setTitle(getString(R.string.server_connection_error_title))
-                .setMessage(R.string.server_connection_error)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                         // continue with delete
-                }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+                    .setTitle(getString(R.string.server_connection_error_title))
+                    .setMessage(R.string.server_connection_error)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
         else {
             //set the first video in the list as the featured video
