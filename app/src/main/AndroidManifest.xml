@@ -3,16 +3,23 @@
     package="com.example.carl.womenofinfluence">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <permission
+        android:name="com.example.carl.womenofinfluence.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.carl.womenofinfluence.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".Home"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,14 +27,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Feedback"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".VideoGallery"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SearchResults"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ViewVideo"
             android:configChanges="orientation|screenSize"
@@ -41,7 +47,7 @@
             <intent-filter>
 
                 <!-- Insert your app key after “db-  ...” -->
-                <data android:scheme="db-APP_KEY"/>
+                <data android:scheme="db-kisksq4wddv8ymj" />
 
                 <action android:name="android.intent.action.VIEW" />
 
@@ -49,6 +55,47 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Feedback"
+            android:label="@string/title_activity_feedback"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <!--
+            GCM Receiver
+        -->
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="com.gnirt69.gcmexample"/>
+            </intent-filter>
+        </receiver>
+
+        <!--
+            GCM Receiver Service
+        -->
+        <service android:name=".GCMPushReceiverService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </service>
+
+        <!--
+            GCM Registration Intent Service
+        -->
+        <service android:name=".GCMRegistrationIntentService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
