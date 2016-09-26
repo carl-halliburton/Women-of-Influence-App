@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,19 +16,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-
 public class Home extends AppCompatActivity {
 
     private GlobalAppData appData;
     private ImageButton featureVideo;
+    private static final String TAG = "Home";
 
     //Creating a broadcast receiver for gcm registration
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -61,8 +54,8 @@ public class Home extends AppCompatActivity {
             featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
         }
 
-        //TODO move this notification method elsewhere
-        setUpNotifications(getApplicationContext());
+        //checks for notification
+        checkNotification();
     }
 
     @Override
@@ -128,65 +121,38 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    public void setUpNotifications(Context context) {
-        //Initializing our broadcast receiver
-        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
-
-            //When the broadcast received
-            //We are sending the broadcast from GCMRegistrationIntentService
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                //If the broadcast has received with success
-                //that means device is registered successfully
-                if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
-                    //Getting the registration token from the intent
-                    String token = intent.getStringExtra("token");
-                    //Displaying the token as toast
-                    Toast.makeText(context, "Registration token:" + token, Toast.LENGTH_LONG).show();
-
-                    //if the intent is not with success then displaying error messages
-                } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
-                    Toast.makeText(context, "GCM registration error!", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(context, "Error occurred", Toast.LENGTH_LONG).show();
+    //checks the notification for any readable data.
+    public void checkNotification() {
+        VideoData video = null;
+        // If a notification message is tapped, any data accompanying the notification
+        // message is available in the intent extras. In this sample the launcher
+        // intent is fired when the notification is tapped, so any accompanying data would
+        // be handled here. If you want a different intent fired, set the click_action
+        // field of the notification message to the desired intent. The launcher intent
+        // is used when no click_action is specified.
+        //
+        // Handle possible data accompanying notification message.
+        // [START handle_data_extras]
+        if (getIntent().getExtras() != null) {
+            for (String key : getIntent().getExtras().keySet()) {
+                Object value = getIntent().getExtras().get(key);
+                Log.d(TAG, "Key: " + key + " Value: " + value);
+                for ( VideoData videoData : appData.getVideoData()) {
+                    if (key.toString().equals("VIDEO") && value.toString().equals(videoData.getName().replaceFirst("[.][^.]+$", ""))) {
+                        video = videoData;
+                    }
                 }
             }
-        };
-
-        //If play service is available
-        if (checkPlayServices(context)) {
-            //Starting intent to register device
-            Intent itent = new Intent(this, GCMRegistrationIntentService.class);
-            startService(itent);
         }
-    }
+        // [END handle_data_extras]
 
-    private boolean checkPlayServices(Context context) {
-        GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
-
-        //Checking play service is available or not
-        int resultCode = googleAPI.isGooglePlayServicesAvailable(context);
-
-        //if play service is not available
-        if(resultCode != ConnectionResult.SUCCESS) {
-            //If play service is supported but not installed
-            if(googleAPI.isUserResolvableError(resultCode)) {
-                //Displaying message that play service is not installed
-                Toast.makeText(context, "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
-                googleAPI.getErrorDialog(this, resultCode,
-                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
-
-                //If play service is not supported
-                //Displaying an error message
-            } else {
-                Toast.makeText(context, "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
-            }
-
-            return false;
+        //if video data was defined in the data payload
+        if (video != null) {
+            //Proceed to View_Video
+            Intent intent = new Intent(this, ViewVideo.class);
+            intent.putExtra("videoIndex", video);
+            startActivity(intent);
         }
-
-        return true;
     }
 
     public void refreshContent() {
