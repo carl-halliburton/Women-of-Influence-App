@@ -29,10 +29,16 @@ public class Feedback extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem item;
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
-        MenuItem item = menu.findItem(R.id.menu_refresh);
+
+        item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
+
+        item = menu.findItem(R.id.menu_feedback);
+        item.setVisible(false);
+
         appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
@@ -50,10 +56,10 @@ public class Feedback extends AppCompatActivity {
                 else
                     appData.getNotify().isUnChecked(item, this);
                 return true;
-            case R.id.title_activity_video_gallery:
+            case R.id.menu_video_gallery:
                 startActivity(new Intent(Feedback.this, VideoGallery.class));
                 return true;
-            case R.id.title_activity_feedback:
+            case R.id.menu_feedback:
                 return true;
             case R.id.action_search:
                 return true;

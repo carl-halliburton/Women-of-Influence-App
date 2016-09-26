@@ -69,7 +69,6 @@ public class Home extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
-        //R.id.menu_refresh.setVisible(false);
         appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
@@ -78,17 +77,16 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
             case R.id.action_notification:
                 if (item.isChecked())
                     appData.getNotify().isChecked(item, this);
                 else
                     appData.getNotify().isUnChecked(item, this);
                 return true;
-            case R.id.title_activity_video_gallery:
+            case R.id.menu_video_gallery:
                 startActivity(new Intent(Home.this, VideoGallery.class));
                 return true;
-            case R.id.title_activity_feedback:
+            case R.id.menu_feedback:
                 startActivity(new Intent(Home.this, Feedback.class));
                 return true;
             case R.id.action_search:

@@ -60,10 +60,10 @@ public class VideoGallery extends AppCompatActivity {
                 else
                     appData.getNotify().isUnChecked(item, this);
                 return true;
-            case R.id.title_activity_video_gallery:
+            case R.id.menu_video_gallery:
                 startActivity(new Intent(VideoGallery.this, VideoGallery.class));
                 return true;
-            case R.id.title_activity_feedback:
+            case R.id.menu_feedback:
                 startActivity(new Intent(VideoGallery.this, Feedback.class));
                 return true;
             case R.id.menu_refresh:

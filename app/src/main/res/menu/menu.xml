@@ -25,13 +25,13 @@
                 android:orderInCategory="2"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/title_activity_video_gallery"
+                android:id="@+id/menu_video_gallery"
                 android:title="@string/title_activity_video_gallery"
                 android:icon="@drawable/ic_video_library_black"
                 android:orderInCategory="3"
                 app:showAsAction="never" />
             <item
-                android:id="@+id/title_activity_feedback"
+                android:id="@+id/menu_feedback"
                 android:title="@string/title_activity_feedback"
                 android:icon="@drawable/ic_contact_calendar_black"
                 android:orderInCategory="4"

@@ -83,10 +83,10 @@ public class ViewVideo extends AppCompatActivity {
                 else
                     appData.getNotify().isUnChecked(item, this);
                 return true;
-            case R.id.title_activity_video_gallery:
+            case R.id.menu_video_gallery:
                 startActivity(new Intent(ViewVideo.this, VideoGallery.class));
                 return true;
-            case R.id.title_activity_feedback:
+            case R.id.menu_feedback:
                 startActivity(new Intent(ViewVideo.this, Feedback.class));
                 return true;
             case R.id.action_search:

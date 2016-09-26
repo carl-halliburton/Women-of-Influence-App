@@ -46,10 +46,10 @@ public class SearchResults extends AppCompatActivity {
                 else
                     appData.getNotify().isUnChecked(item, this);
                 return true;
-            case R.id.title_activity_video_gallery:
+            case R.id.menu_video_gallery:
                 startActivity(new Intent(SearchResults.this, VideoGallery.class));
                 return true;
-            case R.id.title_activity_feedback:
+            case R.id.menu_feedback:
                 startActivity(new Intent(SearchResults.this, Feedback.class));
                 return true;
         }
