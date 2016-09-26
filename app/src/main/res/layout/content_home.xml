@@ -11,12 +11,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.carl.womenofinfluence.Home"
-    tools:showIn="@layout/activity_home">
+    tools:showIn="@layout/activity_home"
+    android:background="@color/colorBody">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,7 +26,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/main_title"
             android:id="@+id/textTitle"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:typeface="monospace"/>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -45,7 +49,7 @@
             android:layout_marginRight="10dp"/>
 
         <ImageButton
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
             android:text="@string/hm_feature_video_aut_text"
             android:scaleType="fitXY"
@@ -53,7 +57,16 @@
             android:onClick="viewVideoFeaturedLink"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
-            android:src="@drawable/video_place_holder"/>
+            android:src="@drawable/video_place_holder"
+            android:scaleType="fitXY"
+            android:layout_weight="0.55" />
+
+        <TextView
+            android:text="Name of feature video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/featureVideoName"
+            android:gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +81,8 @@
             android:text="@string/title_activity_video_gallery"
             android:id="@+id/button2"
             android:onClick="videoGalleryButtonOnClick"
-            android:layout_gravity="start" />
+            android:layout_gravity="start"
+            android:typeface="serif"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -76,7 +90,8 @@
             android:text="@string/hm_btn_contact_us"
             android:id="@+id/button3"
             android:onClick="feedbackButtonOnClick"
-            android:layout_gravity="start"/>
+            android:layout_gravity="start"
+            android:typeface="serif"/>
 
         <TextView
             android:layout_width="wrap_content"

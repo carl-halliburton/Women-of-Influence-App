@@ -11,7 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.carl.womenofinfluence.Feedback"
-    tools:showIn="@layout/activity_feedback">
+    tools:showIn="@layout/activity_feedback"
+    android:background="@color/colorBody">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -83,8 +84,9 @@
             android:text="@string/fb_btn_submit"
             android:id="@+id/btnSubmit"
             android:layout_marginBottom="49dp"
-            android:onClick="sendFeedback"
-            android:layout_gravity="center" />
+            android:onClick="submitFeedback"
+            android:layout_gravity="center"
+            android:typeface="serif"/>
 
     </LinearLayout>
 </ScrollView>

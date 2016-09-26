@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.carl.womenofinfluence.ViewVideo"
-    tools:showIn="@layout/activity_view_video">
+    tools:showIn="@layout/activity_view_video"
+    android:background="@color/colorBody">
 
     <VideoView
         android:layout_width="match_parent"

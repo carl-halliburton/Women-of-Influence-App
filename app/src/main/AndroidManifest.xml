@@ -4,11 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <permission
-        android:name="com.example.carl.womenofinfluence.permission.C2D_MESSAGE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="com.example.carl.womenofinfluence.permission.C2D_MESSAGE" />
 
     <application
         android:allowBackup="true"
@@ -44,6 +39,7 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_view_video"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- Dropbox AuthActivity -->
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
@@ -60,47 +56,26 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Feedback"
             android:label="@string/title_activity_feedback"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <!--
-            GCM Receiver
-        -->
-        <receiver
-            android:name="com.google.android.gms.gcm.GcmReceiver"
-            android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND">
+        <!-- [START firebase_service] -->
+        <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-                <category android:name="com.gnirt69.gcmexample"/>
-            </intent-filter>
-        </receiver>
-
-        <!--
-            GCM Receiver Service
-        -->
-        <service android:name=".GCMPushReceiverService" android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <!--
-            GCM Registration Intent Service
-        -->
-        <service android:name=".GCMRegistrationIntentService" android:exported="false">
+        <!-- [END firebase_service] -->
+        <!-- [START firebase_iid_service] -->
+        <service android:name=".MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
-        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <!-- [END firebase_iid_service] -->
     </application>
 
 </manifest>

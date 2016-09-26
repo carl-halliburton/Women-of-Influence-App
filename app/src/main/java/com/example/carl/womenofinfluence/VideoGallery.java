@@ -2,6 +2,7 @@ package com.example.carl.womenofinfluence;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -75,17 +76,16 @@ public class VideoGallery extends AppCompatActivity {
 
     public void loadGallery() {
         List<ImageButton> galleryLinks;
-        List<TextView> galleryDescriptions;
+        List<TextView> videoTitles;
         LinearLayout galleryView;
 
         //create video gallery buttons
         galleryView = (LinearLayout) findViewById(R.id.gallery);
         galleryLinks = new ArrayList<>();
-        galleryDescriptions = new ArrayList<>();
+        videoTitles = new ArrayList<>();
         int i = 0;
 
         for (VideoData link : appData.getVideoData()) {
-            //TODO change the TYPE Button to ImageButton when images are ready to be added for each video.
             //create the button for the video link
             galleryLinks.add(new ImageButton(this));
 
@@ -112,13 +112,14 @@ public class VideoGallery extends AppCompatActivity {
 
             //create the TextViews for the video descriptions
             //TODO add the description String to VideoData class and set the text here.
-            galleryDescriptions.add(new TextView(this));
-            galleryDescriptions.get(i).setText(link.getName().replaceFirst("[.][^.]+$", ""));
-            galleryDescriptions.get(i).setLayoutParams(new LinearLayout.LayoutParams(
+            videoTitles.add(new TextView(this));
+            videoTitles.get(i).setText(link.getName().replaceFirst("[.][^.]+$", ""));
+            videoTitles.get(i).setTypeface(Typeface.SERIF);
+            videoTitles.get(i).setLayoutParams(new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
-            galleryDescriptions.get(i).setGravity(Gravity.CENTER);
-            galleryView.addView(galleryDescriptions.get(i));
+            videoTitles.get(i).setGravity(Gravity.CENTER);
+            galleryView.addView(videoTitles.get(i));
             i++;
         }
 
