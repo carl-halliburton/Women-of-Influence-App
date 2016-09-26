@@ -93,6 +93,9 @@ public class Home extends AppCompatActivity {
                 return true;
             case R.id.action_search:
                 return true;
+            case R.id.menu_refresh:
+                refreshContent();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -186,5 +189,11 @@ public class Home extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void refreshContent() {
+        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
+        featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
+        Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT).show();
     }
 }
