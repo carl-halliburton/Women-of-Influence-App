@@ -67,7 +67,11 @@ public class Feedback extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void submitFeedback(View view) {
+    public void sendFeedback(View view) {
+        successDialog(view);
+    }
+
+    public void successDialog(View view) {
 
         clearFields();
 
@@ -96,4 +100,6 @@ public class Feedback extends AppCompatActivity {
         EditText message = (EditText)findViewById(R.id.fieldMessage);
         message.setText("");
     }
+
+
 }

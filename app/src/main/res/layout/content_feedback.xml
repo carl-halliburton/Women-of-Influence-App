@@ -83,7 +83,7 @@
             android:text="@string/fb_btn_submit"
             android:id="@+id/btnSubmit"
             android:layout_marginBottom="49dp"
-            android:onClick="submitFeedback"
+            android:onClick="sendFeedback"
             android:layout_gravity="center" />
 
     </LinearLayout>

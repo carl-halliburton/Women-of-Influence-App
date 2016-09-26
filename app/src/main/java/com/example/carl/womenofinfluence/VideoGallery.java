@@ -35,7 +35,7 @@ public class VideoGallery extends AppCompatActivity {
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
 
-        loadGsllery();
+        loadGallery();
     }
 
     @Override
@@ -73,7 +73,7 @@ public class VideoGallery extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void loadGsllery() {
+    public void loadGallery() {
         List<ImageButton> galleryLinks;
         List<TextView> galleryDescriptions;
         LinearLayout galleryView;
@@ -138,7 +138,7 @@ public class VideoGallery extends AppCompatActivity {
 
     public void refreshContent() {
         appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
-        loadGsllery();
+        loadGallery();
         Toast.makeText(getApplicationContext(), "Gallery refreshed", Toast.LENGTH_SHORT).show();
     }
 }
