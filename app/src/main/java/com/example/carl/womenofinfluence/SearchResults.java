@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 public class SearchResults extends AppCompatActivity {
 
-    private Singleton tempSingleton;
+    private GlobalAppData appData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +20,16 @@ public class SearchResults extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_home_white); // inserts home icon on the left of the toolbar
 
-        tempSingleton = Singleton.getInstance();
+        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), SearchResults.this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
-
-        tempSingleton.getNotify().checkNotificationStatus(menu);
+        MenuItem item = menu.findItem(R.id.menu_refresh);
+        item.setVisible(false);
+        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -41,14 +42,14 @@ public class SearchResults extends AppCompatActivity {
                 return true;
             case R.id.action_notification:
                 if (item.isChecked())
-                    tempSingleton.getNotify().isChecked(item, this);
+                    appData.getNotify().isChecked(item, this);
                 else
-                    tempSingleton.getNotify().isUnChecked(item, this);
+                    appData.getNotify().isUnChecked(item, this);
                 return true;
-            case R.id.title_activity_video_gallery:
+            case R.id.menu_video_gallery:
                 startActivity(new Intent(SearchResults.this, VideoGallery.class));
                 return true;
-            case R.id.title_activity_feedback:
+            case R.id.menu_feedback:
                 startActivity(new Intent(SearchResults.this, Feedback.class));
                 return true;
         }

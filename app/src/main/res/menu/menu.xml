@@ -1,31 +1,49 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.carl.womenofinfluence.Home">
+    tools:context=".MainActivity">
 
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_menu_white"
+        android:orderInCategory="2"
+        android:title="Menu"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/menu_refresh"
+                android:icon="@drawable/ic_refresh_black"
+                android:title="@string/menu_refresh"
+                android:orderInCategory="1"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/action_notification"
+                android:title="@string/action_notification"
+                android:icon="@drawable/ic_notifications_black"
+                android:checkable="true"
+                android:orderInCategory="2"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_video_gallery"
+                android:title="@string/title_activity_video_gallery"
+                android:icon="@drawable/ic_video_library_black"
+                android:orderInCategory="3"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_feedback"
+                android:title="@string/title_activity_feedback"
+                android:icon="@drawable/ic_contact_calendar_black"
+                android:orderInCategory="4"
+                app:showAsAction="never" />
+        </menu>
+    </item>
 
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="Search"
+        android:title="@string/menu_search"
+        android:orderInCategory="1"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="collapseActionView|always" />
-
-    <item
-        android:id="@+id/action_notification"
-        android:title="@string/action_notification"
-        android:checkable="true"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/title_activity_video_gallery"
-        android:orderInCategory="100"
-        android:title="@string/title_activity_video_gallery"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/title_activity_feedback"
-        android:orderInCategory="100"
-        android:title="@string/title_activity_feedback"
-        app:showAsAction="never" />
+        app:showAsAction="collapseActionView|ifRoom" />
 </menu>

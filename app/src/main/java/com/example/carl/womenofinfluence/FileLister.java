@@ -31,20 +31,20 @@ public class FileLister extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] params) {
-            try {
+        try {
 
-                //contains metadata for all contents in the folder such as the URI links to each file.
-                folderContents = dbxClient.files().listFolder("/videos/").getEntries();
+            //contains metadata for all contents in the folder such as the URI links to each file.
+            folderContents = dbxClient.files().listFolder("/videos/").getEntries();
 
-                //create temporary links for each file in the folder
-                for (Metadata fileItem : folderContents) {
-                    //to store temporary urls into a list
-                    videoDatas.add(new VideoData(fileItem.getName(), dbxClient.files().getTemporaryLink(fileItem.getPathLower()).getLink()));
-                }
-                Log.d("Create Links", "Success");
-            } catch (DbxException e) {
-                e.printStackTrace();
+            //create temporary links for each file in the folder
+            for (Metadata fileItem : folderContents) {
+                //to store temporary urls into a list
+                videoDatas.add(new VideoData(fileItem.getName(), dbxClient.files().getTemporaryLink(fileItem.getPathLower()).getLink()));
             }
+            Log.d("Create Links", "Success");
+        } catch (DbxException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -54,8 +54,11 @@ public class FileLister extends AsyncTask {
         Toast.makeText(context, "Get video data task complete", Toast.LENGTH_SHORT).show();
     }
 
+    public void setContext(Context context){
+        this.context = context;
+    }
+
     public List<VideoData> getVideoDatas() {
         return videoDatas;
     }
 }
-
