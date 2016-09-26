@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
@@ -45,8 +46,15 @@ public class Home extends AppCompatActivity {
                     .show();
         }
         else {
-            //set the first video in the list as the featured video
             featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
+            TextView featureVideoTitle = (TextView) findViewById(R.id.featureVideoName);
+
+            //set the first video in the list as the featured video
+            if(appData.getVideoData().size() != 0) {
+                featureVideoTitle.setText(appData.getVideoData().get(0).getName().replaceFirst("[.][^.]+$", ""));
+                featureVideoTitle.setVisibility(View.VISIBLE);
+                featureVideo.setVisibility(View.VISIBLE);
+            }
         }
     }
 
