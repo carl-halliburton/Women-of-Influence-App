@@ -28,6 +28,7 @@ public class Notification {
     public void isChecked(MenuItem item, Context context) {
         // If item already checked then unchecked it
         item.setChecked(false);
+
         status = false;
         new AlertDialog.Builder(context)
                 .setTitle("Notifications Off")
