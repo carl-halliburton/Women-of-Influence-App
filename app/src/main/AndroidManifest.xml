@@ -39,6 +39,7 @@
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_view_video"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <!-- Dropbox AuthActivity -->
         <activity
             android:name="com.dropbox.core.android.AuthActivity"
@@ -55,6 +56,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Feedback"
             android:label="@string/title_activity_feedback"

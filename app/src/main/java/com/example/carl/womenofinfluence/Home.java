@@ -20,11 +20,6 @@ public class Home extends AppCompatActivity {
 
     private GlobalAppData appData;
     private ImageButton featureVideo;
-    private static final String TAG = "Home";
-
-    //Creating a broadcast receiver for gcm registration
-    private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +48,6 @@ public class Home extends AppCompatActivity {
             //set the first video in the list as the featured video
             featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
         }
-
-        //checks for notification
-        checkNotification();
     }
 
     @Override
@@ -117,40 +109,6 @@ public class Home extends AppCompatActivity {
             //Proceed to ViewVideo
             Intent intent = new Intent(Home.this, ViewVideo.class);
             intent.putExtra("videoIndex", appData.getVideoData().get(0));
-            startActivity(intent);
-        }
-    }
-
-    //checks the notification for any readable data.
-    public void checkNotification() {
-        VideoData video = null;
-        // If a notification message is tapped, any data accompanying the notification
-        // message is available in the intent extras. In this sample the launcher
-        // intent is fired when the notification is tapped, so any accompanying data would
-        // be handled here. If you want a different intent fired, set the click_action
-        // field of the notification message to the desired intent. The launcher intent
-        // is used when no click_action is specified.
-        //
-        // Handle possible data accompanying notification message.
-        // [START handle_data_extras]
-        if (getIntent().getExtras() != null) {
-            for (String key : getIntent().getExtras().keySet()) {
-                Object value = getIntent().getExtras().get(key);
-                Log.d(TAG, "Key: " + key + " Value: " + value);
-                for ( VideoData videoData : appData.getVideoData()) {
-                    if (key.toString().equals("VIDEO") && value.toString().equals(videoData.getName().replaceFirst("[.][^.]+$", ""))) {
-                        video = videoData;
-                    }
-                }
-            }
-        }
-        // [END handle_data_extras]
-
-        //if video data was defined in the data payload
-        if (video != null) {
-            //Proceed to View_Video
-            Intent intent = new Intent(this, ViewVideo.class);
-            intent.putExtra("videoIndex", video);
             startActivity(intent);
         }
     }
