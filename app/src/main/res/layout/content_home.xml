@@ -51,7 +51,8 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="Current Video Placeholder"
+            android:text="@string/hm_feature_video_aut_text"
+            android:scaleType="fitXY"
             android:id="@+id/featureVideoBtn"
             android:onClick="viewVideoFeaturedLink"
             android:layout_marginTop="30dp"
