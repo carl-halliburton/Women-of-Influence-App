@@ -1,5 +1,6 @@
 package com.example.carl.womenofinfluence;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -92,7 +93,14 @@ public class VideoGallery extends AppCompatActivity {
             galleryLinks.add(new ImageButton(this));
 
             //set Thumbnail
-            galleryLinks.get(i).setBackground( getResources().getDrawable(R.drawable.video_place_holder));
+            int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+            if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
+                //Runs on Lollipop and higher
+                setLinkImageLollipop(galleryLinks.get(i));
+            } else {
+                //Runs on KitKat and below
+                galleryLinks.get(i).setBackground(getResources().getDrawable(R.drawable.video_place_holder));
+            }
 
             galleryLinks.get(i).setId(i);
             //set button size
@@ -150,13 +158,10 @@ public class VideoGallery extends AppCompatActivity {
             public void run() {
                 try {
                     appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
-                    sleep(1000);
+                    sleep(100);
                 } catch (InterruptedException e) {
                     progressDialog.dismiss();
                     e.printStackTrace();
-                } finally {
-                    progressDialog.dismiss();
-                    refreshDialog.show();
                 }
             }
         };
@@ -165,6 +170,8 @@ public class VideoGallery extends AppCompatActivity {
         final Thread setTask = new Thread() {
             public void run() {
                 loadGallery();
+                progressDialog.dismiss();
+                refreshDialog.show();
             }
         };
 
@@ -181,5 +188,10 @@ public class VideoGallery extends AppCompatActivity {
         };
         refreshTask.start();
         waitForRefresh.start();
+    }
+
+    @TargetApi(android.os.Build.VERSION_CODES.LOLLIPOP)
+    public void setLinkImageLollipop(ImageButton galleryLink){
+        galleryLink.setBackground( getResources().getDrawable(R.drawable.video_place_holder, null));
     }
 }

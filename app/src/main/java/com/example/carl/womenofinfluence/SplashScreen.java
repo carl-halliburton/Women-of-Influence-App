@@ -27,7 +27,7 @@ public class SplashScreen extends Activity {
             public void run(){
                 try{
                     appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), SplashScreen.this);
-                    sleep(1000);
+                    sleep(100);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }finally{

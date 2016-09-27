@@ -113,13 +113,9 @@ public class Home extends AppCompatActivity {
             public void run() {
                 try {
                     appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
-                    sleep(1000);
+                    sleep(100);
                 } catch (InterruptedException e) {
-                    progressDialog.dismiss();
                     e.printStackTrace();
-                } finally {
-                    progressDialog.dismiss();
-                    refreshDialog.show();
                 }
             }
         };
@@ -128,6 +124,8 @@ public class Home extends AppCompatActivity {
         final Thread setTask = new Thread() {
             public void run() {
                 setFeatureVideoLink();
+                progressDialog.dismiss();
+                refreshDialog.show();
             }
         };
 
