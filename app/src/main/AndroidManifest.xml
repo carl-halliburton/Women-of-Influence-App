@@ -37,7 +37,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ViewVideo"
-            android:configChanges="orientation|screenSize"
+   
             android:label="@string/title_activity_view_video"
             android:theme="@style/AppTheme.NoActionBar" />
 
