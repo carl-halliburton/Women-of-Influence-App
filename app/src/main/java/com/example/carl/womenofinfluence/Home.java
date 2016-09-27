@@ -33,12 +33,10 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this);
-
         featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
         featureVideoTitle = (TextView) findViewById(R.id.featureVideoName);
 
-        setFeatureVideoLink();
+        refreshContent();
     }
 
     @Override
@@ -112,7 +110,12 @@ public class Home extends AppCompatActivity {
         final Thread refreshTask = new Thread() {
             public void run() {
                 try {
-                    appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
+                    if (appData == null)
+                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this);
+                    else {
+                        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
+                        refreshDialog.show();
+                    }
                     sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -125,7 +128,6 @@ public class Home extends AppCompatActivity {
             public void run() {
                 setFeatureVideoLink();
                 progressDialog.dismiss();
-                refreshDialog.show();
             }
         };
 

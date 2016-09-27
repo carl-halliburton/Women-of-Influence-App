@@ -53,7 +53,6 @@ public class FileLister extends AsyncTask {
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
-        Toast.makeText(context, "Get video data task complete", Toast.LENGTH_SHORT).show();
     }
 
     public void setContext(Context context){
