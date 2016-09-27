@@ -9,11 +9,13 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -73,6 +75,8 @@ public class ViewVideo extends AppCompatActivity {
                 return true;
             }
         });
+
+
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
 

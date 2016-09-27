@@ -24,5 +24,4 @@
         android:text="Video Title"
         android:id="@+id/txtVideoTitle"
         android:gravity="center" />
-
 </RelativeLayout>

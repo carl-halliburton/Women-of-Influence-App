@@ -18,7 +18,7 @@ import static android.R.attr.button;
 public class Feedback extends AppCompatActivity {
 
     private GlobalAppData appData;
-    final Button submitButton = (Button) findViewById(R.id.btnSubmit);
+    private Button submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class Feedback extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_home_white);
-
+        submitButton = (Button) findViewById(R.id.btnSubmit);
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Feedback.this);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
