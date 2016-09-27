@@ -37,9 +37,7 @@ public class VideoGallery extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.mipmap.ic_home_white);
 
-        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
-
-        loadGallery();
+        refreshContent();
     }
 
     @Override
@@ -157,7 +155,12 @@ public class VideoGallery extends AppCompatActivity {
         final Thread refreshTask = new Thread() {
             public void run() {
                 try {
-                    appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                    if (appData == null)
+                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                    else {
+                        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                        refreshDialog.show();
+                    }
                     sleep(100);
                 } catch (InterruptedException e) {
                     progressDialog.dismiss();
@@ -171,7 +174,6 @@ public class VideoGallery extends AppCompatActivity {
             public void run() {
                 loadGallery();
                 progressDialog.dismiss();
-                refreshDialog.show();
             }
         };
 

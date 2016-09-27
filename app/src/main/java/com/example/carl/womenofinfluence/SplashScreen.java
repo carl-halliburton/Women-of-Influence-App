@@ -64,7 +64,10 @@ public class SplashScreen extends Activity {
                 Log.d(TAG, "Key: " + key + " Value: " + value);
                 for ( VideoData videoData : appData.getVideoData()) {
                     if (value != null)
-                        if (key.equals("VIDEO") && value.toString().equals(videoData.getName().replaceFirst("[.][^.]+$", ""))) {
+                        if (key.toLowerCase().equals("VIDEO".toLowerCase()) &&
+                                value.toString().toLowerCase()
+                                        .equals(videoData.getName().replaceFirst("[.][^.]+$", "")
+                                                .toLowerCase())) {
                             video = videoData;
                         }
                 }
