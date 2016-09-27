@@ -59,8 +59,6 @@ public class Feedback extends AppCompatActivity {
             case R.id.menu_video_gallery:
                 startActivity(new Intent(Feedback.this, VideoGallery.class));
                 return true;
-            case R.id.menu_feedback:
-                return true;
             case R.id.action_search:
                 return true;
         }
