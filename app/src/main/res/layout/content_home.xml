@@ -54,13 +54,14 @@
             android:text="@string/hm_feature_video_aut_text"
             android:id="@+id/featureVideoBtn"
             android:onClick="viewVideoFeaturedLink"
+            android:scaleType="fitXY"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_video_placeholder" />
 
         <TextView
             android:text="Name of feature video"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:id="@+id/featureVideoName"
             android:gravity="center" />

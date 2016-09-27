@@ -5,17 +5,11 @@
 
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/ic_menu_white"
-        android:orderInCategory="2"
+        android:icon="@drawable/ic_menu_black"
+        android:orderInCategory="3"
         android:title="Menu"
         app:showAsAction="always">
         <menu>
-            <item
-                android:id="@+id/menu_refresh"
-                android:icon="@drawable/ic_refresh_black"
-                android:title="@string/menu_refresh"
-                android:orderInCategory="1"
-                app:showAsAction="never" />
 
             <item
                 android:id="@+id/action_notification"
@@ -40,10 +34,18 @@
     </item>
 
     <item
+        android:id="@+id/menu_refresh"
+        android:title="@string/menu_refresh"
+        android:icon="@drawable/ic_refresh_black"
+        android:orderInCategory="2"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_search_black"
         android:title="@string/menu_search"
+        android:visible="true"
         android:orderInCategory="1"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:showAsAction="collapseActionView|always" />
 </menu>
