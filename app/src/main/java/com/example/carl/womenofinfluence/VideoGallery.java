@@ -99,7 +99,7 @@ public class VideoGallery extends AppCompatActivity {
                 setLinkImageLollipop(galleryLinks.get(i));
             } else {
                 //Runs on KitKat and below
-                galleryLinks.get(i).setBackground(getResources().getDrawable(R.drawable.video_place_holder));
+                galleryLinks.get(i).setBackground(getResources().getDrawable(R.drawable.ic_video_placeholder));
             }
 
             galleryLinks.get(i).setId(i);
@@ -192,6 +192,6 @@ public class VideoGallery extends AppCompatActivity {
 
     @TargetApi(android.os.Build.VERSION_CODES.LOLLIPOP)
     public void setLinkImageLollipop(ImageButton galleryLink){
-        galleryLink.setBackground( getResources().getDrawable(R.drawable.video_place_holder, null));
+        galleryLink.setBackground( getResources().getDrawable(R.drawable.ic_video_placeholder, null));
     }
 }

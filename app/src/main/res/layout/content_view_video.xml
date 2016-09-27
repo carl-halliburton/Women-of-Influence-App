@@ -24,4 +24,34 @@
         android:text="Video Title"
         android:id="@+id/txtVideoTitle"
         android:gravity="center" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="horizontal" >
+
+        <imageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:scaleType="fitXY"
+            android:id="@+id/imgShareEmail"
+            android:clickable="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"/>
+
+        <imageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Facebook"
+            android:scaleType="fitXY"
+            android:id="@+id/imgShareFacebook"
+            android:clickable="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp" />
+
+    </HorizontalScrollView>
+
 </RelativeLayout>
