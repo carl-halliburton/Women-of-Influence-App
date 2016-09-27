@@ -1,9 +1,11 @@
 package com.example.carl.womenofinfluence;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -138,8 +140,46 @@ public class VideoGallery extends AppCompatActivity {
     }
 
     public void refreshContent() {
-        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
-        loadGallery();
-        Toast.makeText(getApplicationContext(), "Gallery refreshed", Toast.LENGTH_SHORT).show();
+        //progress dialog shows when videos are loading
+        final ProgressDialog progressDialog = ProgressDialog.show(VideoGallery.this, "", "Loading Videos...", true);
+        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Gallery refreshed", Toast.LENGTH_SHORT);
+        final Handler mHandler = new Handler();
+
+        //Data load is done here
+        final Thread refreshTask = new Thread() {
+            public void run() {
+                try {
+                    appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    progressDialog.dismiss();
+                    e.printStackTrace();
+                } finally {
+                    progressDialog.dismiss();
+                    refreshDialog.show();
+                }
+            }
+        };
+
+        //Loading UI Elements in this thread
+        final Thread setTask = new Thread() {
+            public void run() {
+                loadGallery();
+            }
+        };
+
+        //This thread waits for refresh then loads ui elements in handler.
+        Thread waitForRefresh = new Thread() {
+            public void run() {
+                try {
+                    refreshTask.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mHandler.post(setTask);
+            }
+        };
+        refreshTask.start();
+        waitForRefresh.start();
     }
 }

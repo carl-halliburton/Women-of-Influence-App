@@ -1,10 +1,12 @@
 package com.example.carl.womenofinfluence;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +23,7 @@ public class Home extends AppCompatActivity {
 
     private GlobalAppData appData;
     private ImageButton featureVideo;
+    private TextView featureVideoTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,30 +35,10 @@ public class Home extends AppCompatActivity {
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this);
 
-        if(appData.getVideoData().size() == 0)
-        {
-            new AlertDialog.Builder(Home.this)
-                    .setTitle(getString(R.string.server_connection_error_title))
-                    .setMessage(R.string.server_connection_error)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-        }
-        else {
-            featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
-            TextView featureVideoTitle = (TextView) findViewById(R.id.featureVideoName);
+        featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
+        featureVideoTitle = (TextView) findViewById(R.id.featureVideoName);
 
-            //set the first video in the list as the featured video
-            if(appData.getVideoData().size() != 0) {
-                featureVideoTitle.setText(appData.getVideoData().get(0).getName().replaceFirst("[.][^.]+$", ""));
-                featureVideoTitle.setVisibility(View.VISIBLE);
-                featureVideo.setVisibility(View.VISIBLE);
-            }
-        }
+        setFeatureVideoLink();
     }
 
     @Override
@@ -101,8 +84,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void viewVideoFeaturedLink(View v) {
-        if(appData.getVideoData().size() == 0)
-        {
+        if (appData.getVideoData().size() == 0) {
             new AlertDialog.Builder(Home.this)
                     .setTitle(getString(R.string.server_connection_error_title))
                     .setMessage(getString(R.string.server_connection_error))
@@ -113,8 +95,7 @@ public class Home extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        }
-        else {
+        } else {
             //Proceed to ViewVideo
             Intent intent = new Intent(Home.this, ViewVideo.class);
             intent.putExtra("videoIndex", appData.getVideoData().get(0));
@@ -123,8 +104,71 @@ public class Home extends AppCompatActivity {
     }
 
     public void refreshContent() {
-        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
-        featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
-        Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT).show();
+        //progress dialog shows when videos are loading
+        final ProgressDialog progressDialog = ProgressDialog.show(Home.this, "", "Loading Videos...", true);
+        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT);
+        final Handler mHandler = new Handler();
+
+        //Data load is done here
+        final Thread refreshTask = new Thread() {
+            public void run() {
+                try {
+                    appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    progressDialog.dismiss();
+                    e.printStackTrace();
+                } finally {
+                    progressDialog.dismiss();
+                    refreshDialog.show();
+                }
+            }
+        };
+
+        //UI elements are updated in this thread
+        final Thread setTask = new Thread() {
+            public void run() {
+                setFeatureVideoLink();
+            }
+        };
+
+        //This thread waits for refresh then updates UI with handler
+        Thread waitForRefresh = new Thread() {
+            public void run() {
+                try {
+                    refreshTask.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mHandler.post(setTask);
+            }
+        };
+        refreshTask.start();
+        waitForRefresh.start();
+    }
+
+    public void setFeatureVideoLink() {
+
+        if (appData.getVideoData().size() == 0) {
+            featureVideoTitle.setVisibility(View.GONE);
+            featureVideo.setVisibility(View.GONE);
+            new AlertDialog.Builder(Home.this)
+                    .setTitle(getString(R.string.server_connection_error_title))
+                    .setMessage(R.string.server_connection_error)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        } else {
+            //set the first video in the list as the featured video
+            if (appData.getVideoData().size() != 0) {
+                featureVideoTitle.setText(appData.getVideoData().get(0).getName().replaceFirst("[.][^.]+$", ""));
+                featureVideoTitle.setVisibility(View.VISIBLE);
+                featureVideo.setVisibility(View.VISIBLE);
+            }
+        }
     }
 }
