@@ -44,6 +44,9 @@ public class VideoGallery extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
+        MenuItem item = menu.findItem(R.id.menu_video_gallery);
+        item.setVisible(false);
+
         appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
@@ -60,9 +63,6 @@ public class VideoGallery extends AppCompatActivity {
                     appData.getNotify().isChecked(item, this);
                 else
                     appData.getNotify().isUnChecked(item, this);
-                return true;
-            case R.id.menu_video_gallery:
-                startActivity(new Intent(VideoGallery.this, VideoGallery.class));
                 return true;
             case R.id.menu_feedback:
                 startActivity(new Intent(VideoGallery.this, Feedback.class));
