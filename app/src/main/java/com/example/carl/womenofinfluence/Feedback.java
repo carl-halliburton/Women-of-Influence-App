@@ -2,6 +2,7 @@ package com.example.carl.womenofinfluence;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +10,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+
+import static android.R.attr.button;
 
 public class Feedback extends AppCompatActivity {
 
     private GlobalAppData appData;
+    final Button submitButton = (Button) findViewById(R.id.btnSubmit);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,13 @@ public class Feedback extends AppCompatActivity {
         toolbar.setNavigationIcon(R.mipmap.ic_home_white);
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Feedback.this);
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                sendFeedback();
+                successDialog(view);
+            }
+        });
     }
 
     @Override
@@ -65,8 +77,8 @@ public class Feedback extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void sendFeedback(View view) {
-        successDialog(view);
+    public void sendFeedback() {
+
     }
 
     public void successDialog(View view) {
