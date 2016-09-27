@@ -1,12 +1,15 @@
 package com.example.carl.womenofinfluence;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -44,9 +47,36 @@ public class ViewVideo extends AppCompatActivity {
         progressDialog = ProgressDialog.show(ViewVideo.this, "", "Buffering video...", true);
         progressDialog.setCancelable(true);
 
-        PlayVideo();
+        //set up lister to handle VideoView errors
+        videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                new AlertDialog.Builder(ViewVideo.this)
+                        .setTitle("Video can't be played")
+                        .setMessage("Please check your connection and reload video")
+                        .setPositiveButton("Reload Video", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Reload ViewVideo
+                                PlayVideo();
+                            }
+                        })
+                        .setNegativeButton("Return to Gallery", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent1 = new Intent(ViewVideo.this, VideoGallery.class);
+                                startActivity(intent1);
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setCancelable(false)
+                        .show();
+                return true;
+            }
+        });
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
+
+        PlayVideo();
     }
 
     @Override
