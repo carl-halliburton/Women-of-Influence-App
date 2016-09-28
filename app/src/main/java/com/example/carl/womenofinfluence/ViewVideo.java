@@ -1,6 +1,7 @@
 package com.example.carl.womenofinfluence;
 
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -97,8 +98,13 @@ public class ViewVideo extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem item;
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        item = menu.findItem(R.id.menu_refresh);
+        item.setVisible(false);
 
         appData.getNotify().checkNotificationStatus(menu);
         return true;
