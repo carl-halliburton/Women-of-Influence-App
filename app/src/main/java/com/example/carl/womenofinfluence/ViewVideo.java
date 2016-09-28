@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.MediaController;
 import android.widget.VideoView;
@@ -91,15 +92,15 @@ public class ViewVideo extends AppCompatActivity {
         PlayVideo();
     }
 
-   /* @Override //TODO look into this and find a better solution
+   @Override //TODO look into this and find a better solution
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        } else {
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-    }*/
+       if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+           getActionBar().hide();
+       } else {
+           getActionBar().hide();
+       }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

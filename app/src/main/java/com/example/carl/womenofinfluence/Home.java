@@ -22,8 +22,7 @@ import android.widget.Toast;
 public class Home extends AppCompatActivity {
 
     private GlobalAppData appData;
-    private ImageButton featureVideo;
-    private TextView featureVideoTitle;
+    private Button featureVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +32,7 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        featureVideo = (ImageButton) findViewById(R.id.featureVideoBtn);
-        featureVideoTitle = (TextView) findViewById(R.id.featureVideoName);
-
+        featureVideo = (Button) findViewById(R.id.featureVideoBtn);
         refreshContent();
     }
 
@@ -149,7 +146,6 @@ public class Home extends AppCompatActivity {
     public void setFeatureVideoLink() {
 
         if (appData.getVideoData().size() == 0) {
-            featureVideoTitle.setVisibility(View.GONE);
             featureVideo.setVisibility(View.GONE);
             new AlertDialog.Builder(Home.this)
                     .setTitle(getString(R.string.server_connection_error_title))
@@ -164,8 +160,8 @@ public class Home extends AppCompatActivity {
         } else {
             //set the first video in the list as the featured video
             if (appData.getVideoData().size() != 0) {
-                featureVideoTitle.setText(appData.getVideoData().get(0).getName().replaceFirst("[.][^.]+$", ""));
-                featureVideoTitle.setVisibility(View.VISIBLE);
+                String buttonText = "Feature Video\n" + appData.getVideoData().get(0).getName().replaceFirst("[.][^.]+$", "");
+                featureVideo.setText(buttonText);
                 featureVideo.setVisibility(View.VISIBLE);
             }
         }

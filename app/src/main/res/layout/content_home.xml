@@ -48,23 +48,15 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
-        <ImageButton
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:text="@string/hm_feature_video_aut_text"
             android:id="@+id/featureVideoBtn"
             android:onClick="viewVideoFeaturedLink"
             android:scaleType="fitXY"
             android:layout_marginTop="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_video_placeholder" />
-
-        <TextView
-            android:text="Name of feature video"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/featureVideoName"
-            android:gravity="center" />
+            android:layout_gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"

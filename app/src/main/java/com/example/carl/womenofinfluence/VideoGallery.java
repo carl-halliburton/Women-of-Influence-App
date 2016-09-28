@@ -76,7 +76,7 @@ public class VideoGallery extends AppCompatActivity {
     }
 
     public void loadGallery() {
-        List<ImageButton> galleryLinks;
+        List<Button> galleryLinks;
         List<TextView> videoTitles;
         LinearLayout galleryView;
 
@@ -88,21 +88,13 @@ public class VideoGallery extends AppCompatActivity {
 
         for (VideoData link : appData.getVideoData()) {
             //create the button for the video link
-            galleryLinks.add(new ImageButton(this));
+            galleryLinks.add(new Button(this));
 
-            //set Thumbnail
-            int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-            if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP){
-                //Runs on Lollipop and higher
-                setLinkImageLollipop(galleryLinks.get(i));
-            } else {
-                //Runs on KitKat and below
-                galleryLinks.get(i).setBackground(getResources().getDrawable(R.drawable.ic_video_placeholder));
-            }
-
+            String buttonText = link.getName().replaceFirst("[.][^.]+$", "");
+            galleryLinks.get(i).setText(buttonText);
             galleryLinks.get(i).setId(i);
             //set button size
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 300);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             galleryLinks.get(i).setLayoutParams(layoutParams);
 
             galleryView.addView(galleryLinks.get(i));
@@ -117,17 +109,6 @@ public class VideoGallery extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-
-            //create the TextViews for the video descriptions
-            //TODO add the description String to VideoData class and set the text here.
-            videoTitles.add(new TextView(this));
-            videoTitles.get(i).setText(link.getName().replaceFirst("[.][^.]+$", ""));
-            videoTitles.get(i).setTypeface(Typeface.SERIF);
-            videoTitles.get(i).setLayoutParams(new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
-            videoTitles.get(i).setGravity(Gravity.CENTER);
-            galleryView.addView(videoTitles.get(i));
             i++;
         }
 
@@ -190,10 +171,5 @@ public class VideoGallery extends AppCompatActivity {
         };
         refreshTask.start();
         waitForRefresh.start();
-    }
-
-    @TargetApi(android.os.Build.VERSION_CODES.LOLLIPOP)
-    public void setLinkImageLollipop(ImageButton galleryLink){
-        galleryLink.setBackground( getResources().getDrawable(R.drawable.ic_video_placeholder, null));
     }
 }
