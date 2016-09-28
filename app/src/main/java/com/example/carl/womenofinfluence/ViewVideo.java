@@ -23,6 +23,7 @@ public class ViewVideo extends AppCompatActivity {
 
     private GlobalAppData appData;
     private VideoData videoData;
+    private Boolean dialogIsOpen;
 
     private static ProgressDialog progressDialog;
     VideoView videoView;
@@ -44,6 +45,7 @@ public class ViewVideo extends AppCompatActivity {
         if (extras != null) {
             videoData = (VideoData) extras.getSerializable("videoIndex");
         }
+        dialogIsOpen = false;
 
         //progress dialog shows when video is buffering
         progressDialog = ProgressDialog.show(ViewVideo.this, "", "Buffering video...", true);
@@ -54,28 +56,31 @@ public class ViewVideo extends AppCompatActivity {
 
             @Override
             public boolean onError(MediaPlayer mp, int what, int extra) {
-                new AlertDialog.Builder(ViewVideo.this)
-                        .setTitle("Video can't be played")
-                        .setMessage("Please check your connection and reload video")
-                        .setPositiveButton("Reload Video", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Reload ViewVideo
-                                PlayVideo();
-                            }
-                        })
-                        .setNegativeButton("Return to Gallery", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent1 = new Intent(ViewVideo.this, VideoGallery.class);
-                                startActivity(intent1);
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setCancelable(false)
-                        .show();
+                if (!dialogIsOpen) {
+                    dialogIsOpen = true;
+                    new AlertDialog.Builder(ViewVideo.this)
+                            .setTitle("Video can't be played")
+                            .setMessage("Please check your connection and reload video")
+                            .setPositiveButton("Reload Video", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Reload ViewVideo
+                                    dialogIsOpen = false;
+                                    PlayVideo();
+                                }
+                            })
+                            .setNegativeButton("Return to Gallery", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent1 = new Intent(ViewVideo.this, VideoGallery.class);
+                                    startActivity(intent1);
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setCancelable(false)
+                            .show();
+                }
                 return true;
             }
         });
-
 
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
@@ -86,7 +91,7 @@ public class ViewVideo extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             //hide toolbar when in landscape
             getSupportActionBar().hide();
         } else {
@@ -130,10 +135,8 @@ public class ViewVideo extends AppCompatActivity {
     }
 
     //vid view imp play method
-    private void PlayVideo()
-    {
-        try
-        {
+    private void PlayVideo() {
+        try {
             getWindow().setFormat(PixelFormat.TRANSLUCENT);
             MediaController mediaController = new MediaController(ViewVideo.this);
             mediaController.setAnchorView(videoView);
@@ -142,20 +145,16 @@ public class ViewVideo extends AppCompatActivity {
             videoView.setMediaController(mediaController);
             videoView.setVideoURI(video);
             videoView.requestFocus();
-            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener()
-            {
+            videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
-                public void onPrepared(MediaPlayer mp)
-                {
+                public void onPrepared(MediaPlayer mp) {
                     progressDialog.dismiss();
                     videoView.start();
                 }
             });
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             progressDialog.dismiss();
-            System.out.println("Video Play Error :"+e.toString());
+            System.out.println("Video Play Error :" + e.toString());
             finish();
         }
 
