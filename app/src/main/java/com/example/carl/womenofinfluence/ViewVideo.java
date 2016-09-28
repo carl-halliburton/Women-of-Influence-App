@@ -34,7 +34,7 @@ public class ViewVideo extends AppCompatActivity {
         setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_home_white);
+        toolbar.setNavigationIcon(R.drawable.ic_home_black);
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);

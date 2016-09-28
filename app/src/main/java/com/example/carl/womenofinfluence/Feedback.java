@@ -27,7 +27,7 @@ public class Feedback extends AppCompatActivity {
         setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.mipmap.ic_home_white);
+        toolbar.setNavigationIcon(R.drawable.ic_home_black);
         submitButton = (Button) findViewById(R.id.btnSubmit);
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Feedback.this);
 
