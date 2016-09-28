@@ -70,6 +70,7 @@ public class ViewVideo extends AppCompatActivity {
                             })
                             .setNegativeButton("Return to Gallery", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
+                                    dialogIsOpen = false;
                                     Intent intent1 = new Intent(ViewVideo.this, VideoGallery.class);
                                     startActivity(intent1);
                                 }
