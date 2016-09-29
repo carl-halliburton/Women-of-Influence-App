@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 public class ViewVideo extends AppCompatActivity {
@@ -30,6 +31,7 @@ public class ViewVideo extends AppCompatActivity {
 
     private static ProgressDialog progressDialog;
     VideoView videoView;
+    TextView videoTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +44,13 @@ public class ViewVideo extends AppCompatActivity {
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
+        videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
 
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
             videoData = (VideoData) extras.getSerializable("videoIndex");
+            //videoTitle.setText(videoData.getName()); //null pointer exception has been handled with the precious if statement
         }
         dialogIsOpen = false;
 

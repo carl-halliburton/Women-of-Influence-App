@@ -21,7 +21,7 @@
     <string name="access_token_error_title">WARNING: ACCESS TOKEN NOT SET</string>
     <string name="access_token_error_description">Invalid access token detected. Without a valid token this application will not run properly. If you are a user please reinstall the app. If you are still experiencing this issue please contact support.</string>
     <string name="server_connection_error_title">Can\'t find videos</string>
-    <string name="server_connection_error">Unable to find videos on server. If you are a user please check your WIFI connection and try again later.</string>
+    <string name="server_connection_error">Unable to find videos on server. check your internet connection and try again later.</string>
 
 
     //Feedback

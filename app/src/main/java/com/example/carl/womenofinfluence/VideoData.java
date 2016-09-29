@@ -10,16 +10,12 @@ import java.io.Serializable;
 public class VideoData implements Serializable{
     private String name;
     private String tempUrl;
-    private String uri;
-    private Bitmap thumbnail;
     private static final long serialVersionUID = 1L;
 
     VideoData(String vidName, String temporaryUrl)
     {
-        name = vidName;
+        name = vidName.replaceFirst("[.][^.]+$", "");
         tempUrl = temporaryUrl;
-        //uri = newUri;
-        //thumbnail = newThumbnail;
     }
 
     public String getName() {
@@ -28,13 +24,5 @@ public class VideoData implements Serializable{
 
     public String getTempUrl() {
         return tempUrl;
-    }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public Bitmap getThumbnail() {
-        return thumbnail;
     }
 }

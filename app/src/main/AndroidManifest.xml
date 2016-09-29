@@ -38,8 +38,7 @@
         <activity
             android:name=".ViewVideo"
             android:label="@string/title_activity_view_video"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:configChanges="orientation|keyboardHidden"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- Dropbox AuthActivity -->
         <activity

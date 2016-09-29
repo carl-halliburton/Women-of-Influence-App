@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:text="@string/hm_feature_video_aut_text"
             android:id="@+id/featureVideoBtn"
+            android:background="@color/colorPrimary"
             android:onClick="viewVideoFeaturedLink"
             android:scaleType="fitXY"
             android:layout_marginTop="30dp"

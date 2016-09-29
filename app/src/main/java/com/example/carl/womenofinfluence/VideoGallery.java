@@ -77,24 +77,24 @@ public class VideoGallery extends AppCompatActivity {
 
     public void loadGallery() {
         List<Button> galleryLinks;
-        List<TextView> videoTitles;
         LinearLayout galleryView;
 
         //create video gallery buttons
         galleryView = (LinearLayout) findViewById(R.id.gallery);
         galleryLinks = new ArrayList<>();
-        videoTitles = new ArrayList<>();
         int i = 0;
 
         for (VideoData link : appData.getVideoData()) {
             //create the button for the video link
             galleryLinks.add(new Button(this));
 
-            String buttonText = link.getName().replaceFirst("[.][^.]+$", "");
+            String buttonText = link.getName();
             galleryLinks.get(i).setText(buttonText);
             galleryLinks.get(i).setId(i);
+            //galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            layoutParams.setMargins(20, 0, 0, 0);
             galleryLinks.get(i).setLayoutParams(layoutParams);
 
             galleryView.addView(galleryLinks.get(i));

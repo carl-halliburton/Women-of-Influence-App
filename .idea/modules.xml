@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Women-of-Influence-App.iml" filepath="$PROJECT_DIR$/Women-of-Influence-App.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Women-of-Influence-App-S.iml" filepath="$PROJECT_DIR$/Women-of-Influence-App-S.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
