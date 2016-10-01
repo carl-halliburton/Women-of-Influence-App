@@ -30,8 +30,8 @@ public class ViewVideo extends AppCompatActivity {
     private Boolean dialogIsOpen;
 
     private static ProgressDialog progressDialog;
-    VideoView videoView;
-    TextView videoTitle;
+    private VideoView videoView;
+    private TextView videoTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

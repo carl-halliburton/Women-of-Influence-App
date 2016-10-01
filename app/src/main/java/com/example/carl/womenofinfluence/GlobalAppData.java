@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * This class is for storing information and methods relevant to more than one activity on the app.
  * Created by carl on 25/08/2016.
  */
 // File Name: GlobalAppData.java
@@ -57,6 +58,7 @@ public class GlobalAppData {
             videoInfoList = fileLister.getVideoDatas();
         }
     }
+
     public static GlobalAppData getInstance( String ACCESS_TOKEN, Context context ) {
         if(instance == null) {
             instance = new GlobalAppData(ACCESS_TOKEN, context);
@@ -86,12 +88,12 @@ public class GlobalAppData {
         return videoInfoList;
     }
 
-    //TODO refreshes video list after the fileLister is refreshed.
-    public void refreshVideoList(){
+    private void refreshVideoList(){
         videoInfoList = fileLister.getVideoDatas();
     }
 
-    //TODO refreshes dropbox files in the background. Need to define when to run it.
+    /*This method connects to the dropbox servers to get video data. This method should be run in
+    * a separate thread.*/
     public void refreshDropboxFiles( String ACCESS_TOKEN, Context context ){
         fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
                 context);
