@@ -23,6 +23,7 @@ public class Home extends AppCompatActivity {
 
     private GlobalAppData appData;
     private Button featureVideo;
+    private boolean refreshing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class Home extends AppCompatActivity {
         setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        refreshing = false;
 
         featureVideo = (Button) findViewById(R.id.featureVideoBtn);
         refreshContent();
@@ -98,49 +100,54 @@ public class Home extends AppCompatActivity {
     }
 
     public void refreshContent() {
-        //progress dialog shows when videos are loading
-        final ProgressDialog progressDialog = ProgressDialog.show(Home.this, "", "Loading Videos...", true);
-        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT);
-        final Handler mHandler = new Handler();
+        if (!refreshing) {
+            refreshing = true;
 
-        //Data load is done here
-        final Thread refreshTask = new Thread() {
-            public void run() {
-                try {
-                    if (appData == null)
-                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this);
-                    else {
-                        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
-                        refreshDialog.show();
+            //progress dialog shows when videos are loading
+            final ProgressDialog progressDialog = ProgressDialog.show(Home.this, "", "Loading Videos...", true);
+            final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT);
+            final Handler mHandler = new Handler();
+
+            //Data load is done here
+            final Thread refreshTask = new Thread() {
+                public void run() {
+                    try {
+                        if (appData == null)
+                            appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this);
+                        else {
+                            appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
+                            refreshDialog.show();
+                        }
+                        sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
-            }
-        };
+            };
 
-        //UI elements are updated in this thread
-        final Thread setTask = new Thread() {
-            public void run() {
-                setFeatureVideoLink();
-                progressDialog.dismiss();
-            }
-        };
-
-        //This thread waits for refresh then updates UI with handler
-        Thread waitForRefresh = new Thread() {
-            public void run() {
-                try {
-                    refreshTask.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            //UI elements are updated in this thread
+            final Thread setTask = new Thread() {
+                public void run() {
+                    setFeatureVideoLink();
+                    progressDialog.dismiss();
+                    refreshing = false;
                 }
-                mHandler.post(setTask);
-            }
-        };
-        refreshTask.start();
-        waitForRefresh.start();
+            };
+
+            //This thread waits for refresh then updates UI with handler
+            Thread waitForRefresh = new Thread() {
+                public void run() {
+                    try {
+                        refreshTask.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    mHandler.post(setTask);
+                }
+            };
+            refreshTask.start();
+            waitForRefresh.start();
+        }
     }
 
     public void setFeatureVideoLink() {

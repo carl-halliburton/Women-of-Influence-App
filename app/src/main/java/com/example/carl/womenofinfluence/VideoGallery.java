@@ -27,6 +27,7 @@ import java.util.List;
 public class VideoGallery extends AppCompatActivity {
 
     private GlobalAppData appData;
+    private boolean refreshing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class VideoGallery extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
+        refreshing = false;
 
         refreshContent();
     }
@@ -127,49 +129,53 @@ public class VideoGallery extends AppCompatActivity {
     }
 
     public void refreshContent() {
-        //progress dialog shows when videos are loading
-        final ProgressDialog progressDialog = ProgressDialog.show(VideoGallery.this, "", "Loading Videos...", true);
-        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Gallery refreshed", Toast.LENGTH_SHORT);
-        final Handler mHandler = new Handler();
+        if (!refreshing) {
+            refreshing = true;
+            //progress dialog shows when videos are loading
+            final ProgressDialog progressDialog = ProgressDialog.show(VideoGallery.this, "", "Loading Videos...", true);
+            final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Gallery refreshed", Toast.LENGTH_SHORT);
+            final Handler mHandler = new Handler();
 
-        //Data load is done here
-        final Thread refreshTask = new Thread() {
-            public void run() {
-                try {
-                    if (appData == null)
-                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
-                    else {
-                        appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
-                        refreshDialog.show();
+            //Data load is done here
+            final Thread refreshTask = new Thread() {
+                public void run() {
+                    try {
+                        if (appData == null)
+                            appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                        else {
+                            appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                            refreshDialog.show();
+                        }
+                        sleep(100);
+                    } catch (InterruptedException e) {
+                        progressDialog.dismiss();
+                        e.printStackTrace();
                     }
-                    sleep(100);
-                } catch (InterruptedException e) {
+                }
+            };
+
+            //Loading UI Elements in this thread
+            final Thread setTask = new Thread() {
+                public void run() {
+                    loadGallery();
                     progressDialog.dismiss();
-                    e.printStackTrace();
+                    refreshing = false;
                 }
-            }
-        };
+            };
 
-        //Loading UI Elements in this thread
-        final Thread setTask = new Thread() {
-            public void run() {
-                loadGallery();
-                progressDialog.dismiss();
-            }
-        };
-
-        //This thread waits for refresh then loads ui elements in handler.
-        Thread waitForRefresh = new Thread() {
-            public void run() {
-                try {
-                    refreshTask.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            //This thread waits for refresh then loads ui elements in handler.
+            Thread waitForRefresh = new Thread() {
+                public void run() {
+                    try {
+                        refreshTask.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    mHandler.post(setTask);
                 }
-                mHandler.post(setTask);
-            }
-        };
-        refreshTask.start();
-        waitForRefresh.start();
+            };
+            refreshTask.start();
+            waitForRefresh.start();
+        }
     }
 }
