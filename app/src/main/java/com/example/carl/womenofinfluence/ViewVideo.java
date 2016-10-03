@@ -170,7 +170,22 @@ public class ViewVideo extends AppCompatActivity {
     private void PlayVideo() {
         try {
             getWindow().setFormat(PixelFormat.TRANSLUCENT);
-            MediaController mediaController = new MediaController(ViewVideo.this);
+            MediaController mediaController;
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                mediaController = new MediaController(ViewVideo.this) {
+                    @Override
+                    public void show(){
+                        super.show(0);
+                    }
+                };
+            }else {
+                mediaController = new MediaController(ViewVideo.this) {
+                    @Override
+                    public void show(){
+                        super.show(5000);
+                    }
+                };
+            }
             mediaController.setAnchorView(videoView);
 
             Uri video = Uri.parse(videoData.getTempUrl());
@@ -186,6 +201,8 @@ public class ViewVideo extends AppCompatActivity {
                     if (savedVideoPosition != null && refreshed) {
                         videoView.seekTo(savedVideoPosition);
                         refreshed = false;
+                    } else {
+                        videoView.seekTo(0);
                     }
 
                     progressDialog.dismiss();
