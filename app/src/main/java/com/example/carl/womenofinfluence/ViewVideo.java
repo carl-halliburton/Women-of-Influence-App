@@ -98,7 +98,6 @@ public class ViewVideo extends AppCompatActivity {
             }
         });
 
-
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
 
         //Check if in portrait or landscape
@@ -107,7 +106,13 @@ public class ViewVideo extends AppCompatActivity {
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
         } else {
+            View decorView = getWindow().getDecorView();
+
+            //hide toolbar and status bar
             toolbar.setVisibility(View.GONE);
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
         PlayVideo();
