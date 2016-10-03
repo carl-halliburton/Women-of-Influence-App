@@ -32,6 +32,8 @@ public class ViewVideo extends AppCompatActivity {
     private static ProgressDialog progressDialog;
     private VideoView videoView;
     private TextView videoTitle;
+    private Integer savedVideoPosition;
+    private boolean refreshed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +46,19 @@ public class ViewVideo extends AppCompatActivity {
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
+        refreshed = false;
 
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
             videoData = (VideoData) extras.getSerializable("videoIndex");
             //videoTitle.setText(videoData.getName()); //null pointer exception has been handled with the precious if statement
+        }
+
+        //check if activity refreshed
+        if (savedInstanceState != null) {
+            savedVideoPosition = savedInstanceState.getInt("VideoTime");
+            refreshed = true;
         }
         dialogIsOpen = false;
 
@@ -105,6 +114,15 @@ public class ViewVideo extends AppCompatActivity {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+        savedInstanceState.putInt("VideoTime", videoView.getCurrentPosition());
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuItem item;
 
@@ -114,7 +132,7 @@ public class ViewVideo extends AppCompatActivity {
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
 
-        //appData.getNotify().checkNotificationStatus(menu);
+        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -156,7 +174,15 @@ public class ViewVideo extends AppCompatActivity {
             videoView.requestFocus();
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
+                @Override
                 public void onPrepared(MediaPlayer mp) {
+
+                    //if refreshed continue from last know position
+                    if (savedVideoPosition != null && refreshed) {
+                        videoView.seekTo(savedVideoPosition);
+                        refreshed = false;
+                    }
+
                     progressDialog.dismiss();
                     videoView.start();
                 }
