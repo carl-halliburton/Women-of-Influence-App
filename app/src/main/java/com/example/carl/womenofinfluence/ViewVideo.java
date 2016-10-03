@@ -44,7 +44,6 @@ public class ViewVideo extends AppCompatActivity {
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
-        videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
 
         Bundle extras = getIntent().getExtras();
 
@@ -93,17 +92,16 @@ public class ViewVideo extends AppCompatActivity {
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
 
-        PlayVideo();
-    }
+        //Check if in portrait or landscape
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
+            videoTitle.setText(videoData.getName());
+            toolbar.setVisibility(View.VISIBLE);
+        } else {
+            toolbar.setVisibility(View.GONE);
+        }
 
-   @Override //TODO look into this and find a better solution
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-       if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-           getActionBar().hide();
-       } else {
-           getActionBar().hide();
-       }
+        PlayVideo();
     }
 
     @Override
@@ -116,7 +114,7 @@ public class ViewVideo extends AppCompatActivity {
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
 
-        appData.getNotify().checkNotificationStatus(menu);
+        //appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
