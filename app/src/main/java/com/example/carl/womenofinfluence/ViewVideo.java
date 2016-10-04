@@ -38,6 +38,7 @@ public class ViewVideo extends AppCompatActivity {
     private TextView videoTitle;
     private Integer savedVideoPosition;
     private boolean refreshed;
+    private boolean portraitView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +104,10 @@ public class ViewVideo extends AppCompatActivity {
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
 
+        portraitView = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+
         //Check if in portrait or landscape
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (portraitView) {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
@@ -175,7 +178,7 @@ public class ViewVideo extends AppCompatActivity {
             MediaController mediaController;
 
             //define media controller behaviour based on screen orientation
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            if (portraitView) {
                 mediaController = new MediaController(this){
                     public boolean dispatchKeyEvent(KeyEvent event)
                     {
@@ -225,7 +228,7 @@ public class ViewVideo extends AppCompatActivity {
                     }
 
                     //Simulates the onTouchEvent to show the Media controller
-                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+                    if (portraitView)
                     {
                         videoView.dispatchTouchEvent(MotionEvent.obtain(
                                 SystemClock.uptimeMillis(),
