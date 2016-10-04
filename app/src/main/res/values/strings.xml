@@ -19,13 +19,18 @@
 
     //Error Messages
     <string name="access_token_error_title">WARNING: ACCESS TOKEN NOT SET</string>
-    <string name="access_token_error_description">Invalid access token detected. Without a valid token this application will not run properly. If you are a user please reinstall the app. If you are still experiencing this issue please contact support.</string>
+    <string name="access_token_error_description">Invalid access token detected. Without a valid
+        token this application will not run properly. If you are a user please reinstall the app.
+        If you are still experiencing this issue please contact support.</string>
     <string name="server_connection_error_title">Can\'t find videos</string>
-    <string name="server_connection_error">Unable to find videos on server. check your internet connection and try again later.</string>
+    <string name="server_connection_error">Unable to find videos on server. check your internet
+        connection and try again later.</string>
 
 
     //Feedback
-    <string name="fb_text_desc">Ask a question, let us know what you think</string>
+    <string name="fb_text_desc">Ask a question, let us know what you think.  An external email
+        client is required to send feedback</string>
+    <string name="email_address">hawkeFilms@gmail.com</string>
     <string name="fb_hint_name">Name</string>
     <string name="fb_hint_email">Email</string>
     <string name="fb_hint_subject">Subject</string>

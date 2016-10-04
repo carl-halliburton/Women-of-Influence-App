@@ -31,6 +31,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         //setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
         refreshing = false;
 

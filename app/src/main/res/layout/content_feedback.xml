@@ -22,14 +22,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/main_title"
-            android:id="@+id/txtMainTitle"
-            android:layout_gravity="center" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/title_activity_feedback"
             android:id="@+id/txtScreenTitle"
@@ -43,6 +35,15 @@
             android:text="@string/fb_text_desc"
             android:id="@+id/txtHelp"
             android:layout_marginTop="20dp"  />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/email_address"
+            android:id="@+id/txtEmailAddress"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center" />
 
         <EditText
             android:layout_width="match_parent"

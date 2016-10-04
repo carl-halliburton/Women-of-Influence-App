@@ -22,14 +22,6 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/main_title"
-            android:id="@+id/appTitle"
-            android:gravity="center" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/title_activity_video_gallery"
             android:id="@+id/textView2"
@@ -47,6 +39,7 @@
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:id="@+id/gallery"></LinearLayout>
 
     </LinearLayout>
