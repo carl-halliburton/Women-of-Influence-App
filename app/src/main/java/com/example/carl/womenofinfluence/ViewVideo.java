@@ -1,5 +1,6 @@
 package com.example.carl.womenofinfluence;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
@@ -9,13 +10,16 @@ import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,6 +38,7 @@ public class ViewVideo extends AppCompatActivity {
     private TextView videoTitle;
     private Integer savedVideoPosition;
     private boolean refreshed;
+    private boolean portraitView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +104,10 @@ public class ViewVideo extends AppCompatActivity {
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
 
+        portraitView = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+
         //Check if in portrait or landscape
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (portraitView) {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
@@ -169,21 +176,40 @@ public class ViewVideo extends AppCompatActivity {
         try {
             getWindow().setFormat(PixelFormat.TRANSLUCENT);
             MediaController mediaController;
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                mediaController = new MediaController(ViewVideo.this) {
+
+            //define media controller behaviour based on screen orientation
+            if (portraitView) {
+                mediaController = new MediaController(this){
+                    public boolean dispatchKeyEvent(KeyEvent event)
+                    {
+                        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP)
+                            ((Activity) getContext()).finish();
+
+                        return super.dispatchKeyEvent(event);
+                    }
+
                     @Override
                     public void show(){
                         super.show(0);
                     }
+
+                    //disable hide functionality
+                    @Override
+                    public void hide(){
+                        super.show(0);
+                    }
                 };
-            }else {
+            }else { //if in landscape view
                 mediaController = new MediaController(ViewVideo.this) {
+                    //hide after 5 seconds
                     @Override
                     public void show(){
                         super.show(5000);
                     }
                 };
             }
+
+            //set up videoView
             mediaController.setAnchorView(videoView);
 
             Uri video = Uri.parse(videoData.getTempUrl());
@@ -199,8 +225,20 @@ public class ViewVideo extends AppCompatActivity {
                     if (savedVideoPosition != null && refreshed) {
                         videoView.seekTo(savedVideoPosition);
                         refreshed = false;
-                    } else {
-                        videoView.seekTo(0);
+                    }
+
+                    //Simulates the onTouchEvent to show the Media controller
+                    if (portraitView)
+                    {
+                        videoView.dispatchTouchEvent(MotionEvent.obtain(
+                                SystemClock.uptimeMillis(),
+                                SystemClock.uptimeMillis() + 100,
+                                MotionEvent.ACTION_DOWN,
+                                0.0f,
+                                0.0f,
+                                0
+                            )
+                        );
                     }
 
                     progressDialog.dismiss();
