@@ -106,6 +106,7 @@ public class Feedback extends AppCompatActivity {
         clearFields();
 
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        //TODO add email address for Hawke Films once set up and prior to deployment
         emailIntent.setData(Uri.parse("mailto:" + "carl.j.halliburton@gmail.com"));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, message);
