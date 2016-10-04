@@ -222,8 +222,11 @@ public class ViewVideo extends AppCompatActivity {
                     if (savedVideoPosition != null && refreshed) {
                         videoView.seekTo(savedVideoPosition);
                         refreshed = false;
-                    } else {
-                        //Simulates the onTouchEvent to show the Media controller
+                    }
+
+                    //Simulates the onTouchEvent to show the Media controller
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+                    {
                         videoView.dispatchTouchEvent(MotionEvent.obtain(
                                 SystemClock.uptimeMillis(),
                                 SystemClock.uptimeMillis() + 100,
