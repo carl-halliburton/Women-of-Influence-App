@@ -43,6 +43,14 @@ public class VideoGallery extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume(){
+        super.onResume();
+        if (appData.getVideoData().size() == 0) {
+            refreshContent();
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
