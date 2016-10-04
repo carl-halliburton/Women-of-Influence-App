@@ -33,7 +33,7 @@ public class VideoGallery extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_gallery);
-        setTitle(null);
+        //setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
@@ -94,6 +94,7 @@ public class VideoGallery extends AppCompatActivity {
             galleryLinks.get(i).setText(buttonText);
             galleryLinks.get(i).setId(i);
             //galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             layoutParams.setMargins(20, 0, 0, 0);

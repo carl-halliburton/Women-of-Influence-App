@@ -38,14 +38,14 @@
         android:title="@string/menu_refresh"
         android:icon="@drawable/ic_refresh_black"
         android:orderInCategory="2"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
-    <item
+   <!-- <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search_black"
         android:title="@string/menu_search"
         android:visible="true"
         android:orderInCategory="1"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="collapseActionView|always" />
+        app:showAsAction="collapseActionView|always" />-->
 </menu>

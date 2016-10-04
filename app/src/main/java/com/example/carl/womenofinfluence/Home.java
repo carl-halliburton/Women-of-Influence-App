@@ -29,7 +29,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setTitle(null);
+        //setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         refreshing = false;
@@ -62,8 +62,8 @@ public class Home extends AppCompatActivity {
             case R.id.menu_feedback:
                 startActivity(new Intent(Home.this, Feedback.class));
                 return true;
-            case R.id.action_search:
-                return true;
+            //case R.id.action_search:
+                //return true;
             case R.id.menu_refresh:
                 refreshContent();
                 return true;

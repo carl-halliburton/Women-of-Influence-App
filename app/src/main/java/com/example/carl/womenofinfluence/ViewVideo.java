@@ -39,7 +39,7 @@ public class ViewVideo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_video);
-        setTitle(null);
+        //setTitle(null);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
@@ -158,8 +158,8 @@ public class ViewVideo extends AppCompatActivity {
             case R.id.menu_feedback:
                 startActivity(new Intent(ViewVideo.this, Feedback.class));
                 return true;
-            case R.id.action_search:
-                return true;
+            //case R.id.action_search:
+                //return true;
         }
         return super.onOptionsItemSelected(item);
     }
