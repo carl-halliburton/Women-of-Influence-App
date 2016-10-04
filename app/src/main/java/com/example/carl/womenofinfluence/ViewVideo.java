@@ -52,7 +52,6 @@ public class ViewVideo extends AppCompatActivity {
 
         if (extras != null) {
             videoData = (VideoData) extras.getSerializable("videoIndex");
-            //videoTitle.setText(videoData.getName()); //null pointer exception has been handled with the precious if statement
         }
 
         //check if activity refreshed
@@ -111,7 +110,6 @@ public class ViewVideo extends AppCompatActivity {
             //hide toolbar and status bar
             toolbar.setVisibility(View.GONE);
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
