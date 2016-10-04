@@ -57,14 +57,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/fieldEmail"
-            android:hint="@string/fb_hint_email" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/fieldSubject"
             android:inputType="textEmailSubject"
             android:hint="@string/fb_hint_subject"/>

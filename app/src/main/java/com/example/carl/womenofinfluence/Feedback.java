@@ -28,7 +28,6 @@ public class Feedback extends AppCompatActivity {
 
     //EditText fields
     private EditText editName;
-    private EditText editEmail;
     private EditText editMessage;
 
     @Override
@@ -45,7 +44,6 @@ public class Feedback extends AppCompatActivity {
 
         //initialize edittext fields
         editName = (EditText) findViewById(R.id.fieldName);
-        editEmail = (EditText) findViewById(R.id.fieldEmail);
         editMessage = (EditText) findViewById(R.id.fieldMessage);
 
         submitButton = (Button) findViewById(R.id.btnSubmit);
@@ -101,7 +99,8 @@ public class Feedback extends AppCompatActivity {
     //intent opens email client chooser
     public void sendFeedback(View view) {
 
-        String subject = "Ascend - Women of Influence - Feedback - " + editMessage.getText();
+        String subject = "Ascend - Women of Influence - Feedback from " + editName.getText()
+                                                                       + editMessage.getText();
         String message = "" + editMessage.getText();
         clearFields();
 
@@ -125,13 +124,8 @@ public class Feedback extends AppCompatActivity {
         else
             editName.setError(null);
 
-        if (editEmail.getText().toString().equals(""))
-            editEmail.setError("Name is Required");
-        else
-            editEmail.setError(null);
-
         if (editMessage.getText().toString().equals(""))
-            editMessage.setError("Name is Required");
+            editMessage.setError("Message is Required");
         else
             editMessage.setError(null);
 
@@ -140,8 +134,7 @@ public class Feedback extends AppCompatActivity {
 
     //checks if any error message visible before submitting
     boolean isErrorFree() {
-        if (TextUtils.isEmpty(editName.getError()) ||
-                (TextUtils.isEmpty(editEmail.getError())) ||
+        if (TextUtils.isEmpty(editName.getError()) &&
                 (TextUtils.isEmpty(editMessage.getError()))) {
             return true;
         }
@@ -168,9 +161,6 @@ public class Feedback extends AppCompatActivity {
     public void clearFields() {
         EditText name = (EditText)findViewById(R.id.fieldName);
         name.setText("");
-
-        EditText email = (EditText)findViewById(R.id.fieldEmail);
-        email.setText("");
 
         EditText subject = (EditText)findViewById(R.id.fieldSubject);
         subject.setText("");
