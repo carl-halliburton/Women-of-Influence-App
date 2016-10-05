@@ -28,4 +28,28 @@
         android:id="@+id/txtVideoTitle"
         android:gravity="center" />
 
+    <TextView
+        android:text="Sharing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtVideoTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
+        android:id="@+id/shareSection" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Error Finding Link"
+        android:ems="10"
+        android:layout_below="@+id/shareSection"
+        android:id="@+id/shareLink"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

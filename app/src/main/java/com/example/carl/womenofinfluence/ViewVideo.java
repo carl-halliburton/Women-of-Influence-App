@@ -23,6 +23,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -39,6 +40,8 @@ public class ViewVideo extends AppCompatActivity {
     private Integer savedVideoPosition;
     private boolean refreshed;
     private boolean portraitView;
+
+    private EditText sharingUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,9 @@ public class ViewVideo extends AppCompatActivity {
         if (portraitView) {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
+
+            sharingUrl = (EditText) findViewById(R.id.shareLink);
+            sharingUrl.setText(videoData.getSharingUrl());
             toolbar.setVisibility(View.VISIBLE);
         } else {
             View decorView = getWindow().getDecorView();
