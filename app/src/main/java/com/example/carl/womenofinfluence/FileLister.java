@@ -20,7 +20,6 @@ public class FileLister extends AsyncTask {
     private DbxClientV2 dbxClient;
     private List<VideoData> videoInfoList;
     private List<Metadata> folderContents;
-    private List<Metadata> thumbnailFolderContents;
     private Context context;
 
     FileLister(DbxClientV2 dbxClient, Context context) {
@@ -28,7 +27,6 @@ public class FileLister extends AsyncTask {
         this.context = context;
         folderContents = new ArrayList<>();
         videoInfoList = new ArrayList<>();
-        thumbnailFolderContents = new ArrayList<>();
     }
 
     @Override
@@ -61,26 +59,6 @@ public class FileLister extends AsyncTask {
 
     public List<VideoData> getVideoDatas() {
         return videoInfoList;
-    }
-
-    public String getThumbnailLinks() {
-        String thumbnailUrl = "";
-
-        try {
-            //contains metadata for all contents in the folder such as the URI links to each file.
-            folderContents = dbxClient.files().listFolder("/thumbnails/").getEntries();
-
-            //create temporary links for each file in the folder
-            for (Metadata thumbFileItem : thumbnailFolderContents) {
-                //to store temporary urls into a list
-                //thumbnailMetadata.add(new VideoData(fileItem.getName(), dbxClient.files().getTemporaryLink(fileItem.getPathLower()).getLink()));
-            }
-            Log.d("Create Thumbnail Links", "Success");
-        } catch (DbxException e) {
-            e.printStackTrace();
-        }
-
-        return thumbnailUrl;
     }
 }
 

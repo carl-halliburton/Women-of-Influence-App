@@ -22,6 +22,7 @@ public class GlobalAppData {
     private Boolean notificationStatus = false;
     private FileLister fileLister;
     private List<VideoData> videoInfoList;
+    private final int LOAD_TIME = 3000;
 
     private GlobalAppData( String ACCESS_TOKEN, Context context ) {
         notify = new Notification();
@@ -46,14 +47,13 @@ public class GlobalAppData {
                     context);
             fileLister.execute();
             try {
-                fileLister.get(10000, TimeUnit.MILLISECONDS);
+                fileLister.get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
-            } catch (TimeoutException e) {
-                e.printStackTrace();
             }
+
             videoInfoList = new ArrayList<>();
             videoInfoList = fileLister.getVideoDatas();
         }
@@ -100,12 +100,10 @@ public class GlobalAppData {
         fileLister.execute();
 
         try {
-            fileLister.get(10000, TimeUnit.MILLISECONDS);
+            fileLister.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (TimeoutException e) {
             e.printStackTrace();
         }
 
