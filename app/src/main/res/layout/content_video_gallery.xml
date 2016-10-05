@@ -40,7 +40,8 @@
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:id="@+id/gallery"></LinearLayout>
+            android:id="@+id/gallery">
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

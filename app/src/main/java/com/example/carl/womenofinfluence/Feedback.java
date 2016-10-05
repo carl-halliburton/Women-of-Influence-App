@@ -1,6 +1,7 @@
 package com.example.carl.womenofinfluence;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -68,8 +69,6 @@ public class Feedback extends AppCompatActivity {
 
         item = menu.findItem(R.id.menu_feedback);
         item.setVisible(false);
-
-        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -81,10 +80,7 @@ public class Feedback extends AppCompatActivity {
                 startActivity(new Intent(Feedback.this, Home.class));
                 return true;
             case R.id.action_notification:
-                if (item.isChecked())
-                    appData.getNotify().isChecked(item, this);
-                else
-                    appData.getNotify().isUnChecked(item, this);
+                openAppSettings();;
                 return true;
             case R.id.menu_video_gallery:
                 startActivity(new Intent(Feedback.this, VideoGallery.class));
@@ -169,5 +165,26 @@ public class Feedback extends AppCompatActivity {
         message.setText("");
     }
 
+    public void openAppSettings() {
+        String packageName = getString(R.string.package_name);
 
+        try {
+            //Open the specific App Info page:
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + packageName));
+            startActivity(intent);
+
+        } catch ( ActivityNotFoundException e ) {
+            new AlertDialog.Builder(Feedback.this)
+                    .setTitle("Notification Settings Not Available")
+                    .setMessage("Unable to open the apps settings screen, please try again later")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+    }
 }

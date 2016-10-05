@@ -1,12 +1,15 @@
 package com.example.carl.womenofinfluence;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -51,7 +54,6 @@ public class Home extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
-        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -60,10 +62,7 @@ public class Home extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.action_notification:
-                if (item.isChecked())
-                    appData.getNotify().isChecked(item, this);
-                else
-                    appData.getNotify().isUnChecked(item, this);
+                openAppSettings();
                 return true;
             case R.id.menu_video_gallery:
                 startActivity(new Intent(Home.this, VideoGallery.class));
@@ -180,6 +179,29 @@ public class Home extends AppCompatActivity {
                 featureVideo.setText(buttonText);
                 featureVideo.setVisibility(View.VISIBLE);
             }
+        }
+    }
+
+    public void openAppSettings() {
+        String packageName = getString(R.string.package_name);
+
+        try {
+            //Open the specific App Info page:
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + packageName));
+            startActivity(intent);
+
+        } catch ( ActivityNotFoundException e ) {
+            new AlertDialog.Builder(Home.this)
+                    .setTitle("Notification Settings Not Available")
+                    .setMessage("Unable to open the apps settings screen, please try again later")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
     }
 }

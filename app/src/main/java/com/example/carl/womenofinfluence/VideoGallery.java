@@ -2,9 +2,11 @@ package com.example.carl.womenofinfluence;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -56,8 +58,6 @@ public class VideoGallery extends AppCompatActivity {
 
         MenuItem item = menu.findItem(R.id.menu_video_gallery);
         item.setVisible(false);
-
-        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -69,10 +69,7 @@ public class VideoGallery extends AppCompatActivity {
                 startActivity(new Intent(VideoGallery.this, Home.class));
                 return true;
             case R.id.action_notification:
-                if (item.isChecked())
-                    appData.getNotify().isChecked(item, this);
-                else
-                    appData.getNotify().isUnChecked(item, this);
+                openAppSettings();
                 return true;
             case R.id.menu_feedback:
                 startActivity(new Intent(VideoGallery.this, Feedback.class));
@@ -90,6 +87,8 @@ public class VideoGallery extends AppCompatActivity {
 
         //create video gallery buttons
         galleryView = (LinearLayout) findViewById(R.id.gallery);
+        //clears the linearlayout for the video buttons
+        galleryView.removeAllViews();
         galleryLinks = new ArrayList<>();
         int i = 0;
 
@@ -184,6 +183,29 @@ public class VideoGallery extends AppCompatActivity {
             };
             refreshTask.start();
             waitForRefresh.start();
+        }
+    }
+
+    public void openAppSettings() {
+        String packageName = getString(R.string.package_name);
+
+        try {
+            //Open the specific App Info page:
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + packageName));
+            startActivity(intent);
+
+        } catch ( ActivityNotFoundException e ) {
+            new AlertDialog.Builder(VideoGallery.this)
+                    .setTitle("Notification Settings Not Available")
+                    .setMessage("Unable to open the apps settings screen, please try again later")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
     }
 }

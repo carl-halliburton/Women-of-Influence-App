@@ -32,10 +32,6 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".SearchResults"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".ViewVideo"
             android:label="@string/title_activity_view_video"
             android:theme="@style/AppTheme.NoActionBar"/>

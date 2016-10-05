@@ -3,6 +3,7 @@
     <string name="APP_KEY">kisksq4wddv8ymj</string>
     <string name="ACCESS_TOKEN">VWHcpuWtMSAAAAAAAAAAHFy0r1_0D1n-7i3knvaoaBtF70Cqwawgin0Qa2EOoKOc</string>
 
+    <string name="package_name">"com.example.carl.womenofinfluence"</string>
     <string name="app_name">Ascend</string>
     <string name="main_title">Pearls of Wisdom</string>
     <string name="sub_title">Women of Influence with Opinions</string>

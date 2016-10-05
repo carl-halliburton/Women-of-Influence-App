@@ -25,7 +25,10 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/sub_title"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
             android:id="@+id/textSubTitle"
+            android:gravity="center"
             android:layout_marginTop="10dp" />
 
         <TextView
@@ -33,6 +36,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/blurb"
+            android:textSize="@dimen/blurb_text_size"
             android:id="@+id/textBlurb"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
@@ -46,15 +50,17 @@
             android:background="@color/colorPrimary"
             android:onClick="viewVideoFeaturedLink"
             android:scaleType="fitXY"
+            android:textStyle="bold"
+            android:textSize="@dimen/btn_feature_vid_text_size"
             android:layout_marginTop="30dp"
-            android:layout_gravity="center" />
+            android:gravity="center" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text=""
-            android:id="@+id/textView3" />
+            android:id="@+id/textFeatureTitle" />
 
         <Button
             android:layout_width="wrap_content"
@@ -62,16 +68,8 @@
             android:text="@string/title_activity_video_gallery"
             android:id="@+id/button2"
             android:onClick="videoGalleryButtonOnClick"
-            android:layout_gravity="start"
-            android:typeface="serif"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hm_btn_contact_us"
-            android:id="@+id/button3"
-            android:onClick="feedbackButtonOnClick"
-            android:layout_gravity="start"
+            android:textSize="@dimen/btn_text_size"
+            android:layout_gravity="center"
             android:typeface="serif"/>
 
         <TextView
@@ -80,6 +78,18 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/hm_feedback_text"
             android:id="@+id/textView5"
+            android:textStyle="italic"
+            android:textSize="@dimen/fb_hme_text_size"
             android:layout_gravity="start" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hm_btn_contact_us"
+            android:id="@+id/button3"
+            android:onClick="feedbackButtonOnClick"
+            android:textSize="@dimen/btn_text_size"
+            android:layout_gravity="center"
+            android:typeface="serif"/>
     </LinearLayout>
 </ScrollView>

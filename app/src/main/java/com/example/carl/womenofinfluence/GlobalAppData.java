@@ -18,14 +18,12 @@ import java.util.concurrent.TimeoutException;
 public class GlobalAppData {
 
     private static GlobalAppData instance = null;
-    private Notification notify;
     private Boolean notificationStatus = false;
     private FileLister fileLister;
     private List<VideoData> videoInfoList;
     private final int LOAD_TIME = 3000;
 
     private GlobalAppData( String ACCESS_TOKEN, Context context ) {
-        notify = new Notification();
 
         if (ACCESS_TOKEN.equals("ACCESS_TOKEN")) {
             new AlertDialog.Builder(context)
@@ -66,11 +64,6 @@ public class GlobalAppData {
         instance.setContext(context);
         return instance;
     }
-
-    public Notification getNotify() {
-        return notify;
-    }
-
 
     public void setContext(Context context) {
         fileLister.setContext(context);

@@ -2,6 +2,7 @@ package com.example.carl.womenofinfluence;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -141,8 +142,6 @@ public class ViewVideo extends AppCompatActivity {
 
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
-
-        appData.getNotify().checkNotificationStatus(menu);
         return true;
     }
 
@@ -154,10 +153,7 @@ public class ViewVideo extends AppCompatActivity {
                 startActivity(new Intent(ViewVideo.this, Home.class));
                 return true;
             case R.id.action_notification:
-                if (item.isChecked())
-                    appData.getNotify().isChecked(item, this);
-                else
-                    appData.getNotify().isUnChecked(item, this);
+                openAppSettings();
                 return true;
             case R.id.menu_video_gallery:
                 startActivity(new Intent(ViewVideo.this, VideoGallery.class));
@@ -250,6 +246,28 @@ public class ViewVideo extends AppCompatActivity {
             System.out.println("Video Play Error :" + e.toString());
             finish();
         }
+    }
 
+    public void openAppSettings() {
+        String packageName = getString(R.string.package_name);
+
+        try {
+            //Open the specific App Info page:
+            Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + packageName));
+            startActivity(intent);
+
+        } catch ( ActivityNotFoundException e ) {
+            new AlertDialog.Builder(ViewVideo.this)
+                    .setTitle("Notification Settings Not Available")
+                    .setMessage("Unable to open the apps settings screen, please try again later")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
     }
 }
