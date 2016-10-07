@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.hawkefilms.carl.womenofinfluence.co.example.carl.womenofinfluence.Home">
+    tools:context="nz.co.hawkefilms.womenofinfluence.Home">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
