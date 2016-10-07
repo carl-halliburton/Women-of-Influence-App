@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "614143573607",
-    "firebase_url": "https://pearls-144309.firebaseio.com",
-    "project_id": "pearls-144309",
-    "storage_bucket": "pearls-144309.appspot.com"
+    "project_number": "722029047952",
+    "firebase_url": "https://ascend-39dea.firebaseio.com",
+    "project_id": "ascend-39dea",
+    "storage_bucket": "ascend-39dea.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:614143573607:android:06ec97a7a8897687",
+        "mobilesdk_app_id": "1:722029047952:android:a433b70d3bab2368",
         "android_client_info": {
-          "package_name": "com.example.carl.womenofinfluence"
+          "package_name": "nz.co.hawkefilms.womenofinfluence"
         }
       },
       "oauth_client": [
         {
-          "client_id": "614143573607-e7i0h8fd8sa2g2ue2o1tohtab5posfto.apps.googleusercontent.com",
+          "client_id": "722029047952-ksfarck81al2o9bsncubadvcv0n036l1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAtDJmUNx244qoMDGhyhMPQDWdxpu4LGKY"
+          "current_key": "AIzaSyAjSGm29NvB7Ewo15yFzBl-0f3oi_DwiBE"
         }
       ],
       "services": {
