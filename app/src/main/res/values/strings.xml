@@ -2,7 +2,7 @@
     //API keys and access tokens
     <string name="ACCESS_TOKEN">VWHcpuWtMSAAAAAAAAAAHFy0r1_0D1n-7i3knvaoaBtF70Cqwawgin0Qa2EOoKOc</string>
 
-    <string name="package_name">"com.example.carl.womenofinfluence"</string>
+    <string name="package_name">"nz.co.hawkefilms.womenofinfluence"</string>
     <string name="app_name">Ascend</string>
     <string name="sub_title">Women of Influence with Opinions</string>
     <string name="blurb">Blurb - Place a description of the app here</string>
