@@ -1,5 +1,13 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+//copyright 2016 Hawke Films
+/*
+Description: This is the video player, it manages the playing of the video and all asociated tasks required in
+the videoView activity.
+Fields
+
+ */
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -26,14 +34,13 @@ import android.widget.VideoView;
 
 public class ViewVideo extends AppCompatActivity {
 
-    private GlobalAppData appData;
-    private VideoData videoData;
-    private Boolean dialogIsOpen;
+    private GlobalAppData appData; //singleton instance of globalAppData
+    private VideoData videoData; //single video data object
+    private Boolean dialogIsOpen; //ensure that only one video/wifi error dialog is displayed
 
     private static ProgressDialog progressDialog;
     private VideoView videoView;
-    private TextView videoTitle;
-    private Integer savedVideoPosition;
+    private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
     private boolean portraitView;
 
@@ -103,6 +110,7 @@ public class ViewVideo extends AppCompatActivity {
 
         portraitView = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
+        TextView videoTitle;
         //Check if in portrait or landscape
         if (portraitView) {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
@@ -136,6 +144,7 @@ public class ViewVideo extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
+        //the refresh button is not required in this activity
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
         return true;
@@ -157,13 +166,11 @@ public class ViewVideo extends AppCompatActivity {
             case R.id.menu_feedback:
                 startActivity(new Intent(ViewVideo.this, Feedback.class));
                 return true;
-            //case R.id.action_search:
-                //return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    //vid view imp play method
+    //video view imp play method
     private void PlayVideo() {
         try {
             getWindow().setFormat(PixelFormat.TRANSLUCENT);
@@ -244,6 +251,7 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
+    //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
 

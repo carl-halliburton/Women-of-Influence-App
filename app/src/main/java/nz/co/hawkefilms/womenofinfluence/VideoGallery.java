@@ -1,5 +1,10 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+/*
+Description:
+This class manages and sets up the video Gallery
+ */
+
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -181,6 +186,7 @@ public class VideoGallery extends AppCompatActivity {
         }
     }
 
+    //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
 
