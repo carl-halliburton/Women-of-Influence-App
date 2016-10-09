@@ -1,5 +1,12 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+/*
+Description:
+The home activity although it is not the first activity run - see SplashScreen.java
+Introduces the app and displays the feature video
+
+ */
+
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -18,7 +25,7 @@ import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
-    private GlobalAppData appData;
+    private GlobalAppData appData; //singleton instance of globalAppData
     private Button featureVideo;
     private boolean refreshing;
 
@@ -36,6 +43,7 @@ public class Home extends AppCompatActivity {
         refreshContent();
     }
 
+    //refreshes feature video automatically if required when resuming the Home screen
     @Override
     protected void onResume(){
         super.onResume();
@@ -64,8 +72,6 @@ public class Home extends AppCompatActivity {
             case R.id.menu_feedback:
                 startActivity(new Intent(Home.this, Feedback.class));
                 return true;
-            //case R.id.action_search:
-                //return true;
             case R.id.menu_refresh:
                 refreshContent();
                 return true;
@@ -176,6 +182,7 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
 

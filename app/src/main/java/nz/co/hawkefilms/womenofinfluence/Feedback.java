@@ -1,5 +1,12 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+/*
+Description:
+Feedback form activity, the user has the option to send feedback to the app administrator
+via an external email client.  The form contains three fields; Name, Subject, Message
+the name and message fields are required and have validation checks made on them when use submits.
+ */
+
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,9 +65,9 @@ public class Feedback extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
+        //hide the refresh feedback menu item
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
-
         item = menu.findItem(R.id.menu_feedback);
         item.setVisible(false);
         return true;
@@ -79,8 +86,6 @@ public class Feedback extends AppCompatActivity {
             case R.id.menu_video_gallery:
                 startActivity(new Intent(Feedback.this, VideoGallery.class));
                 return true;
-            //case R.id.action_search:
-                //return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -94,8 +99,8 @@ public class Feedback extends AppCompatActivity {
         String message = "" + editMessage.getText();
         clearFields();
 
+        //intent creates chooser for only email apps
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-        //TODO add email address for Hawke Films once set up and prior to deployment
         emailIntent.setData(Uri.parse("mailto:" + getString(R.string.email_address)));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, message);
@@ -106,7 +111,7 @@ public class Feedback extends AppCompatActivity {
         }
     }
 
-    //checks whether EditTextfields are empty or not
+    //checks whether EditText fields are empty or not
     //if so display error message
     public boolean validateFields() {
         if (editName.getText().toString().equals(""))
@@ -126,12 +131,13 @@ public class Feedback extends AppCompatActivity {
     boolean isErrorFree() {
         if (TextUtils.isEmpty(editName.getError()) &&
                 (TextUtils.isEmpty(editMessage.getError()))) {
-            return true;
+            return true; //no errors displayed
         }
         else
-            return false;
+            return false; //errors displayed
     }
 
+    //TODO possibly remove
     public void successDialog(View view) {
 
         clearFields();
@@ -159,6 +165,7 @@ public class Feedback extends AppCompatActivity {
         message.setText("");
     }
 
+    //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
 

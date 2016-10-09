@@ -128,12 +128,15 @@ public class ViewVideo extends AppCompatActivity {
         PlayVideo();
     }
 
+
+    // Save UI state changes to the savedInstanceState.
+    // This bundle will be passed to onCreate if the process is
+    // killed and restarted.
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
+
+        //save the current position of the video, used when orientation changes
         savedInstanceState.putInt("VideoTime", videoView.getCurrentPosition());
     }
 
@@ -144,7 +147,7 @@ public class ViewVideo extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
-        //the refresh button is not required in this activity
+        //Hide refresh menu item as not required in this activity
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
         return true;
