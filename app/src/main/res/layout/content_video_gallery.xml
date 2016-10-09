@@ -35,6 +35,7 @@
             android:id="@+id/videoGalleryText"
             android:paddingBottom="15sp" />
 
+        <!--This layout is where the video buttons are displayed-->
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"

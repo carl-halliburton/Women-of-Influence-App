@@ -13,6 +13,8 @@
     <string name="title_activity_view_video">Video Player</string>
     <string name="menu_refresh">Refresh</string>
 
+    <string name="app_icon_description">Ascend aApplication icon</string>
+
     //Error Messages
     <string name="server_connection_error_title">Can\'t find videos</string>
     <string name="server_connection_error">Unable to find videos on server. check your internet
