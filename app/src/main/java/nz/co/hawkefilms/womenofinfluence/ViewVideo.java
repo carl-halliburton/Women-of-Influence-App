@@ -1,13 +1,5 @@
 package nz.co.hawkefilms.womenofinfluence;
 
-//copyright 2016 Hawke Films
-/*
-Description: This is the video player, it manages the playing of the video and all asociated tasks required in
-the videoView activity.
-Fields
-
- */
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -31,6 +23,11 @@ import android.view.WindowManager;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+/**
+ * Description: This is the video player, it manages the playing of the video and all asociated tasks required in
+ * the videoView activity.
+ */
 
 public class ViewVideo extends AppCompatActivity {
 

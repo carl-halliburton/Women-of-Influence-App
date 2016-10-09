@@ -3,17 +3,19 @@ package nz.co.hawkefilms.womenofinfluence;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.Metadata;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by nicholas.rowley on 9/12/2016.
+ * Description:
+ * This class manages the loading of video data and creation of temporary links for the videos
+ * stored in Dropbox
+ * See Developer Support Manual for details on video storage management
  */
+
 public class FileLister extends AsyncTask {
 
     private DbxClientV2 dbxClient;

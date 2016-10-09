@@ -2,11 +2,11 @@ package nz.co.hawkefilms.womenofinfluence;
 
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
-
 import static com.dropbox.core.v2.files.FolderMetadata.newBuilder;
 
 /**
- * Created by nick- on 8/09/2016.
+ * Description:
+ * Creates the connection and authentication with the Dropbox account
  */
 public class DropboxClient {
 

@@ -1,13 +1,15 @@
 package nz.co.hawkefilms.womenofinfluence;
 
-/**
- * Created by carl on 26/09/2016.
- */
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+/**
+ * Created by carl on 26/09/2016.
+ * Description:
+ * This activity runs every time the app is started from closed.
+ */
 
 public class SplashScreen extends Activity {
 
@@ -16,7 +18,6 @@ public class SplashScreen extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
@@ -38,7 +39,6 @@ public class SplashScreen extends Activity {
 
     @Override
     protected void onPause() {
-        // TODO Auto-generated method stub
         super.onPause();
         finish();
     }

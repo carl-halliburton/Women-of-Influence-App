@@ -3,20 +3,18 @@ package nz.co.hawkefilms.womenofinfluence;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
- * This class is for storing information and methods relevant to more than one activity on the app.
- * Created by carl on 25/08/2016.
+ * Description:
+ * This is a Singleton Class for storing information and methods relevant to more than one activity on the app.
  */
-// File Name: GlobalAppData.java
+
 public class GlobalAppData {
 
     private static GlobalAppData instance = null;
-    private Boolean notificationStatus = false;
     private FileLister fileLister;
     private List<VideoData> videoInfoList;
     private final int LOAD_TIME = 3000;
@@ -67,14 +65,6 @@ public class GlobalAppData {
         fileLister.setContext(context);
     }
 
-    public boolean getNotificationStatus() {
-        return notificationStatus;
-    }
-
-    public void setNotificationStatus(Boolean status) {
-        notificationStatus = status;
-    }
-
     public List<VideoData> getVideoData(){
         return videoInfoList;
     }
@@ -100,6 +90,4 @@ public class GlobalAppData {
 
         refreshVideoList();
     }
-
-
 }

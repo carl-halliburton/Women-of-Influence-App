@@ -17,10 +17,13 @@ package nz.co.hawkefilms.womenofinfluence;
  */
 
 import android.util.Log;
-
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
 
+/**
+ * Description:
+ * part of default code used for running notifications in the app from Firebase
+ */
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 

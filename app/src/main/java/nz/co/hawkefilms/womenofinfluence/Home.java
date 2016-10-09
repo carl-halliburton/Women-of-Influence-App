@@ -1,12 +1,5 @@
 package nz.co.hawkefilms.womenofinfluence;
 
-/*
-Description:
-The home activity although it is not the first activity run - see SplashScreen.java
-Introduces the app and displays the feature video
-
- */
-
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -22,6 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+/**
+ * Description:
+ * The home activity although it is not the first activity run - see SplashScreen.java
+ * Introduces the app and displays the feature video
+ */
 
 public class Home extends AppCompatActivity {
 

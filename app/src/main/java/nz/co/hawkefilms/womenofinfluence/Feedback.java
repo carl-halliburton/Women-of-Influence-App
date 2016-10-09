@@ -1,12 +1,5 @@
 package nz.co.hawkefilms.womenofinfluence;
 
-/*
-Description:
-Feedback form activity, the user has the option to send feedback to the app administrator
-via an external email client.  The form contains three fields; Name, Subject, Message
-the name and message fields are required and have validation checks made on them when use submits.
- */
-
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+/**
+ * Description:
+ * Feedback form activity, the user has the option to send feedback to the app administrator
+ * via an external email client.  The form contains three fields; Name, Subject, Message
+ * the name and message fields are required and have validation checks made on them when use submits.
+ */
 
 public class Feedback extends AppCompatActivity {
 

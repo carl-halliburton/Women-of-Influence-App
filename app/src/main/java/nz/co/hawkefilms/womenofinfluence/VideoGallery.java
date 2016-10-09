@@ -1,10 +1,5 @@
 package nz.co.hawkefilms.womenofinfluence;
 
-/*
-Description:
-This class manages and sets up the video Gallery
- */
-
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -25,6 +20,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Description:
+ * This class manages and sets up the video Gallery
+ */
 
 public class VideoGallery extends AppCompatActivity {
 
