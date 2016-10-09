@@ -20,7 +20,8 @@ import android.widget.Toast;
  * Description:
  * Feedback form activity, the user has the option to send feedback to the app administrator
  * via an external email client.  The form contains three fields; Name, Subject, Message
- * the name and message fields are required and have validation checks made on them when use submits.
+ * the name and message fields are required and have validation checks made on them when the
+ * user submits.
  */
 
 public class Feedback extends AppCompatActivity {

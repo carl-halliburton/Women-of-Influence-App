@@ -21,6 +21,7 @@ public class GlobalAppData {
 
     private GlobalAppData( String ACCESS_TOKEN, Context context ) {
 
+        //checks if access token is not set.
         if (ACCESS_TOKEN.equals("ACCESS_TOKEN")) {
             new AlertDialog.Builder(context)
                     .setTitle("WARNING: ACCESS TOKEN NOT SET")
@@ -37,6 +38,7 @@ public class GlobalAppData {
                     .show();
         }
         else {
+            //execute filelister and get Dropbox videos
             fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
                     context);
             fileLister.execute();

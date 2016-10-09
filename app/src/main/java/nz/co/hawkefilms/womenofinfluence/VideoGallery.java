@@ -46,6 +46,7 @@ public class VideoGallery extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        //do refresh if no videos found
         if (appData.getVideoData().size() == 0) {
             refreshContent();
         }
@@ -81,6 +82,7 @@ public class VideoGallery extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //This method loads the buttons for the Video Gallery after video data is found.
     public void loadGallery() {
         List<Button> galleryLinks;
         LinearLayout galleryView;
@@ -135,6 +137,7 @@ public class VideoGallery extends AppCompatActivity {
         }
     }
 
+    /*Checks Dropbox for videos in another thread and shows a progress dialog in the main thread.*/
     public void refreshContent() {
         if (!refreshing) {
             refreshing = true;
