@@ -42,14 +42,14 @@ public class Home extends AppCompatActivity {
         refreshContent();
     }
 
-    //refreshes feature video automatically if required when resuming the Home screen
+  /*  //refreshes feature video automatically if required when resuming the Home screen
     @Override
     protected void onResume(){
         super.onResume();
         if (appData.getVideoData().size() == 0) {
             refreshContent();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -42,14 +42,14 @@ public class VideoGallery extends AppCompatActivity {
 
         refreshContent();
     }
-
+/*
     @Override
     protected void onResume(){
         super.onResume();
         if (appData.getVideoData().size() == 0) {
             refreshContent();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
