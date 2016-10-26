@@ -25,7 +25,8 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 /**
- * Description: This is the video player, it manages the playing of the video and all asociated tasks required in
+ * Description: This is the video player, it manages the playing of the video and all asociated
+ * tasks required in
  * the videoView activity.
  */
 
@@ -103,7 +104,8 @@ public class ViewVideo extends AppCompatActivity {
             }
         });
 
-        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
+        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN),
+                ViewVideo.this);
 
         portraitView = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
@@ -181,7 +183,8 @@ public class ViewVideo extends AppCompatActivity {
                 mediaController = new MediaController(this){
                     public boolean dispatchKeyEvent(KeyEvent event)
                     {
-                        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP)
+                        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction()
+                                == KeyEvent.ACTION_UP)
                             ((Activity) getContext()).finish();
 
                         return super.dispatchKeyEvent(event);

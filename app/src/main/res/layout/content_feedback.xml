@@ -24,6 +24,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/title_activity_feedback"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
             android:id="@+id/txtScreenTitle"
             android:layout_marginTop="20dp"
             android:layout_gravity="center" />
@@ -33,16 +35,24 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/fb_text_desc"
+            android:textSize="@dimen/description_text_size"
             android:id="@+id/txtHelp"
-            android:layout_marginTop="20dp"  />
+            android:layout_marginTop="20dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/ruled_line"
+            android:layout_marginTop="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/email_address"
+            android:textSize="@dimen/fb_email_text_size"
             android:id="@+id/txtEmailAddress"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center" />
 
         <EditText

@@ -5,4 +5,5 @@
     <color name="colorAccent">#009bff</color>
     <color name="colorBody">#e0f7ff</color>
     <color name="black">#000000</color>
+    <color name="ruled_line">#000000</color>
 </resources>

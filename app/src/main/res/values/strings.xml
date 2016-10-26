@@ -5,7 +5,9 @@
     <string name="package_name">"nz.co.hawkefilms.womenofinfluence"</string>
     <string name="app_name">Ascend</string>
     <string name="sub_title">Women of Influence with Opinions</string>
-    <string name="blurb">Blurb - Place a description of the app here</string>
+    <string name="blurb">Welcome to Ascend - where you can find videos of influential women
+        throughout New Zealand.\nThe latest video can be seen below or you can go to the gallery
+        to view the entire collection.</string>
 
     <string name="action_notification">Notifications</string>
     <string name="title_activity_feedback">Feedback</string>
