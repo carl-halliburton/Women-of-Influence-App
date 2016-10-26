@@ -55,6 +55,7 @@
         <activity
             android:name=".Feedback"
             android:label="@string/title_activity_feedback"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- [START firebase_service] -->

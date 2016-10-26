@@ -10,4 +10,8 @@
     <dimen name="blurb_text_size">26sp</dimen>
     <dimen name="home_title_text_size">30sp</dimen>
     <dimen name="fb_email_text_size">20sp</dimen>
+
+    <!--Margins-->
+    <dimen name="activity_titles_marginTop">1dp</dimen>
+    <dimen name="activity_titles_marginBottom">1dp</dimen>
 </resources>

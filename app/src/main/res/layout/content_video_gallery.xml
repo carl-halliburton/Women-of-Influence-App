@@ -27,6 +27,8 @@
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             android:id="@+id/textView2"
+            android:layout_marginTop="@dimen/activity_titles_marginTop"
+            android:layout_marginBottom="@dimen/activity_titles_marginBottom"
             android:paddingBottom="30sp"
             android:gravity="center" />
 
@@ -37,6 +39,13 @@
             android:id="@+id/videoGalleryText"
             android:textSize="@dimen/description_text_size"
             android:paddingBottom="15sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/ruled_line"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp" />
 
         <!--This layout is where the video buttons are displayed-->
         <LinearLayout

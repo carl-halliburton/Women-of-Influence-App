@@ -27,7 +27,8 @@
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             android:id="@+id/txtScreenTitle"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/activity_titles_marginTop"
+            android:layout_marginBottom="@dimen/activity_titles_marginBottom"
             android:layout_gravity="center" />
 
         <TextView
@@ -39,12 +40,6 @@
             android:id="@+id/txtHelp"
             android:layout_marginTop="20dp" />
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:background="@color/ruled_line"
-            android:layout_marginTop="15dp"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,12 +50,18 @@
             android:layout_marginTop="15dp"
             android:layout_gravity="center" />
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/ruled_line"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:layout_marginTop="10dp"
             android:id="@+id/fieldName"
             android:hint="@string/fb_hint_name" />
 
