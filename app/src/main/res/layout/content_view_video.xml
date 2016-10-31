@@ -23,38 +23,100 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:text=""
         android:id="@+id/txtVideoTitle"
         android:gravity="center" />
 
-    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/GridLayoutShare"
-        android:layout_below="@id/txtVideoTitle"
+
+    <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="1"
-        android:orientation="horizontal"
-        tools:context=".GridXMLActivity" >
+        android:layout_below="@id/txtVideoTitle"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/shareEmail"
+        <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/GridLayoutShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_email_share"
-            android:paddingLeft="5dp"
-            android:clickable="true"/>
+            android:layout_marginTop="10dp"
+            android:columnCount="8"
+            android:rowCount="1"
+            android:scrollbars="horizontal"
+            android:orientation="horizontal"
+            tools:context=".GridXMLActivity" >
 
-        <ImageView
-            android:id="@+id/shareFacebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_facebook_share"
-            android:paddingLeft="5dp"
-            android:clickable="true"/>
+            <ImageView
+                android:id="@+id/shareEmail"
+                android:contentDescription="@string/string_share_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_email_share"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingRight="@dimen/padding_right"
+                android:paddingStart="@dimen/padding_start"
+                android:paddingEnd="@dimen/padding_end"
+                android:clickable="true"/>
 
-    </GridLayout>
+            <ImageView
+                android:id="@+id/shareFacebook"
+                android:contentDescription="@string/string_share_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_facebook_share"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingRight="@dimen/padding_right"
+                android:paddingStart="@dimen/padding_start"
+                android:paddingEnd="@dimen/padding_end"
+                android:clickable="true"/>
 
+            <ImageView
+                android:id="@+id/shareTwitter"
+                android:contentDescription="@string/string_share_twitter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_twitter_share"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingRight="@dimen/padding_right"
+                android:paddingStart="@dimen/padding_start"
+                android:paddingEnd="@dimen/padding_end"
+                android:clickable="true"/>
+
+            <ImageView
+                android:id="@+id/shareGooglePlus"
+                android:contentDescription="@string/string_share_google_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_google_plus_share"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingRight="@dimen/padding_right"
+                android:paddingStart="@dimen/padding_start"
+                android:paddingEnd="@dimen/padding_end"
+                android:clickable="true"/>
+
+            <ImageView
+                android:id="@+id/shareSMS"
+                android:contentDescription="@string/string_share_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_sms_share"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingRight="@dimen/padding_right"
+                android:paddingStart="@dimen/padding_start"
+                android:paddingEnd="@dimen/padding_end"
+                android:clickable="true"/>
+
+            <ImageView
+                android:id="@+id/shareWhatsApp"
+                android:contentDescription="@string/string_share_whats_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_whatsapp_share"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingRight="@dimen/padding_right"
+                android:paddingStart="@dimen/padding_start"
+                android:paddingEnd="@dimen/padding_end"
+                android:clickable="true"/>
+        </GridLayout>
+    </HorizontalScrollView>
 </RelativeLayout>
