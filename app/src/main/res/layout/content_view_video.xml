@@ -106,17 +106,6 @@
                 android:paddingEnd="@dimen/padding_end"
                 android:clickable="true"/>
 
-            <ImageView
-                android:id="@+id/shareWhatsApp"
-                android:contentDescription="@string/string_share_whats_app"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_whatsapp_share"
-                android:paddingLeft="@dimen/padding_left"
-                android:paddingRight="@dimen/padding_right"
-                android:paddingStart="@dimen/padding_start"
-                android:paddingEnd="@dimen/padding_end"
-                android:clickable="true"/>
         </GridLayout>
     </HorizontalScrollView>
 </RelativeLayout>
