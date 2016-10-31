@@ -12,18 +12,18 @@ class ShareVideo {
         thisContext = context;
     }
 
-    public void sendEmailIntent() {
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setType("text/html");
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Subject - Name of Video");
-            intent.putExtra(Intent.EXTRA_TEXT, "You might be interested in this video " + "- PLACE LINK HERE");
-            intent.setData(Uri.parse("mailto:"));
-            thisContext.startActivity(Intent.createChooser(intent, "Send Email"));
-        }
+    void sendEmailIntent() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType("text/html");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject - Name of Video");
+        intent.putExtra(Intent.EXTRA_TEXT, "You might be interested in this video " + "- PLACE LINK HERE");
+        intent.setData(Uri.parse("mailto:"));
+        thisContext.startActivity(Intent.createChooser(intent, "Send Email"));
+    }
 
-    public void sendSmsIntent() {
+    void sendSmsIntent() {
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.putExtra("You might be interested in this video", "default content");
+        sendIntent.putExtra("", "You might be interested in this video");
         sendIntent.setType("vnd.android-dir/mms-sms");
         thisContext.startActivity(sendIntent);
     }

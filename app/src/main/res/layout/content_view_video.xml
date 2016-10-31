@@ -48,7 +48,7 @@
 
             <ImageView
                 android:id="@+id/shareEmail"
-                android:contentDescription="@string/string_share_email"
+                android:contentDescription="@string/desc_share_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_email_share"
@@ -56,11 +56,12 @@
                 android:paddingRight="@dimen/padding_right"
                 android:paddingStart="@dimen/padding_start"
                 android:paddingEnd="@dimen/padding_end"
+                android:text="@string/title_share_email"
                 android:clickable="true"/>
 
             <ImageView
                 android:id="@+id/shareFacebook"
-                android:contentDescription="@string/string_share_facebook"
+                android:contentDescription="@string/desc_share_facebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_facebook_share"
@@ -68,11 +69,12 @@
                 android:paddingRight="@dimen/padding_right"
                 android:paddingStart="@dimen/padding_start"
                 android:paddingEnd="@dimen/padding_end"
+                android:text="@string/desc_share_facebook"
                 android:clickable="true"/>
 
             <ImageView
                 android:id="@+id/shareSMS"
-                android:contentDescription="@string/string_share_phone_number"
+                android:contentDescription="@string/desc_share_sms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_sms_share"
@@ -80,6 +82,7 @@
                 android:paddingRight="@dimen/padding_right"
                 android:paddingStart="@dimen/padding_start"
                 android:paddingEnd="@dimen/padding_end"
+                android:text="@string/title_share_sms"
                 android:clickable="true"/>
 
         </GridLayout>
