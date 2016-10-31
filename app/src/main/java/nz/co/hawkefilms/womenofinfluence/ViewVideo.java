@@ -20,9 +20,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import static nz.co.hawkefilms.womenofinfluence.R.id.shareEmail;
 
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
@@ -41,6 +44,7 @@ public class ViewVideo extends AppCompatActivity {
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
     private boolean portraitView;
+    private ShareVideo shareVid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,8 @@ public class ViewVideo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
+
+        shareVid = new ShareVideo(this);
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
@@ -124,9 +130,25 @@ public class ViewVideo extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
+        //ShareButton actions
+        ImageView email = (ImageView)findViewById(R.id.shareEmail);
+        email.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            public void onClick(View v) {
+                shareVid.sendEmailIntent();
+            }
+        });
+
+        ImageView textMessage = (ImageView)findViewById(R.id.shareSMS);
+        textMessage.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            public void onClick(View v) {
+                shareVid.sendSmsIntent();
+            }
+        });
+
         PlayVideo();
     }
-
 
     // Save UI state changes to the savedInstanceState.
     // This bundle will be passed to onCreate if the process is

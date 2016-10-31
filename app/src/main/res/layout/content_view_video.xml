@@ -71,30 +71,6 @@
                 android:clickable="true"/>
 
             <ImageView
-                android:id="@+id/shareTwitter"
-                android:contentDescription="@string/string_share_twitter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_twitter_share"
-                android:paddingLeft="@dimen/padding_left"
-                android:paddingRight="@dimen/padding_right"
-                android:paddingStart="@dimen/padding_start"
-                android:paddingEnd="@dimen/padding_end"
-                android:clickable="true"/>
-
-            <ImageView
-                android:id="@+id/shareGooglePlus"
-                android:contentDescription="@string/string_share_google_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_google_plus_share"
-                android:paddingLeft="@dimen/padding_left"
-                android:paddingRight="@dimen/padding_right"
-                android:paddingStart="@dimen/padding_start"
-                android:paddingEnd="@dimen/padding_end"
-                android:clickable="true"/>
-
-            <ImageView
                 android:id="@+id/shareSMS"
                 android:contentDescription="@string/string_share_phone_number"
                 android:layout_width="wrap_content"
