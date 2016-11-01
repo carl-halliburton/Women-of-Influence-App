@@ -23,7 +23,7 @@ class ShareVideo {
 
     void sendSmsIntent() {
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.putExtra("", "You might be interested in this video");
+        sendIntent.putExtra("sms_body", "You might be interested in this video " + "- PLACE LINK HERE");
         sendIntent.setType("vnd.android-dir/mms-sms");
         thisContext.startActivity(sendIntent);
     }
