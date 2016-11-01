@@ -25,8 +25,6 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import static nz.co.hawkefilms.womenofinfluence.R.id.shareEmail;
-
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
  * tasks required in
@@ -121,6 +119,7 @@ public class ViewVideo extends AppCompatActivity {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
+            shareVidOnclick();
         } else {
             View decorView = getWindow().getDecorView();
 
@@ -130,25 +129,9 @@ public class ViewVideo extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
-        //ShareButton actions
-        ImageView email = (ImageView)findViewById(R.id.shareEmail);
-        email.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            public void onClick(View v) {
-                shareVid.sendEmailIntent();
-            }
-        });
-
-        ImageView textMessage = (ImageView)findViewById(R.id.shareSMS);
-        textMessage.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            public void onClick(View v) {
-                shareVid.sendSmsIntent();
-            }
-        });
-
         PlayVideo();
     }
+
 
     // Save UI state changes to the savedInstanceState.
     // This bundle will be passed to onCreate if the process is
@@ -261,7 +244,7 @@ public class ViewVideo extends AppCompatActivity {
                                 0.0f,
                                 0.0f,
                                 0
-                            )
+                                )
                         );
                     }
 
@@ -298,5 +281,24 @@ public class ViewVideo extends AppCompatActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
+    }
+
+    public void shareVidOnclick() {
+        //ShareButton actions
+        ImageView email = (ImageView)findViewById(R.id.shareEmail);
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareVid.sendEmailIntent();
+            }
+        });
+
+        ImageView textMessage = (ImageView)findViewById(R.id.shareSMS);
+        textMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareVid.sendSmsIntent();
+            }
+        });
     }
 }
