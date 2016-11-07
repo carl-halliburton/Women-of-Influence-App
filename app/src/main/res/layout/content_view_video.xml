@@ -13,10 +13,10 @@
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:foregroundGravity="center_horizontal" />
+        android:foregroundGravity="center_horizontal"
+        android:layout_height="200sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,4 +27,43 @@
         android:text=""
         android:id="@+id/txtVideoTitle"
         android:gravity="center" />
+
+    <TextView
+            android:text="@string/sharing_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtVideoTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="69dp"
+            android:id="@+id/shareSection" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/Sharing_Error_Text"
+            android:ems="10"
+            android:layout_below="@+id/shareSection"
+            android:id="@+id/shareLink"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/copyBtn"
+            android:layout_toLeftOf="@+id/copyBtn"
+            android:enabled="false" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_action_copy"
+        android:id="@+id/copyBtn"
+        android:layout_below="@+id/shareSection"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        style="@style/AppTheme"
+        android:onClick="onClick"
+        android:contentDescription="@string/copy_Btn_Desc"
+        />
+
 </RelativeLayout>

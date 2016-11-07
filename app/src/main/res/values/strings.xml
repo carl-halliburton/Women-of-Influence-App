@@ -39,5 +39,8 @@
     //text
     <string name="hm_feedback_text">Give us your feedback or share your stories</string>
     <string name="text_video_gallery_desc">Browse our videos below.</string>
+    <string name="Sharing_Error_Text">Error Finding Link</string>
+    <string name="sharing_title">Sharing</string>
+    <string name="copy_Btn_Desc">Copies the URL link for the video being played to clipboard.</string>
 
 </resources>

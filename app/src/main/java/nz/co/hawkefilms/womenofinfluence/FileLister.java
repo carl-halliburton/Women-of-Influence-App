@@ -6,6 +6,9 @@ import android.util.Log;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.Metadata;
+import com.dropbox.core.v2.sharing.ResolvedVisibility;
+import com.dropbox.core.v2.sharing.SharedLinkMetadata;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +43,28 @@ public class FileLister extends AsyncTask {
             //create temporary links for each file in the folder
             for (Metadata fileItem : folderContents) {
                 //to store temporary urls into a list
-                videoInfoList.add(new VideoData(fileItem.getName(), dbxClient.files().getTemporaryLink(fileItem.getPathLower()).getLink()));
+                videoInfoList.add(new VideoData(fileItem.getName(), dbxClient.files().getTemporaryLink(fileItem.getPathLower()).getLink(), fileItem.getPathLower()));
+            }
+
+            //get public sharing link for each video on the list or create a new one for each video.
+            for (int i = 0; i < videoInfoList.size(); i++) {
+                boolean publicLink = false; // true if a public link exists
+
+                //first get all shared links in the apps dropbox
+                for (SharedLinkMetadata link : dbxClient.sharing().listSharedLinks().getLinks()) {
+                    //check if the link is for the right video file & access is public
+                    if (link.getPathLower().equals(videoInfoList.get(i).getDbUri())
+                            && link.getLinkPermissions().getResolvedVisibility()
+                            == ResolvedVisibility.PUBLIC) {
+                        publicLink = true;
+                        videoInfoList.get(i).setPreviewUrl(link.getUrl());
+                    }
+                }
+
+                //if there is no public link then
+                if (!publicLink) { //create a new public viewing link for this video
+                    videoInfoList.get(i).setPreviewUrl(dbxClient.sharing().createSharedLinkWithSettings(videoInfoList.get(i).getDbUri()).getUrl());
+                }
             }
             Log.d("Create Links", "Success");
         } catch (DbxException e) {

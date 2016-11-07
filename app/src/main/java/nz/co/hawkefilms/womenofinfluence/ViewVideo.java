@@ -3,6 +3,9 @@ package nz.co.hawkefilms.womenofinfluence;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -20,8 +23,10 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 /**
@@ -41,6 +46,7 @@ public class ViewVideo extends AppCompatActivity {
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
     private boolean portraitView;
+    private EditText sharingUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +121,8 @@ public class ViewVideo extends AppCompatActivity {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
+            sharingUrl = (EditText) findViewById(R.id.shareLink);
+            sharingUrl.setText(videoData.getSharingUrl());
         } else {
             View decorView = getWindow().getDecorView();
 
@@ -275,6 +283,18 @@ public class ViewVideo extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        }
+    }
+
+    public void onClick(View v)
+    {
+        switch (v.getId()) {
+            case R.id.copyBtn:
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Share Link",sharingUrl.getText());
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getApplicationContext(), "Link Copied!", Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 }

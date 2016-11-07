@@ -47,10 +47,8 @@
             android:layout_height="wrap_content"
             android:text="@string/hm_feature_video_aut_text"
             android:id="@+id/featureVideoBtn"
-            android:background="@color/colorPrimary"
             android:onClick="viewVideoFeaturedLink"
             android:scaleType="fitXY"
-            android:textStyle="bold"
             android:textSize="@dimen/btn_feature_vid_text_size"
             android:layout_marginTop="30dp"
             android:gravity="center" />
@@ -71,7 +69,7 @@
             android:textSize="@dimen/btn_text_size"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:typeface="serif"/>
+            android:typeface="normal"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,6 +91,6 @@
             android:onClick="feedbackButtonOnClick"
             android:textSize="@dimen/btn_text_size"
             android:layout_gravity="center"
-            android:typeface="serif"/>
+            android:typeface="normal"/>
     </LinearLayout>
 </ScrollView>
