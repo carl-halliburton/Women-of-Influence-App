@@ -33,6 +33,8 @@ public class FileLister extends AsyncTask {
         videoInfoList = new ArrayList<>();
     }
 
+    /*Async menthod that connects to Dropbox and gets all videos stored in the videos folder in
+    Dropbox*/
     @Override
     protected Object doInBackground(Object[] params) {
         try {

@@ -106,6 +106,8 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    /*This method handles the refreshing of content in other threads while displaying a progress dialog
+    * in the current thread.*/
     public void refreshContent() {
         if (!refreshing) {
             refreshing = true;
@@ -181,6 +183,7 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    //TODO change the package name used in openAppSettings()
     //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
