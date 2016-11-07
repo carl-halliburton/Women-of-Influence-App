@@ -22,6 +22,14 @@
     <string name="server_connection_error">Unable to find videos on server. check your internet
         connection and try again later.</string>
 
+    //Share button descriptions
+    <string name="string_share_email">Share with Email</string>
+    <string name="string_share_facebook">Share with Facebook</string>
+    <string name="string_share_google_plus">Share with Google Plus</string>
+    <string name="string_share_twitter">Share with twitter</string>
+    <string name="string_copy_link">Copy Video Link</string>
+    <string name="string_share_phone_number">Send video link with text message</string>
+    <string name="string_share_whats_app">Share with WhatsApp</string>
 
     //Feedback
     <string name="fb_text_desc">Ask a question, let us know what you think.  Please note an external email
