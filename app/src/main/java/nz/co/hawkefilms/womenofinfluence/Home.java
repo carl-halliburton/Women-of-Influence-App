@@ -115,7 +115,6 @@ public class Home extends AppCompatActivity {
             //progress dialog shows when videos are loading
             final ProgressDialog progressDialog = ProgressDialog.show(Home.this, "", "Loading Videos...", true);
             final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT);
-            final Handler mHandler = new Handler();
 
             //Data load is done here
             final Thread refreshTask = new Thread() {
@@ -151,7 +150,7 @@ public class Home extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    mHandler.post(setTask);
+                    runOnUiThread(setTask);
                 }
             };
             refreshTask.start();
@@ -183,7 +182,6 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    //TODO change the package name used in openAppSettings()
     //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);

@@ -3,6 +3,9 @@ package nz.co.hawkefilms.womenofinfluence;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+
+import com.dropbox.core.v2.files.Metadata;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -17,6 +20,7 @@ public class GlobalAppData {
     private static GlobalAppData instance = null;
     private FileLister fileLister;
     private List<VideoData> videoInfoList;
+    private List<Metadata> dropboxLoadData; //data for loading remaining dropbox videos
     private final int LOAD_TIME = 3000;
 
     private GlobalAppData( String ACCESS_TOKEN, Context context ) {
@@ -40,7 +44,7 @@ public class GlobalAppData {
         else {
             //execute filelister and get Dropbox videos
             fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
-                    context);
+                    context, new ArrayList<Metadata>(), new ArrayList<VideoData>());
             fileLister.execute();
             try {
                 fileLister.get();
@@ -52,6 +56,9 @@ public class GlobalAppData {
 
             videoInfoList = new ArrayList<>();
             videoInfoList = fileLister.getVideoDatas();
+
+            dropboxLoadData = new ArrayList<>();
+            dropboxLoadData = fileLister.getLoadData();
         }
     }
 
@@ -73,13 +80,14 @@ public class GlobalAppData {
 
     private void refreshVideoList(){
         videoInfoList = fileLister.getVideoDatas();
+        dropboxLoadData = fileLister.getLoadData();
     }
 
     /*This method connects to the dropbox servers to get video data. This method should be run in
-    * a separate thread.*/
+    * a separate thread. Note: This method loads the videos from scratch*/
     public void refreshDropboxFiles( String ACCESS_TOKEN, Context context ){
         fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
-                context);
+                context, new ArrayList<Metadata>(), new ArrayList<VideoData>());
         fileLister.execute();
 
         try {
@@ -91,5 +99,34 @@ public class GlobalAppData {
         }
 
         refreshVideoList();
+    }
+
+    public void updateVideoUrl (VideoData video){
+        for (VideoData videoData : videoInfoList){
+            if (video.getDbUri().equals(videoData.getDbUri())){
+                videoData.setPreviewUrl(video.getSharingUrl());
+            }
+        }
+    }
+
+    /*This method is for loading dropbox files in the background until fully loaded*/
+    public void loadDropboxFiles( String ACCESS_TOKEN, Context context ){
+        fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
+                context, dropboxLoadData, videoInfoList);
+        fileLister.execute();
+
+        try {
+            fileLister.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        refreshVideoList();
+    }
+
+    public int loadsRemaining(){
+        return fileLister.remainingLoads();
     }
 }

@@ -25,49 +25,41 @@ public class FileLister extends AsyncTask {
     private List<VideoData> videoInfoList;
     private List<Metadata> folderContents;
     private Context context;
+    private int videosLoaded;
+    private int remainingLoads;
 
-    FileLister(DbxClientV2 dbxClient, Context context) {
+    FileLister(DbxClientV2 dbxClient, Context context, List<Metadata> dropboxLoadData, List<VideoData> loadedVideos) {
         this.dbxClient = dbxClient;
         this.context = context;
-        folderContents = new ArrayList<>();
-        videoInfoList = new ArrayList<>();
+        folderContents = dropboxLoadData;
+        videoInfoList = loadedVideos;
+        videosLoaded = videoInfoList.size();
+        remainingLoads = 0;
     }
 
-    /*Async menthod that connects to Dropbox and gets all videos stored in the videos folder in
+    /*Async method that connects to Dropbox and gets all videos stored in the videos folder in
     Dropbox*/
     @Override
     protected Object doInBackground(Object[] params) {
         try {
+            if (videosLoaded == 0) {
+                //contains metadata for all contents in the folder such as the URI links to each file.
+                folderContents = dbxClient.files().listFolder("/videos/").getEntries();
+            }
 
-            //contains metadata for all contents in the folder such as the URI links to each file.
-            folderContents = dbxClient.files().listFolder("/videos/").getEntries();
-
-            //create temporary links for each file in the folder
-            for (Metadata fileItem : folderContents) {
+            //create temporary links for the next 5 files in the folder
+            for (int i = 0; i < 5; i++) {
                 //to store temporary urls into a list
-                videoInfoList.add(new VideoData(fileItem.getName(), dbxClient.files().getTemporaryLink(fileItem.getPathLower()).getLink(), fileItem.getPathLower()));
-            }
-
-            //get public sharing link for each video on the list or create a new one for each video.
-            for (int i = 0; i < videoInfoList.size(); i++) {
-                boolean publicLink = false; // true if a public link exists
-
-                //first get all shared links in the apps dropbox
-                for (SharedLinkMetadata link : dbxClient.sharing().listSharedLinks().getLinks()) {
-                    //check if the link is for the right video file & access is public
-                    if (link.getPathLower().equals(videoInfoList.get(i).getDbUri())
-                            && link.getLinkPermissions().getResolvedVisibility()
-                            == ResolvedVisibility.PUBLIC) {
-                        publicLink = true;
-                        videoInfoList.get(i).setPreviewUrl(link.getUrl());
-                    }
-                }
-
-                //if there is no public link then
-                if (!publicLink) { //create a new public viewing link for this video
-                    videoInfoList.get(i).setPreviewUrl(dbxClient.sharing().createSharedLinkWithSettings(videoInfoList.get(i).getDbUri()).getUrl());
+                if (videosLoaded < folderContents.size()) {
+                    videoInfoList.add(new VideoData(folderContents.get(videosLoaded).getName(), dbxClient.files()
+                            .getTemporaryLink(folderContents.get(videosLoaded).getPathLower()).getLink(),
+                            folderContents.get(videosLoaded).getPathLower()));
+                    videosLoaded++;
                 }
             }
+
+            remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+
             Log.d("Create Links", "Success");
         } catch (DbxException e) {
             e.printStackTrace();
@@ -87,4 +79,8 @@ public class FileLister extends AsyncTask {
     public List<VideoData> getVideoDatas() {
         return videoInfoList;
     }
+
+    public List<Metadata> getLoadData() { return folderContents; }
+
+    public int remainingLoads() { return remainingLoads; }
 }

@@ -29,6 +29,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
  * tasks required in
@@ -47,6 +49,8 @@ public class ViewVideo extends AppCompatActivity {
     private boolean refreshed;
     private boolean portraitView;
     private EditText sharingUrl;
+
+    private FileSharer fileSharer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +126,7 @@ public class ViewVideo extends AppCompatActivity {
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
             sharingUrl = (EditText) findViewById(R.id.shareLink);
-            sharingUrl.setText(videoData.getSharingUrl());
+            sharingUrl.setText(setUpSharingLink());
         } else {
             View decorView = getWindow().getDecorView();
 
@@ -296,5 +300,24 @@ public class ViewVideo extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Link Copied!", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private String setUpSharingLink() {
+        if (videoData.getSharingUrl().equals("Error: cannot find url")) {
+            fileSharer = new FileSharer(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
+                    videoData);
+            fileSharer.execute();
+            try {
+                fileSharer.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+
+            videoData = fileSharer.getVideoData();
+            appData.updateVideoUrl(videoData);
+        }
+        return videoData.getSharingUrl();
     }
 }

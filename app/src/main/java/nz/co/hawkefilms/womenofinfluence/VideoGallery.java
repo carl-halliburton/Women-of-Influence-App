@@ -30,6 +30,7 @@ public class VideoGallery extends AppCompatActivity {
 
     private GlobalAppData appData;
     private boolean refreshing;
+    private Button loadMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,8 @@ public class VideoGallery extends AppCompatActivity {
         //clears the linearlayout for the video buttons
         galleryView.removeAllViews();
         galleryLinks = new ArrayList<>();
+        //load more button
+        loadMore = (Button) findViewById(R.id.loadMoreBtn);
         int i = 0;
 
         for (VideoData link : appData.getVideoData()) {
@@ -134,6 +137,14 @@ public class VideoGallery extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        }
+
+        //if there are more videos left to load.
+        if(appData.loadsRemaining() > 0)
+        {
+            loadMore.setVisibility(View.VISIBLE);
+        } else {
+            loadMore.setVisibility(View.GONE);
         }
     }
 
@@ -210,6 +221,59 @@ public class VideoGallery extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        }
+    }
+
+    public void loadInBackground() {
+        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT);
+
+        //Data load is done here
+        final Thread loadTask = new Thread() {
+            public void run() {
+                try {
+                    if (appData == null)
+                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                    else {
+                        appData.loadDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                        refreshDialog.show();
+                    }
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        //Loading UI Elements in this thread
+        final Thread setTask = new Thread() {
+            public void run() {
+                loadGallery();
+            }
+        };
+
+        //start background loader in a separate thread
+        final Thread startLoad = new Thread() {
+            public void run() {
+                loadTask.start();
+                try {
+                    loadTask.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(setTask);
+            }
+
+        };
+
+        startLoad.start();
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.loadMoreBtn:
+                loadMore.setVisibility(View.GONE);
+                loadInBackground();
+                break;
         }
     }
 }
