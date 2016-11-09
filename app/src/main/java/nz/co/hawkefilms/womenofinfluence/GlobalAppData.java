@@ -21,7 +21,6 @@ public class GlobalAppData {
     private FileLister fileLister;
     private List<VideoData> videoInfoList;
     private List<Metadata> dropboxLoadData; //data for loading remaining dropbox videos
-    private final int LOAD_TIME = 3000;
 
     private GlobalAppData( String ACCESS_TOKEN, Context context ) {
 
@@ -129,4 +128,6 @@ public class GlobalAppData {
     public int loadsRemaining(){
         return fileLister.remainingLoads();
     }
+
+    public boolean dbSuccess() { return fileLister.dbConnectionSuccessfull(); }
 }

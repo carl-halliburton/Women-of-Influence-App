@@ -27,6 +27,7 @@ public class FileLister extends AsyncTask {
     private Context context;
     private int videosLoaded;
     private int remainingLoads;
+    private boolean dbSuccess;
 
     FileLister(DbxClientV2 dbxClient, Context context, List<Metadata> dropboxLoadData, List<VideoData> loadedVideos) {
         this.dbxClient = dbxClient;
@@ -34,7 +35,8 @@ public class FileLister extends AsyncTask {
         folderContents = dropboxLoadData;
         videoInfoList = loadedVideos;
         videosLoaded = videoInfoList.size();
-        remainingLoads = 0;
+        remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+        dbSuccess = false;
     }
 
     /*Async method that connects to Dropbox and gets all videos stored in the videos folder in
@@ -55,6 +57,8 @@ public class FileLister extends AsyncTask {
                             .getTemporaryLink(folderContents.get(videosLoaded).getPathLower()).getLink(),
                             folderContents.get(videosLoaded).getPathLower()));
                     videosLoaded++;
+                    remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+                    dbSuccess = true;
                 }
             }
 
@@ -63,6 +67,7 @@ public class FileLister extends AsyncTask {
             Log.d("Create Links", "Success");
         } catch (DbxException e) {
             e.printStackTrace();
+            remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
         }
         return null;
     }
@@ -83,4 +88,8 @@ public class FileLister extends AsyncTask {
     public List<Metadata> getLoadData() { return folderContents; }
 
     public int remainingLoads() { return remainingLoads; }
+
+    public boolean dbConnectionSuccessfull(){
+        return dbSuccess;
+    }
 }

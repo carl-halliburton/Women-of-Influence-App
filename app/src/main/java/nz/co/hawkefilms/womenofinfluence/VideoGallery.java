@@ -40,6 +40,8 @@ public class VideoGallery extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
         refreshing = false;
+        //load more button
+        loadMore = (Button) findViewById(R.id.loadMoreBtn);
 
         refreshContent();
     }
@@ -93,9 +95,15 @@ public class VideoGallery extends AppCompatActivity {
         //clears the linearlayout for the video buttons
         galleryView.removeAllViews();
         galleryLinks = new ArrayList<>();
-        //load more button
-        loadMore = (Button) findViewById(R.id.loadMoreBtn);
         int i = 0;
+
+        //if there are no more videos left to load.
+        if(appData.loadsRemaining() == 0)
+        {
+            loadMore.setVisibility(View.GONE);
+        } else {
+            loadMore.setVisibility(View.VISIBLE);
+        }
 
         for (VideoData link : appData.getVideoData()) {
             //create the button for the video link
@@ -126,8 +134,8 @@ public class VideoGallery extends AppCompatActivity {
             i++;
         }
 
-        //if there are no videos on server
-        if(appData.getVideoData().size() == 0)
+        //if Dropbox connection has failed.
+        if(!appData.dbSuccess())
         {
             new AlertDialog.Builder(VideoGallery.this)
                     .setTitle(getString(R.string.server_connection_error_title))
@@ -137,14 +145,6 @@ public class VideoGallery extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        }
-
-        //if there are more videos left to load.
-        if(appData.loadsRemaining() > 0)
-        {
-            loadMore.setVisibility(View.VISIBLE);
-        } else {
-            loadMore.setVisibility(View.GONE);
         }
     }
 
@@ -225,7 +225,7 @@ public class VideoGallery extends AppCompatActivity {
     }
 
     public void loadInBackground() {
-        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT);
+        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Loading Complete", Toast.LENGTH_SHORT);
 
         //Data load is done here
         final Thread loadTask = new Thread() {
