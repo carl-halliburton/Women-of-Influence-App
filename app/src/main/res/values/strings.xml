@@ -26,13 +26,8 @@
     <string name="desc_share_email">Share with Email</string>
     <string name="desc_share_facebook">Share with Facebook</string>
     <string name="desc_copy_link">Copy Video Link</string>
-    <string name="desc_share_sms">Send video link with text message</string>
-
-    //Share icon title
-    <string name="title_share_email">Email</string>
-    <string name="title_share_facebook">Facebook</string>
-    <string name="title_copy_link">Copy</string>
-    <string name="title_share_sms">Message</string>
+    <string name="desc_share_twitter">Share with Twitter</string>
+    <string name="desc_share_google_plus">Share video with google plus</string>
 
     //Feedback
     <string name="fb_text_desc">Ask a question, let us know what you think.  Please note an external email

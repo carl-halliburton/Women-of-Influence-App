@@ -112,11 +112,11 @@ public class VideoGallery extends AppCompatActivity {
             String buttonText = link.getName();
             galleryLinks.get(i).setText(buttonText);
             galleryLinks.get(i).setId(i);
-            //galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            layoutParams.setMargins(20, 0, 0, 0);
+            layoutParams.setMargins(0, 0, 0, 15);
             galleryLinks.get(i).setLayoutParams(layoutParams);
 
             galleryView.addView(galleryLinks.get(i));
