@@ -1,5 +1,6 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -9,24 +10,18 @@ import android.net.Uri;
 
 public class ShareVideo
 {
+    private Context curContext;
 
-    public ShareVideo() {
-
+    public ShareVideo(Context context) {
+        curContext = context;
     }
 
-    public void sendEmailIntent() {
+    public void sendEmailIntent(String link) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setType("text/html");
             intent.putExtra(Intent.EXTRA_SUBJECT, "Subject - Name of Video");
-            intent.putExtra(Intent.EXTRA_TEXT, "You might be interested in this video " + "- PLACE LINK HERE");
+            intent.putExtra(Intent.EXTRA_TEXT, "You might be interested in this video " + "- " + link);
             intent.setData(Uri.parse("mailto:"));
-            //startActivity(Intent.createChooser(intent, "Send Email"));
+            curContext.startActivity(Intent.createChooser(intent, "Send Email"));
         }
-
-    public void sendSmsIntent() {
-        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.putExtra("sms_body", "default content");
-        sendIntent.setType("vnd.android-dir/mms-sms");
-        //startActivity(sendIntent);
-    }
 }

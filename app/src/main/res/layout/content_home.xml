@@ -67,7 +67,7 @@
             android:id="@+id/button2"
             android:onClick="videoGalleryButtonOnClick"
             android:textSize="@dimen/btn_text_size"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:typeface="normal"/>
 

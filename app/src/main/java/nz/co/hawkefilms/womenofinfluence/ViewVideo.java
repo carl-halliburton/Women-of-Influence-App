@@ -24,12 +24,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.util.concurrent.ExecutionException;
+
+import static android.R.attr.button;
 
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
@@ -51,6 +54,7 @@ public class ViewVideo extends AppCompatActivity {
     private EditText sharingUrl;
 
     private FileSharer fileSharer;
+    private ShareVideo share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,8 @@ public class ViewVideo extends AppCompatActivity {
         refreshed = false;
 
         Bundle extras = getIntent().getExtras();
+
+        share = new ShareVideo(this);
 
         if (extras != null) {
             videoData = (VideoData) extras.getSerializable("videoIndex");
@@ -210,12 +216,12 @@ public class ViewVideo extends AppCompatActivity {
                     public void show(){
                         super.show(0);
                     }
-
+                    //TODO uncomment this once media controller position is fixed
                     //disable hide functionality
-                    @Override
-                    public void hide(){
-                        super.show(0);
-                    }
+                    //@Override
+                    //public void hide(){
+                     //   super.show(1);
+                    //}
                 };
             }else { //if in landscape view
                 mediaController = new MediaController(ViewVideo.this) {
@@ -302,6 +308,9 @@ public class ViewVideo extends AppCompatActivity {
                 ClipData clip = ClipData.newPlainText("Share Link",sharingUrl.getText());
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(getApplicationContext(), "Link Copied!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.shareEmail:
+                share.sendEmailIntent(setUpSharingLink());
                 break;
         }
     }
