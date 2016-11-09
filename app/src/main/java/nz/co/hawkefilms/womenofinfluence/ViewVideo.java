@@ -3,6 +3,9 @@ package nz.co.hawkefilms.womenofinfluence;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -20,10 +23,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
@@ -42,7 +48,9 @@ public class ViewVideo extends AppCompatActivity {
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
     private boolean portraitView;
-    private ShareVideo shareVid;
+    private EditText sharingUrl;
+
+    private FileSharer fileSharer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +60,6 @@ public class ViewVideo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
-
-        shareVid = new ShareVideo(this);
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
@@ -90,6 +96,10 @@ public class ViewVideo extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Reload ViewVideo
                                     dialogIsOpen = false;
+                                    if (portraitView) {
+                                        sharingUrl = (EditText) findViewById(R.id.shareLink);
+                                        sharingUrl.setText(setUpSharingLink());
+                                    }
                                     PlayVideo();
                                 }
                             })
@@ -119,7 +129,8 @@ public class ViewVideo extends AppCompatActivity {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
-            shareVidOnclick();
+            sharingUrl = (EditText) findViewById(R.id.shareLink);
+            sharingUrl.setText(setUpSharingLink());
         } else {
             View decorView = getWindow().getDecorView();
 
@@ -244,7 +255,7 @@ public class ViewVideo extends AppCompatActivity {
                                 0.0f,
                                 0.0f,
                                 0
-                                )
+                            )
                         );
                     }
 
@@ -283,22 +294,34 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
-    public void shareVidOnclick() {
-        //ShareButton actions
-        ImageView email = (ImageView)findViewById(R.id.shareEmail);
-        email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareVid.sendEmailIntent();
-            }
-        });
+    public void onClick(View v)
+    {
+        switch (v.getId()) {
+            case R.id.copyBtn:
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Share Link",sharingUrl.getText());
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getApplicationContext(), "Link Copied!", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 
-        ImageView textMessage = (ImageView)findViewById(R.id.shareSMS);
-        textMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareVid.sendSmsIntent();
+    private String setUpSharingLink() {
+        if (videoData.getSharingUrl().equals("Error: cannot find url")) {
+            fileSharer = new FileSharer(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
+                    videoData);
+            fileSharer.execute();
+            try {
+                fileSharer.get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
             }
-        });
+
+            videoData = fileSharer.getVideoData();
+            appData.updateVideoUrl(videoData);
+        }
+        return videoData.getSharingUrl();
     }
 }

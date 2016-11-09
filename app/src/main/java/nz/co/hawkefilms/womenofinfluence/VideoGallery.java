@@ -30,6 +30,7 @@ public class VideoGallery extends AppCompatActivity {
 
     private GlobalAppData appData;
     private boolean refreshing;
+    private Button loadMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class VideoGallery extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
         refreshing = false;
+        //load more button
+        loadMore = (Button) findViewById(R.id.loadMoreBtn);
 
         refreshContent();
     }
@@ -46,6 +49,7 @@ public class VideoGallery extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        //do refresh if no videos found
         if (appData.getVideoData().size() == 0) {
             refreshContent();
         }
@@ -81,6 +85,7 @@ public class VideoGallery extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //This method loads the buttons for the Video Gallery after video data is found.
     public void loadGallery() {
         List<Button> galleryLinks;
         LinearLayout galleryView;
@@ -91,6 +96,14 @@ public class VideoGallery extends AppCompatActivity {
         galleryView.removeAllViews();
         galleryLinks = new ArrayList<>();
         int i = 0;
+
+        //if there are no more videos left to load.
+        if(appData.loadsRemaining() == 0)
+        {
+            loadMore.setVisibility(View.GONE);
+        } else {
+            loadMore.setVisibility(View.VISIBLE);
+        }
 
         for (VideoData link : appData.getVideoData()) {
             //create the button for the video link
@@ -121,8 +134,8 @@ public class VideoGallery extends AppCompatActivity {
             i++;
         }
 
-        //if there are no videos on server
-        if(appData.getVideoData().size() == 0)
+        //if Dropbox connection has failed.
+        if(!appData.dbSuccess())
         {
             new AlertDialog.Builder(VideoGallery.this)
                     .setTitle(getString(R.string.server_connection_error_title))
@@ -135,6 +148,7 @@ public class VideoGallery extends AppCompatActivity {
         }
     }
 
+    /*Checks Dropbox for videos in another thread and shows a progress dialog in the main thread.*/
     public void refreshContent() {
         if (!refreshing) {
             refreshing = true;
@@ -207,6 +221,59 @@ public class VideoGallery extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        }
+    }
+
+    public void loadInBackground() {
+        final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Loading Complete", Toast.LENGTH_SHORT);
+
+        //Data load is done here
+        final Thread loadTask = new Thread() {
+            public void run() {
+                try {
+                    if (appData == null)
+                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                    else {
+                        appData.loadDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                        refreshDialog.show();
+                    }
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        //Loading UI Elements in this thread
+        final Thread setTask = new Thread() {
+            public void run() {
+                loadGallery();
+            }
+        };
+
+        //start background loader in a separate thread
+        final Thread startLoad = new Thread() {
+            public void run() {
+                loadTask.start();
+                try {
+                    loadTask.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(setTask);
+            }
+
+        };
+
+        startLoad.start();
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.loadMoreBtn:
+                loadMore.setVisibility(View.GONE);
+                loadInBackground();
+                break;
         }
     }
 }

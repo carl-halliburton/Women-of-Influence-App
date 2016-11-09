@@ -106,6 +106,8 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    /*This method handles the refreshing of content in other threads while displaying a progress dialog
+    * in the current thread.*/
     public void refreshContent() {
         if (!refreshing) {
             refreshing = true;
@@ -113,7 +115,6 @@ public class Home extends AppCompatActivity {
             //progress dialog shows when videos are loading
             final ProgressDialog progressDialog = ProgressDialog.show(Home.this, "", "Loading Videos...", true);
             final Toast refreshDialog = Toast.makeText(getApplicationContext(), "Feature Video Refreshed", Toast.LENGTH_SHORT);
-            final Handler mHandler = new Handler();
 
             //Data load is done here
             final Thread refreshTask = new Thread() {
@@ -149,7 +150,7 @@ public class Home extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    mHandler.post(setTask);
+                    runOnUiThread(setTask);
                 }
             };
             refreshTask.start();
