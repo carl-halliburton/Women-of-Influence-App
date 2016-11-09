@@ -96,6 +96,10 @@ public class ViewVideo extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Reload ViewVideo
                                     dialogIsOpen = false;
+                                    if (portraitView) {
+                                        sharingUrl = (EditText) findViewById(R.id.shareLink);
+                                        sharingUrl.setText(setUpSharingLink());
+                                    }
                                     PlayVideo();
                                 }
                             })
