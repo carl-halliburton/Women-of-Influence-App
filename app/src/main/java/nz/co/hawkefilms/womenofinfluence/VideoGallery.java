@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -116,7 +117,7 @@ public class VideoGallery extends AppCompatActivity {
 
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            layoutParams.setMargins(0, 0, 0, 15);
+            layoutParams.setMargins(0, 0, 0, 20);
             galleryLinks.get(i).setLayoutParams(layoutParams);
 
             galleryView.addView(galleryLinks.get(i));
