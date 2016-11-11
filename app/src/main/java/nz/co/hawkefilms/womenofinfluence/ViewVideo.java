@@ -8,6 +8,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -312,6 +313,14 @@ public class ViewVideo extends AppCompatActivity {
             case R.id.shareEmail:
                 share.sendEmailIntent(setUpSharingLink());
                 break;
+
+            case R.id.shareFacebook:
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);;
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello, from tutorialspoint");
+                startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
+                break;
+
         }
     }
 
@@ -333,4 +342,6 @@ public class ViewVideo extends AppCompatActivity {
         }
         return videoData.getSharingUrl();
     }
+
+
 }

@@ -109,6 +109,7 @@
                         android:paddingRight="@dimen/padding_right"
                         android:paddingStart="@dimen/padding_start"
                         android:paddingEnd="@dimen/padding_end"
+                        android:onClick="onClick"
                         android:clickable="true"/>
 
                     <ImageView

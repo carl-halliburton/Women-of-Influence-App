@@ -24,4 +24,8 @@ public class ShareVideo
             intent.setData(Uri.parse("mailto:"));
             curContext.startActivity(Intent.createChooser(intent, "Send Email"));
         }
+
+    public void shareWithFacebook() {
+
+    }
 }
