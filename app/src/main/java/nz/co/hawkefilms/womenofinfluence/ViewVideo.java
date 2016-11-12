@@ -34,6 +34,7 @@ import android.widget.VideoView;
 import java.util.concurrent.ExecutionException;
 
 import static android.R.attr.button;
+import static android.R.id.content;
 
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
@@ -305,22 +306,21 @@ public class ViewVideo extends AppCompatActivity {
     {
         switch (v.getId()) {
             case R.id.copyBtn:
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("Share Link",sharingUrl.getText());
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(getApplicationContext(), "Link Copied!", Toast.LENGTH_SHORT).show();
+                share.copyLink(setUpSharingLink());
                 break;
             case R.id.shareEmail:
                 share.sendEmailIntent(setUpSharingLink());
                 break;
 
             case R.id.shareFacebook:
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);;
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello, from tutorialspoint");
-                startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
+                share.shareWithFacebook(setUpSharingLink());
                 break;
 
+            case R.id.shareTwitter:
+                break;
+
+            case R.id.shareGooglePlus:
+                break;
         }
     }
 
