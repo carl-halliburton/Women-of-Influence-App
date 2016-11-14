@@ -70,9 +70,9 @@
                     android:contentDescription="@string/copy_Btn_Desc" />
             </LinearLayout>
 
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
                 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
@@ -134,6 +134,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@mipmap/ic_google_plus_share"
+                        android:paddingLeft="@dimen/padding_left"
+                        android:paddingRight="@dimen/padding_right"
+                        android:paddingStart="@dimen/padding_start"
+                        android:paddingEnd="@dimen/padding_end"
+                        android:onClick="onClick"
+                        android:background="@null"
+                        android:clickable="true"/>
+
+                    <ImageButton
+                        android:id="@+id/shareLinkedIn"
+                        android:contentDescription="@string/desc_share_google_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_share_linkedin"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingRight="@dimen/padding_right"
                         android:paddingStart="@dimen/padding_start"

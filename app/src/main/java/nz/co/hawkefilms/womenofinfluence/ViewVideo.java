@@ -30,7 +30,8 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import java.util.concurrent.ExecutionException;
 
 import static android.R.attr.button;
@@ -317,9 +318,11 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareTwitter:
+                share.shareWithTwitter(setUpSharingLink());
                 break;
 
             case R.id.shareGooglePlus:
+                share.shareGooglePlus(setUpSharingLink());
                 break;
         }
     }

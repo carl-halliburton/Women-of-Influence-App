@@ -2,19 +2,12 @@ package nz.co.hawkefilms.womenofinfluence;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Parcelable;
 import android.widget.Toast;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 /**
  * Created by carl on 31/10/2016.
@@ -49,8 +42,20 @@ public class ShareVideo
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video - " + link);
         curContext.startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
+
     }
 
     public void shareWithTwitter(String link) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);;
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video - " + link);
+        curContext.startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
+    }
+
+    public void shareGooglePlus(String link) {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);;
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video - " + link);
+        curContext.startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
     }
 }

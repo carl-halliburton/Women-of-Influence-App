@@ -18,6 +18,10 @@ allprojects {
         jcenter()
     }
 
+    repositories {
+        mavenCentral()
+    }
+
 }
 
 task clean(type: Delete) {

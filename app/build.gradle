@@ -2,6 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
+        config {
+            keyAlias 'Androdi'
+            keyPassword 'android'
+            storeFile file('C:/Users/carl/.android/debug.keystore')
+            storePassword 'android'
+        }
     }
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
@@ -30,6 +36,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.google.firebase:firebase-core:9.6.1'
     compile 'com.google.firebase:firebase-messaging:9.6.1'
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
 }
 
 apply plugin: 'com.google.gms.google-services'
