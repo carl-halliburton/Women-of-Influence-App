@@ -3,12 +3,8 @@ package nz.co.hawkefilms.womenofinfluence;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -25,17 +21,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import java.util.concurrent.ExecutionException;
-
-import static android.R.attr.button;
-import static android.R.id.content;
 
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
@@ -91,41 +80,7 @@ public class ViewVideo extends AppCompatActivity {
         progressDialog = ProgressDialog.show(ViewVideo.this, "", "Buffering video...", true);
         progressDialog.setCancelable(true);
 
-        //set up lister to handle VideoView errors
-        videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-
-            @Override
-            public boolean onError(MediaPlayer mp, int what, int extra) {
-                if (!dialogIsOpen) {
-                    dialogIsOpen = true;
-                    new AlertDialog.Builder(ViewVideo.this)
-                            .setTitle("Video can't be played")
-                            .setMessage("Please check your connection and reload video")
-                            .setPositiveButton("Reload Video", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //Reload ViewVideo
-                                    dialogIsOpen = false;
-                                    if (portraitView) {
-                                        sharingUrl = (EditText) findViewById(R.id.shareLink);
-                                        sharingUrl.setText(setUpSharingLink());
-                                    }
-                                    PlayVideo();
-                                }
-                            })
-                            .setNegativeButton("Return to Gallery", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialogIsOpen = false;
-                                    Intent intent1 = new Intent(ViewVideo.this, VideoGallery.class);
-                                    startActivity(intent1);
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setCancelable(false)
-                            .show();
-                }
-                return true;
-            }
-        });
+        videoError();
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN),
                 ViewVideo.this);
@@ -313,7 +268,7 @@ public class ViewVideo extends AppCompatActivity {
                 share.sendEmailIntent(setUpSharingLink());
                 break;
 
-            case R.id.shareFacebook:
+            case R.id.btnShareFacebook:
                 share.shareWithFacebook(setUpSharingLink());
                 break;
 
@@ -346,5 +301,41 @@ public class ViewVideo extends AppCompatActivity {
         return videoData.getSharingUrl();
     }
 
+    public void videoError() {
+        //set up lister to handle VideoView errors
+        videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
 
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+                if (!dialogIsOpen) {
+                    dialogIsOpen = true;
+                    new AlertDialog.Builder(ViewVideo.this)
+                            .setTitle("Video can't be played")
+                            .setMessage("Please check your connection and reload video")
+                            .setPositiveButton("Reload Video", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Reload ViewVideo
+                                    dialogIsOpen = false;
+                                    if (portraitView) {
+                                        sharingUrl = (EditText) findViewById(R.id.shareLink);
+                                        sharingUrl.setText(setUpSharingLink());
+                                    }
+                                    PlayVideo();
+                                }
+                            })
+                            .setNegativeButton("Return to Gallery", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialogIsOpen = false;
+                                    Intent intent1 = new Intent(ViewVideo.this, VideoGallery.class);
+                                    startActivity(intent1);
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setCancelable(false)
+                            .show();
+                }
+                return true;
+            }
+        });
+    }
 }

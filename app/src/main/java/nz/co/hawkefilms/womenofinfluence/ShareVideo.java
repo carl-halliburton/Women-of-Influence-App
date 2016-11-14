@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 /**
  * Created by carl on 31/10/2016.
@@ -38,6 +36,7 @@ public class ShareVideo
         }
 
     public void shareWithFacebook(String link) {
+       //shareIntent code to bring up share app chooser
         Intent shareIntent = new Intent(Intent.ACTION_SEND);;
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video - " + link);
