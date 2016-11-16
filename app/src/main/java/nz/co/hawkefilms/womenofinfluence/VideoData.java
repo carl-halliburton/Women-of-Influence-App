@@ -16,6 +16,7 @@ public class VideoData implements Serializable{
     private String tempUrl;
     private String dropboxUri;
     private String sharingUrl; //public sharing preview url
+    private String videoStatsName;
     private static final long serialVersionUID = 1L; //required for Serializable
 
     public VideoData(String vidName, String temporaryUrl, String dbUri)
@@ -24,6 +25,7 @@ public class VideoData implements Serializable{
         tempUrl = temporaryUrl;
         dropboxUri = dbUri;
         sharingUrl = "Error: cannot find url";
+        videoStatsName = "views_" + name.replaceAll(" ", "_").toLowerCase();
     }
 
     public void setPreviewUrl(String previewUrl) {
@@ -42,5 +44,9 @@ public class VideoData implements Serializable{
 
     public String getTempUrl() {
         return tempUrl;
+    }
+
+    public String getVideoStatsName(){
+        return videoStatsName;
     }
 }

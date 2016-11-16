@@ -31,6 +31,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.concurrent.ExecutionException;
 
 import static android.R.attr.button;
@@ -57,6 +59,9 @@ public class ViewVideo extends AppCompatActivity {
 
     private FileSharer fileSharer;
     private ShareVideo share;
+
+    //Video Stats Analytics
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -238,7 +243,7 @@ public class ViewVideo extends AppCompatActivity {
             //set up videoView
             mediaController.setAnchorView(videoView);
 
-            Uri video = Uri.parse(videoData.getTempUrl());
+            final Uri video = Uri.parse(videoData.getTempUrl());
             videoView.setMediaController(mediaController);
             videoView.setVideoURI(video);
             videoView.requestFocus();
@@ -269,6 +274,14 @@ public class ViewVideo extends AppCompatActivity {
 
                     progressDialog.dismiss();
                     videoView.start();
+
+                    // Obtain the FirebaseAnalytics instance.
+                    mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
+
+                    //log when the video starts
+                    Bundle params = new Bundle();
+                    params.putDouble(FirebaseAnalytics.Param.VALUE, 1.0);
+                    mFirebaseAnalytics.logEvent(videoData.getVideoStatsName(), params);
                 }
             });
         } catch (Exception e) {
