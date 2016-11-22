@@ -1,5 +1,6 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,8 @@ public class SearchResults extends AppCompatActivity {
         toolbar.setNavigationIcon(R.mipmap.ic_launcher); // inserts home icon on the left of the toolbar
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), SearchResults.this);
+
+        handleIntent(getIntent());
     }
 
     @Override
@@ -54,6 +57,11 @@ public class SearchResults extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
     //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
@@ -75,6 +83,14 @@ public class SearchResults extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        }
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
         }
     }
 }
