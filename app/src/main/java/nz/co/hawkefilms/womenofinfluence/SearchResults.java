@@ -2,6 +2,7 @@ package nz.co.hawkefilms.womenofinfluence;
 
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.TextView;
+
+import com.dropbox.core.v2.files.SearchResult;
 
 public class SearchResults extends AppCompatActivity {
 
@@ -30,13 +36,53 @@ public class SearchResults extends AppCompatActivity {
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), SearchResults.this);
 
-        handleIntent(getIntent());
+        TextView resultsDescription = (TextView) findViewById(R.id.resultsDescription);
+        String searchInput = "";
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            searchInput = extras.getString("searchInput");
+        }
+        resultsDescription.setText("Search results for '" + searchInput + "'");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Log.e("onQueryTextChange", "called");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Proceed to Search Results
+                Intent intent = new Intent(SearchResults.this, SearchResults.class);
+                intent.putExtra("searchInput", searchView.getQuery().toString());
+                startActivity(intent);
+                return false;
+            }
+
+        });
+
+        //customise the search view
+        int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
+        ImageView v = (ImageView) searchView.findViewById(searchImgId);
+        v.setImageResource(R.drawable.ic_search_black);
+
         return true;
     }
 
@@ -55,11 +101,6 @@ public class SearchResults extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        handleIntent(intent);
     }
 
     //Opens the app setting so the user can turn notifications on or off
@@ -83,14 +124,6 @@ public class SearchResults extends AppCompatActivity {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        }
-    }
-
-    private void handleIntent(Intent intent) {
-
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
         }
     }
 }

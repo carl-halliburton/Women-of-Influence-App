@@ -2,6 +2,7 @@ package nz.co.hawkefilms.womenofinfluence;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -27,6 +28,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -76,10 +78,9 @@ public class ViewVideo extends AppCompatActivity {
         videoView = (VideoView) findViewById(R.id.videoView);
         refreshed = false;
 
-        Bundle extras = getIntent().getExtras();
-
         share = new ShareVideo(this);
 
+        Bundle extras = getIntent().getExtras();
         if (extras != null) {
             videoData = (VideoData) extras.getSerializable("videoIndex");
         }
@@ -178,6 +179,39 @@ public class ViewVideo extends AppCompatActivity {
         //Hide refresh menu item as not required in this activity
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Log.e("onQueryTextChange", "called");
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Proceed to Search Results
+                Intent intent = new Intent(ViewVideo.this, SearchResults.class);
+                intent.putExtra("searchInput", searchView.getQuery().toString());
+                startActivity(intent);
+                return false;
+            }
+
+        });
+
+        //customise the search view
+        int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
+        ImageView v = (ImageView) searchView.findViewById(searchImgId);
+        v.setImageResource(R.drawable.ic_search_black);
+
         return true;
     }
 
