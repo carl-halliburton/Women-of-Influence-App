@@ -28,14 +28,25 @@ public class FileLister extends AsyncTask {
     private int videosLoaded;
     private int remainingLoads;
     private boolean dbSuccess;
+    private String searchString;
+    private boolean searchEnabled;
 
-    FileLister(DbxClientV2 dbxClient, Context context, List<Metadata> dropboxLoadData, List<VideoData> loadedVideos) {
+    FileLister(DbxClientV2 dbxClient, Context context, List<Metadata> dropboxLoadData, List<VideoData> loadedVideos, String searchInput) {
         this.dbxClient = dbxClient;
         this.context = context;
         folderContents = dropboxLoadData;
         videoInfoList = loadedVideos;
+
         videosLoaded = videoInfoList.size();
         remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+        searchString = searchInput;
+
+        if (searchString.equals("")) {
+            searchEnabled = false;
+        } else
+        {
+            searchEnabled = true;
+        }
         dbSuccess = false;
     }
 
@@ -44,9 +55,27 @@ public class FileLister extends AsyncTask {
     @Override
     protected Object doInBackground(Object[] params) {
         try {
-            if (videosLoaded == 0) {
-                //contains metadata for all contents in the folder such as the URI links to each file.
-                folderContents = dbxClient.files().listFolder("/videos/").getEntries();
+            if(!searchEnabled) {
+                if (videosLoaded == 0) {
+                    //contains metadata for all contents in the folder such as the URI links to each file.
+                    folderContents = dbxClient.files().listFolder("/videos/").getEntries();
+                }
+
+            } else {
+                if (videosLoaded == 0) {
+                    //contains metadata for all contents in the folder such as the URI links to each file.
+                    folderContents = dbxClient.files().listFolder("/videos/").getEntries();
+
+                    //go through and delete all irrelevant results
+                    List<Metadata> resultsList = new ArrayList<>();
+                    CharSequence searchSequence = searchString.toLowerCase();
+                    for(Metadata video : folderContents){
+                        if (video.getName().toLowerCase().contains(searchSequence)){
+                            resultsList.add(video);
+                        }
+                    }
+                    folderContents = resultsList;
+                }
             }
 
             //create temporary links for the next 5 files in the folder

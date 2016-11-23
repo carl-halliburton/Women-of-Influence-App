@@ -150,7 +150,6 @@ public class VideoGallery extends AppCompatActivity {
             String buttonText = link.getName();
             galleryLinks.get(i).setText(buttonText);
             galleryLinks.get(i).setId(i);
-            galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
 
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -200,9 +199,9 @@ public class VideoGallery extends AppCompatActivity {
                 public void run() {
                     try {
                         if (appData == null)
-                            appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                            appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this, "");
                         else {
-                            appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                            appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this, "");
                             refreshDialog.show();
                         }
                         sleep(100);
@@ -270,9 +269,9 @@ public class VideoGallery extends AppCompatActivity {
             public void run() {
                 try {
                     if (appData == null)
-                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), VideoGallery.this, "");
                     else {
-                        appData.loadDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this);
+                        appData.loadDropboxFiles(getString(R.string.ACCESS_TOKEN), VideoGallery.this, "");
                         refreshDialog.show();
                     }
                     sleep(100);

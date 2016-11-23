@@ -165,9 +165,9 @@ public class Home extends AppCompatActivity {
                 public void run() {
                     try {
                         if (appData == null)
-                            appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this);
+                            appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Home.this, "");
                         else {
-                            appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this);
+                            appData.refreshDropboxFiles(getString(R.string.ACCESS_TOKEN), Home.this, "");
                             refreshDialog.show();
                         }
                         sleep(100);

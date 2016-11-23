@@ -47,7 +47,7 @@ public class Feedback extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
 
-        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Feedback.this);
+        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Feedback.this, "");
 
         //initialize edittext fields
         editName = (EditText) findViewById(R.id.fieldName);
@@ -119,7 +119,7 @@ public class Feedback extends AppCompatActivity {
                 startActivity(new Intent(Feedback.this, Home.class));
                 return true;
             case R.id.action_notification:
-                openAppSettings();;
+                openAppSettings();
                 return true;
             case R.id.menu_video_gallery:
                 startActivity(new Intent(Feedback.this, VideoGallery.class));

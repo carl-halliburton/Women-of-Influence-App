@@ -133,7 +133,7 @@ public class ViewVideo extends AppCompatActivity {
         });
 
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN),
-                ViewVideo.this);
+                ViewVideo.this, "");
 
         portraitView = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 

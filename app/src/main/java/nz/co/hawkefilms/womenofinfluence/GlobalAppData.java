@@ -22,7 +22,7 @@ public class GlobalAppData {
     private List<VideoData> videoInfoList;
     private List<Metadata> dropboxLoadData; //data for loading remaining dropbox videos
 
-    private GlobalAppData( String ACCESS_TOKEN, Context context ) {
+    private GlobalAppData( String ACCESS_TOKEN, Context context, String searchString ) {
 
         //checks if access token is not set.
         if (ACCESS_TOKEN.equals("ACCESS_TOKEN")) {
@@ -43,7 +43,7 @@ public class GlobalAppData {
         else {
             //execute filelister and get Dropbox videos
             fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
-                    context, new ArrayList<Metadata>(), new ArrayList<VideoData>());
+                    context, new ArrayList<Metadata>(), new ArrayList<VideoData>(), searchString);
             fileLister.execute();
             try {
                 fileLister.get();
@@ -61,9 +61,9 @@ public class GlobalAppData {
         }
     }
 
-    public static GlobalAppData getInstance( String ACCESS_TOKEN, Context context ) {
+    public static GlobalAppData getInstance( String ACCESS_TOKEN, Context context, String searchString ) {
         if(instance == null) {
-            instance = new GlobalAppData(ACCESS_TOKEN, context);
+            instance = new GlobalAppData(ACCESS_TOKEN, context, searchString);
         }
         instance.setContext(context);
         return instance;
@@ -84,9 +84,9 @@ public class GlobalAppData {
 
     /*This method connects to the dropbox servers to get video data. This method should be run in
     * a separate thread. Note: This method loads the videos from scratch*/
-    public void refreshDropboxFiles( String ACCESS_TOKEN, Context context ){
+    public void refreshDropboxFiles( String ACCESS_TOKEN, Context context, String searchString ){
         fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
-                context, new ArrayList<Metadata>(), new ArrayList<VideoData>());
+                context, new ArrayList<Metadata>(), new ArrayList<VideoData>(), searchString);
         fileLister.execute();
 
         try {
@@ -109,9 +109,9 @@ public class GlobalAppData {
     }
 
     /*This method is for loading dropbox files in the background until fully loaded*/
-    public void loadDropboxFiles( String ACCESS_TOKEN, Context context ){
+    public void loadDropboxFiles( String ACCESS_TOKEN, Context context, String searchString ){
         fileLister = new FileLister(DropboxClient.getClient(ACCESS_TOKEN),
-                context, dropboxLoadData, videoInfoList);
+                context, dropboxLoadData, videoInfoList, searchString);
         fileLister.execute();
 
         try {

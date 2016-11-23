@@ -24,7 +24,7 @@ public class SplashScreen extends Activity {
         Thread timerThread = new Thread(){
             public void run(){
                 try{
-                    appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), SplashScreen.this);
+                    appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), SplashScreen.this, "");
                     sleep(100);
                 }catch(InterruptedException e){
                     e.printStackTrace();
