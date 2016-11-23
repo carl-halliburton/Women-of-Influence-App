@@ -3,8 +3,11 @@ package nz.co.hawkefilms.womenofinfluence;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -21,9 +24,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
+import com.facebook.share.widget.ShareDialog;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -45,8 +50,11 @@ public class ViewVideo extends AppCompatActivity {
     private boolean portraitView;
     private EditText sharingUrl;
 
+    private ShareDialog shareDialogFB;
+
     private FileSharer fileSharer;
     private ShareVideo share;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +65,18 @@ public class ViewVideo extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
 
+        checkShareAppInstalled();
+
+        share = new ShareVideo(this);
+        share.facebookSDKInitialize();
+        shareDialogFB = new ShareDialog(this);
+
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
         refreshed = false;
 
         Bundle extras = getIntent().getExtras();
 
-        share = new ShareVideo(this);
 
         if (extras != null) {
             videoData = (VideoData) extras.getSerializable("videoIndex");
@@ -106,7 +119,6 @@ public class ViewVideo extends AppCompatActivity {
 
         PlayVideo();
     }
-
 
     // Save UI state changes to the savedInstanceState.
     // This bundle will be passed to onCreate if the process is
@@ -268,8 +280,8 @@ public class ViewVideo extends AppCompatActivity {
                 share.sendEmailIntent(setUpSharingLink());
                 break;
 
-            case R.id.btnShareFacebook:
-                share.shareWithFacebook(setUpSharingLink());
+            case R.id.shareFacebook:
+                share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
             case R.id.shareTwitter:
@@ -337,5 +349,24 @@ public class ViewVideo extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void checkShareAppInstalled() {
+        if (isPackageExisted(this, "com.facebook.katana" )) {
+            ImageButton shareFb = (ImageButton) findViewById(R.id.shareFacebook);
+            shareFb.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public static boolean isPackageExisted(Context c, String targetPackage) {
+
+        PackageManager pm = c.getPackageManager();
+        try {
+            PackageInfo info = pm.getPackageInfo(targetPackage,
+                    PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 }

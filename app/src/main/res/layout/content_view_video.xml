@@ -100,8 +100,8 @@
                         android:background="@null"
                         android:clickable="true"/>
 
-                    <ShareButton
-                        android:id="@+id/btnShareFacebook"
+                    <ImageButton
+                        android:id="@+id/shareFacebook"
                         android:contentDescription="@string/desc_share_facebook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                         android:paddingEnd="@dimen/padding_end"
                         android:onClick="onClick"
                         android:background="@null"
-                        android:clickable="true"/>
+                        android:visibility="invisible" />
 
                     <ImageButton
                         android:id="@+id/shareTwitter"
@@ -125,8 +125,7 @@
                         android:paddingStart="@dimen/padding_start"
                         android:paddingEnd="@dimen/padding_end"
                         android:onClick="onClick"
-                        android:background="@null"
-                        android:clickable="true"/>
+                        android:background="@null"/>
 
                     <ImageButton
                         android:id="@+id/shareGooglePlus"
@@ -139,8 +138,7 @@
                         android:paddingStart="@dimen/padding_start"
                         android:paddingEnd="@dimen/padding_end"
                         android:onClick="onClick"
-                        android:background="@null"
-                        android:clickable="true"/>
+                        android:background="@null"/>
 
                     <ImageButton
                         android:id="@+id/shareLinkedIn"
@@ -153,8 +151,7 @@
                         android:paddingStart="@dimen/padding_start"
                         android:paddingEnd="@dimen/padding_end"
                         android:onClick="onClick"
-                        android:background="@null"
-                        android:clickable="true"/>
+                        android:background="@null"/>
 
                 </GridLayout>
             </HorizontalScrollView>

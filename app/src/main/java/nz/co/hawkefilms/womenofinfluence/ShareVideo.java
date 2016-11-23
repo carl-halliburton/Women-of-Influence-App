@@ -7,6 +7,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
+
 /**
  * Created by carl on 31/10/2016.
  */
@@ -35,14 +40,27 @@ public class ShareVideo
             curContext.startActivity(Intent.createChooser(intent, "Send Email"));
         }
 
-    public void shareWithFacebook(String link) {
-       //shareIntent code to bring up share app chooser
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);;
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video - " + link);
-        curContext.startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
+    public void shareWithFacebook(String link, ShareDialog facebookShareDialog, String videoTitle) {
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentTitle("Ascend - Women of Influence with Opinions")
+                    .setContentDescription(videoTitle)
+                    .setContentUrl(Uri.parse(link))
+                    .build();
 
+            facebookShareDialog.show(linkContent);  // Show facebook ShareDialog
+        }
     }
+
+    protected void facebookSDKInitialize() {
+
+        CallbackManager callbackManager;
+
+        FacebookSdk.sdkInitialize(curContext);
+
+        callbackManager = CallbackManager.Factory.create();
+    }
+
 
     public void shareWithTwitter(String link) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);;
