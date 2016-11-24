@@ -70,9 +70,6 @@ public class ShareVideo
     }
 
     public void shareGooglePlus(String link) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);;
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video - " + link);
-        curContext.startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
+
     }
 }

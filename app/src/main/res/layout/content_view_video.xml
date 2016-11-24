@@ -140,19 +140,6 @@
                         android:onClick="onClick"
                         android:background="@null"/>
 
-                    <ImageButton
-                        android:id="@+id/shareLinkedIn"
-                        android:contentDescription="@string/desc_share_google_plus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_share_linkedin"
-                        android:paddingLeft="@dimen/padding_left"
-                        android:paddingRight="@dimen/padding_right"
-                        android:paddingStart="@dimen/padding_start"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:onClick="onClick"
-                        android:background="@null"/>
-
                 </GridLayout>
             </HorizontalScrollView>
     </LinearLayout>

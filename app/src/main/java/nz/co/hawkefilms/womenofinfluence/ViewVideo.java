@@ -29,6 +29,8 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 import com.facebook.share.widget.ShareDialog;
+import com.google.android.gms.plus.PlusShare;
+
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -289,7 +291,16 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareGooglePlus:
-                share.shareGooglePlus(setUpSharingLink());
+                Intent shareIntent = new PlusShare.Builder(this)
+                        .setText("Ascend - Woman of Influence Video - " + videoData.getName())
+                        .setType("video/mp4")
+                        .setContentDeepLinkId("testID",
+                                "Test Title",
+                                "Test Description",
+                                Uri.parse(setUpSharingLink()))
+                        .getIntent();
+                startActivityForResult(shareIntent, 0);
+                //share.shareGooglePlus(setUpSharingLink());
                 break;
         }
     }
