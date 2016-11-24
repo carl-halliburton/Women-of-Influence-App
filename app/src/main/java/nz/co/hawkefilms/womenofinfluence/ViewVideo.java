@@ -57,7 +57,7 @@ public class ViewVideo extends AppCompatActivity {
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
     private boolean portraitView;
-    private EditText sharingUrl;
+    private TextView sharingUrl;
 
     private FileSharer fileSharer;
     private ShareVideo share;
@@ -111,7 +111,7 @@ public class ViewVideo extends AppCompatActivity {
                                     //Reload ViewVideo
                                     dialogIsOpen = false;
                                     if (portraitView) {
-                                        sharingUrl = (EditText) findViewById(R.id.shareLink);
+                                        sharingUrl = (TextView) findViewById(R.id.shareLink);
                                         sharingUrl.setText(setUpSharingLink());
                                     }
                                     PlayVideo();
@@ -143,7 +143,7 @@ public class ViewVideo extends AppCompatActivity {
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
-            sharingUrl = (EditText) findViewById(R.id.shareLink);
+            sharingUrl = (TextView) findViewById(R.id.shareLink);
             sharingUrl.setText(setUpSharingLink());
         } else {
             View decorView = getWindow().getDecorView();
@@ -204,7 +204,6 @@ public class ViewVideo extends AppCompatActivity {
                 startActivity(intent);
                 return false;
             }
-
         });
 
         //customise the search view
@@ -243,9 +242,8 @@ public class ViewVideo extends AppCompatActivity {
 
             //define media controller behaviour based on screen orientation
             if (portraitView) {
-                mediaController = new MediaController(this){
-                    public boolean dispatchKeyEvent(KeyEvent event)
-                    {
+                mediaController = new MediaController(this) {
+                    public boolean dispatchKeyEvent(KeyEvent event) {
                         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction()
                                 == KeyEvent.ACTION_UP)
                             ((Activity) getContext()).finish();
@@ -254,21 +252,21 @@ public class ViewVideo extends AppCompatActivity {
                     }
 
                     @Override
-                    public void show(){
+                    public void show() {
                         super.show(0);
                     }
                     //TODO uncomment this once media controller position is fixed
                     //disable hide functionality
                     //@Override
                     //public void hide(){
-                     //   super.show(1);
+                    //   super.show(1);
                     //}
                 };
-            }else { //if in landscape view
+            } else { //if in landscape view
                 mediaController = new MediaController(ViewVideo.this) {
                     //hide after 5 seconds
                     @Override
-                    public void show(){
+                    public void show() {
                         super.show(5000);
                     }
                 };
@@ -293,8 +291,7 @@ public class ViewVideo extends AppCompatActivity {
                     }
 
                     //Simulates the onTouchEvent to show the Media controller
-                    if (portraitView)
-                    {
+                    if (portraitView) {
                         videoView.dispatchTouchEvent(MotionEvent.obtain(
                                 SystemClock.uptimeMillis(),
                                 SystemClock.uptimeMillis() + 100,
@@ -302,7 +299,7 @@ public class ViewVideo extends AppCompatActivity {
                                 0.0f,
                                 0.0f,
                                 0
-                            )
+                                )
                         );
                     }
 
@@ -335,7 +332,7 @@ public class ViewVideo extends AppCompatActivity {
             intent.setData(Uri.parse("package:" + packageName));
             startActivity(intent);
 
-        } catch ( ActivityNotFoundException e ) {
+        } catch (ActivityNotFoundException e) {
             new AlertDialog.Builder(ViewVideo.this)
                     .setTitle("Notification Settings Not Available")
                     .setMessage("Unable to open the apps settings screen, please try again later")
@@ -349,8 +346,7 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.copyBtn:
                 share.copyLink(setUpSharingLink());

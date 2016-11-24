@@ -113,6 +113,9 @@ public class SearchResults extends AppCompatActivity {
             case R.id.action_notification:
                 openAppSettings();
                 return true;
+            case R.id.menu_video_gallery:
+                startActivity(new Intent(SearchResults.this, VideoGallery.class));
+                return true;
             case R.id.menu_feedback:
                 startActivity(new Intent(SearchResults.this, Feedback.class));
                 return true;

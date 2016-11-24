@@ -57,17 +57,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
+                <TextView
                     android:id="@+id/shareLink"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:enabled="false"
-                    android:inputType="none"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="@string/Sharing_Error_Text" />
+                    android:text="@string/Sharing_Error_Text"
+                    android:textSize="@dimen/fb_email_text_size" />
 
                 <ImageButton
                     android:id="@+id/copyBtn"
