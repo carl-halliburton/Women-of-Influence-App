@@ -87,9 +87,9 @@ public class FileLister extends AsyncTask {
                             folderContents.get(videosLoaded).getPathLower()));
                     videosLoaded++;
                     remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
-                    dbSuccess = true;
                 }
             }
+            dbSuccess = true;
 
             remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
 
@@ -97,6 +97,7 @@ public class FileLister extends AsyncTask {
         } catch (DbxException e) {
             e.printStackTrace();
             remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+            dbSuccess = false;
         }
         return null;
     }
