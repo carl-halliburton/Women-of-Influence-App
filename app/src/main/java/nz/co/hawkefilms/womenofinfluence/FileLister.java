@@ -30,6 +30,7 @@ public class FileLister extends AsyncTask {
     private boolean dbSuccess;
     private String searchString;
     private boolean searchEnabled;
+    private static final int LOADAMOUNT = 5; //number of videos loaded with a single execution of the class. Less is faster.
 
     FileLister(DbxClientV2 dbxClient, Context context, List<Metadata> dropboxLoadData, List<VideoData> loadedVideos, String searchInput) {
         this.dbxClient = dbxClient;
@@ -38,7 +39,7 @@ public class FileLister extends AsyncTask {
         videoInfoList = loadedVideos;
 
         videosLoaded = videoInfoList.size();
-        remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+        remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / (float) LOADAMOUNT);
         searchString = searchInput;
 
         if (searchString.equals("")) {
@@ -78,25 +79,25 @@ public class FileLister extends AsyncTask {
                 }
             }
 
-            //create temporary links for the next 5 files in the folder
-            for (int i = 0; i < 5; i++) {
+            //create temporary links for the next few files in the folder
+            for (int i = 0; i < LOADAMOUNT; i++) {
                 //to store temporary urls into a list
                 if (videosLoaded < folderContents.size()) {
                     videoInfoList.add(new VideoData(folderContents.get(videosLoaded).getName(), dbxClient.files()
                             .getTemporaryLink(folderContents.get(videosLoaded).getPathLower()).getLink(),
                             folderContents.get(videosLoaded).getPathLower()));
                     videosLoaded++;
-                    remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+                    remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / (float) LOADAMOUNT);
                 }
             }
             dbSuccess = true;
 
-            remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+            remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / (float) LOADAMOUNT);
 
             Log.d("Create Links", "Success");
         } catch (DbxException e) {
             e.printStackTrace();
-            remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / 5.0);
+            remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / (float) LOADAMOUNT);
             dbSuccess = false;
         }
         return null;
