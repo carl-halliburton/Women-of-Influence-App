@@ -1,73 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBody"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="nz.co.hawkefilms.womenofinfluence.ViewVideo"
-    tools:showIn="@layout/activity_view_video"
-    android:background="@color/colorBody">
-
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:foregroundGravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginTop="5dp"
-        android:text=""
-        android:id="@+id/txtVideoTitle"
-        android:gravity="center" />
+    tools:showIn="@layout/activity_view_video">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/txtVideoTitle">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:foregroundGravity="center_horizontal" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtVideoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
-                android:text="@string/sharing_title"
+                android:id="@+id/shareSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:id="@+id/shareSection"
-                android:textSize="@dimen/subTitle_text_size"
-                android:gravity="center" />
+                android:gravity="center"
+                android:text="@string/sharing_title"
+                android:textSize="@dimen/subTitle_text_size" />
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/shareLink"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:enabled="false"
                     android:inputType="none"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="@string/Sharing_Error_Text"
-                    android:ems="10"
-                    android:id="@+id/shareLink"
-                    android:enabled="false"
-                    android:layout_weight="1" />
+                    android:text="@string/Sharing_Error_Text" />
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_action_copy"
                     android:id="@+id/copyBtn"
                     style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/copy_Btn_Desc"
                     android:onClick="onClick"
-                    android:contentDescription="@string/copy_Btn_Desc" />
+                    app:srcCompat="@drawable/ic_action_copy" />
             </LinearLayout>
 
             <HorizontalScrollView
@@ -81,68 +90,70 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:columnCount="8"
+                    android:orientation="horizontal"
                     android:rowCount="1"
                     android:scrollbars="horizontal"
-                    android:orientation="horizontal"
-                    tools:context=".GridXMLActivity" >
+                    tools:context=".GridXMLActivity">
 
                     <ImageButton
                         android:id="@+id/shareEmail"
-                        android:contentDescription="@string/desc_share_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_email_share"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_email"
+                        android:onClick="onClick"
+                        android:paddingEnd="@dimen/padding_end"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingRight="@dimen/padding_right"
                         android:paddingStart="@dimen/padding_start"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:onClick="onClick"
-                        android:background="@null"
-                        android:clickable="true"/>
+                        android:src="@mipmap/ic_email_share" />
 
                     <ImageButton
                         android:id="@+id/shareFacebook"
-                        android:contentDescription="@string/desc_share_facebook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_facebook_share"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_facebook"
+                        android:onClick="onClick"
+                        android:paddingEnd="@dimen/padding_end"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingRight="@dimen/padding_right"
                         android:paddingStart="@dimen/padding_start"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:onClick="onClick"
-                        android:background="@null"
-                        android:clickable="true"/>
+                        android:src="@mipmap/ic_facebook_share" />
 
                     <ImageButton
                         android:id="@+id/shareTwitter"
-                        android:contentDescription="@string/desc_share_twitter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_twitter_share"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_twitter"
+                        android:onClick="onClick"
+                        android:paddingEnd="@dimen/padding_end"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingRight="@dimen/padding_right"
                         android:paddingStart="@dimen/padding_start"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:onClick="onClick"
-                        android:background="@null"
-                        android:clickable="true"/>
+                        android:src="@mipmap/ic_twitter_share" />
 
                     <ImageButton
                         android:id="@+id/shareGooglePlus"
-                        android:contentDescription="@string/desc_share_google_plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_google_plus_share"
+                        android:background="@null"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_google_plus"
+                        android:onClick="onClick"
+                        android:paddingEnd="@dimen/padding_end"
                         android:paddingLeft="@dimen/padding_left"
                         android:paddingRight="@dimen/padding_right"
                         android:paddingStart="@dimen/padding_start"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:onClick="onClick"
-                        android:background="@null"
-                        android:clickable="true"/>
+                        android:src="@mipmap/ic_google_plus_share" />
 
                 </GridLayout>
             </HorizontalScrollView>
+        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+
+</ScrollView>
