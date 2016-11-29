@@ -17,6 +17,7 @@
     <string name="title_activity_video_gallery">Video Gallery</string>
     <string name="title_activity_view_video">Video Player</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="menu_search">Search</string>
 
     <string name="app_icon_description">Ascend aApplication icon</string>
 

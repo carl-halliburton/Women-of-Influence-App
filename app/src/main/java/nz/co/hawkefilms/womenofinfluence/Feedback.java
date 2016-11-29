@@ -96,7 +96,7 @@ public class Feedback extends AppCompatActivity {
     public void sendFeedback(View view) {
 
         String subject = "Ascend - Women of Influence - Feedback from " + editName.getText()
-                                                                       + editMessage.getText();
+                + editMessage.getText();
         String message = "" + editMessage.getText();
         clearFields();
 

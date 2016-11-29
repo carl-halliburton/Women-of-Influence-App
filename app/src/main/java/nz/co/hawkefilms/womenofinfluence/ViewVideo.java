@@ -99,8 +99,7 @@ public class ViewVideo extends AppCompatActivity {
 
         videoError();
 
-        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN),
-                ViewVideo.this);
+        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this);
 
         portraitView = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
@@ -194,7 +193,7 @@ public class ViewVideo extends AppCompatActivity {
                     //disable hide functionality
                     //@Override
                     //public void hide(){
-                     //   super.show(1);
+                    //   super.show(1);
                     //}
                 };
             }else { //if in landscape view
@@ -235,7 +234,7 @@ public class ViewVideo extends AppCompatActivity {
                                 0.0f,
                                 0.0f,
                                 0
-                            )
+                                )
                         );
                     }
 
@@ -288,9 +287,9 @@ public class ViewVideo extends AppCompatActivity {
                 share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
-            case R.id.shareTwitter:
+            //case R.id.shareTwitter:
                 //share.shareWithTwitter(setUpSharingLink());
-                break;
+                //break;
 
             case R.id.shareGooglePlus:
                 Intent shareIntent = new PlusShare.Builder(this)
