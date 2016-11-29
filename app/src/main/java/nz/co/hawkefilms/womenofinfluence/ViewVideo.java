@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -31,6 +32,7 @@ import android.widget.VideoView;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.plus.PlusShare;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -287,7 +289,7 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareTwitter:
-                share.shareWithTwitter(setUpSharingLink());
+                //share.shareWithTwitter(setUpSharingLink());
                 break;
 
             case R.id.shareGooglePlus:
@@ -300,7 +302,7 @@ public class ViewVideo extends AppCompatActivity {
                                 Uri.parse(setUpSharingLink()))
                         .getIntent();
                 startActivityForResult(shareIntent, 0);
-                //share.shareGooglePlus(setUpSharingLink());
+                //share.shareGooglePlus(setUpSharingLink(), videoData.getName());
                 break;
         }
     }

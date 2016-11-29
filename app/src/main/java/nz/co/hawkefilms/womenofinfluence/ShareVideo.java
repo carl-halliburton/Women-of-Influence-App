@@ -11,6 +11,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
+import com.google.android.gms.plus.PlusShare;
 
 /**
  * Created by carl on 31/10/2016.
@@ -61,7 +62,6 @@ public class ShareVideo
         callbackManager = CallbackManager.Factory.create();
     }
 
-
     public void shareWithTwitter(String link) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);;
         shareIntent.setType("text/plain");
@@ -69,7 +69,7 @@ public class ShareVideo
         curContext.startActivity(Intent.createChooser(shareIntent, "Share your thoughts"));
     }
 
-    public void shareGooglePlus(String link) {
+    public void shareGooglePlus(String link, String videoTitle) {
 
     }
 }
