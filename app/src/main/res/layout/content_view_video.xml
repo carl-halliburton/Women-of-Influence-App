@@ -114,7 +114,7 @@
                         android:background="@null"
                         android:visibility="invisible" />
 
-                    <ImageButton
+                   <!-- <ImageButton
                         android:id="@+id/shareTwitter"
                         android:contentDescription="@string/desc_share_twitter"
                         android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                         android:paddingStart="@dimen/padding_start"
                         android:paddingEnd="@dimen/padding_end"
                         android:onClick="onClick"
-                        android:background="@null"/>
+                        android:background="@null"/>-->
 
                     <ImageButton
                         android:id="@+id/shareGooglePlus"
