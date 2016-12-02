@@ -4,12 +4,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
+
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -25,20 +23,16 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
-
+import com.facebook.share.widget.ShareDialog;
+import com.google.android.gms.plus.PlusShare;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.concurrent.ExecutionException;
-
-import static android.R.attr.button;
-import static android.R.id.content;
 
 /**
  * Description: This is the video player, it manages the playing of the video and all asociated
@@ -58,7 +52,7 @@ public class ViewVideo extends AppCompatActivity {
     private boolean refreshed;
     private boolean portraitView;
     private TextView sharingUrl;
-
+    private ShareDialog shareDialogFB;
     private FileSharer fileSharer;
     private ShareVideo share;
 
@@ -79,6 +73,10 @@ public class ViewVideo extends AppCompatActivity {
         refreshed = false;
 
         share = new ShareVideo(this);
+        share = new ShareVideo(this);
+        share.facebookSDKInitialize();
+        shareDialogFB = new ShareDialog(this);
+
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -356,13 +354,20 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareFacebook:
-                share.shareWithFacebook(setUpSharingLink());
-                break;
-
-            case R.id.shareTwitter:
+                share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
             case R.id.shareGooglePlus:
+                Intent shareIntent = new PlusShare.Builder(this)
+                        .setText("Ascend - Woman of Influence Video - " + videoData.getName())
+                        .setType("video/mp4")
+                        .setContentDeepLinkId("testID",
+                                "Test Title",
+                                "Test Description",
+                                Uri.parse(setUpSharingLink()))
+                        .getIntent();
+                startActivityForResult(shareIntent, 0);
+                //share.shareGooglePlus(setUpSharingLink(), videoData.getName());
                 break;
         }
     }

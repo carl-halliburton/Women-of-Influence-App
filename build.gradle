@@ -16,8 +16,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
     }
-
 }
 
 task clean(type: Delete) {

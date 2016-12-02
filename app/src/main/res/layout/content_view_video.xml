@@ -123,20 +123,6 @@
                         android:src="@mipmap/ic_facebook_share" />
 
                     <ImageButton
-                        android:id="@+id/shareTwitter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:clickable="true"
-                        android:contentDescription="@string/desc_share_twitter"
-                        android:onClick="onClick"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:paddingLeft="@dimen/padding_left"
-                        android:paddingRight="@dimen/padding_right"
-                        android:paddingStart="@dimen/padding_start"
-                        android:src="@mipmap/ic_twitter_share" />
-
-                    <ImageButton
                         android:id="@+id/shareGooglePlus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
