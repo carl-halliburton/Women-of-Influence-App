@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/blurb"
-            android:textSize="@dimen/blurb_text_size"
+            android:textSize="@dimen/description_text_size"
             android:id="@+id/textBlurb"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"

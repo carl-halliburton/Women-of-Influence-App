@@ -257,7 +257,7 @@ public class ViewVideo extends AppCompatActivity {
                     //disable hide functionality
                     //@Override
                     //public void hide(){
-                    //   super.show(1);
+                       //super.show(1);
                     //}
                 };
             } else { //if in landscape view
