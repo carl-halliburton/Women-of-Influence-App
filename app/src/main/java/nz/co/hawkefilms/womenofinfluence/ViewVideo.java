@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SearchView;
@@ -229,6 +230,10 @@ public class ViewVideo extends AppCompatActivity {
                 return true;
             case R.id.menu_feedback:
                 startActivity(new Intent(ViewVideo.this, Feedback.class));
+                return true;
+            case R.id.search:
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
                 return true;
         }
         return super.onOptionsItemSelected(item);

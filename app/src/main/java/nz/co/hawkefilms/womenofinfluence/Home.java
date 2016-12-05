@@ -118,6 +118,8 @@ public class Home extends AppCompatActivity {
                 refreshContent();
                 return true;
             case R.id.search:
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
                 return true;
         }
         return super.onOptionsItemSelected(item);
