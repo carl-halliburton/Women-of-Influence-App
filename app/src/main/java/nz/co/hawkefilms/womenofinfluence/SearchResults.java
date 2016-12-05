@@ -68,6 +68,9 @@ public class SearchResults extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
+        MenuItem item = menu.findItem(R.id.menu_refresh);
+        item.setVisible(false);
+
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
