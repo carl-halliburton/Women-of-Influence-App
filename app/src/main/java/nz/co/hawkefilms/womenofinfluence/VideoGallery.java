@@ -100,6 +100,8 @@ public class VideoGallery extends AppCompatActivity {
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search_black);
         searchView.setIconifiedByDefault(false);
+        searchView.setFocusable(true);
+        searchView.requestFocusFromTouch();
         return true;
     }
 
@@ -119,6 +121,8 @@ public class VideoGallery extends AppCompatActivity {
             case R.id.menu_refresh:
                 refreshContent();
                 return true;
+            case R.id.search:
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
