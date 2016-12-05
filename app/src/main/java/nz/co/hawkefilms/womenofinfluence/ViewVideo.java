@@ -208,7 +208,7 @@ public class ViewVideo extends AppCompatActivity {
         int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search_black);
-
+        searchView.setIconifiedByDefault(false);
         return true;
     }
 
