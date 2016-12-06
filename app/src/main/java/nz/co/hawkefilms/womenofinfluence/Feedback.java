@@ -33,6 +33,7 @@ public class Feedback extends AppCompatActivity {
 
     private GlobalAppData appData;
     private Button submitButton;
+    private SearchView searchView;
 
     //EditText fields
     private EditText editName;
@@ -80,7 +81,7 @@ public class Feedback extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView =
+        searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
@@ -128,8 +129,12 @@ public class Feedback extends AppCompatActivity {
                 startActivity(new Intent(Feedback.this, VideoGallery.class));
                 return true;
             case R.id.search:
+                //open the keyboard and set focus to searchView EditText
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                searchView.setIconifiedByDefault(false);
+                searchView.setFocusable(true);
+                searchView.requestFocusFromTouch();
                 return true;
         }
         return super.onOptionsItemSelected(item);

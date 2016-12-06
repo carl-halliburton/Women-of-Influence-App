@@ -37,6 +37,7 @@ public class Home extends AppCompatActivity {
     private GlobalAppData appData; //singleton instance of globalAppData
     private Button featureVideo;
     private boolean refreshing;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class Home extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView =
+        searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
@@ -96,8 +97,6 @@ public class Home extends AppCompatActivity {
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search_black);
         searchView.setIconifiedByDefault(false);
-        searchView.setFocusable(true);
-        searchView.requestFocusFromTouch();
         return true;
     }
 
@@ -118,8 +117,12 @@ public class Home extends AppCompatActivity {
                 refreshContent();
                 return true;
             case R.id.search:
+                //open the keyboard and set focus to searchView EditText
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                searchView.setIconifiedByDefault(false);
+                searchView.setFocusable(true);
+                searchView.requestFocusFromTouch();
                 return true;
         }
         return super.onOptionsItemSelected(item);

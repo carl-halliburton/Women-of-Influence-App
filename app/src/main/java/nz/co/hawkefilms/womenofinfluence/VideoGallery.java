@@ -37,6 +37,7 @@ public class VideoGallery extends AppCompatActivity {
     private GlobalAppData appData;
     private boolean refreshing;
     private Button loadMore;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class VideoGallery extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView =
+        searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
@@ -123,8 +124,12 @@ public class VideoGallery extends AppCompatActivity {
                 refreshContent();
                 return true;
             case R.id.search:
+                //open the keyboard and set focus to searchView EditText
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                searchView.setIconifiedByDefault(false);
+                searchView.setFocusable(true);
+                searchView.requestFocusFromTouch();
                 return true;
         }
         return super.onOptionsItemSelected(item);

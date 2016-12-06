@@ -39,6 +39,7 @@ public class SearchResults extends AppCompatActivity {
     private List<VideoData> videoInfoResults;
     private List<Metadata> dropboxSearchData; //data for loading remaining dropbox videos
     private String searchInput;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class SearchResults extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView =
+        searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
@@ -129,8 +130,12 @@ public class SearchResults extends AppCompatActivity {
                 refreshContent();
                 return true;
             case R.id.search:
+                //open the keyboard and set focus to searchView EditText
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                searchView.setIconifiedByDefault(false);
+                searchView.setFocusable(true);
+                searchView.requestFocusFromTouch();
                 return true;
         }
         return super.onOptionsItemSelected(item);
