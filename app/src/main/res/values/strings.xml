@@ -24,6 +24,8 @@
     <string name="server_connection_error">Unable to find videos on server. check your internet
         connection and try again later.</string>
 
+    <string name="msg_no_results">No Results found for %s</string>
+
     //Share button descriptions
     <string name="desc_share_email">Share with Email</string>
     <string name="desc_share_facebook">Share with Facebook</string>

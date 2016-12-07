@@ -194,6 +194,9 @@ public class SearchResults extends AppCompatActivity {
         if(searchFileLister.remainingLoads() == 0)
         {
             loadMore.setVisibility(View.GONE);
+            //if no results found message displayed
+            TextView title = (TextView) findViewById(R.id.resultsDescription);
+            title.setText(getString(R.string.msg_no_results, searchInput));
         } else {
             loadMore.setVisibility(View.VISIBLE);
         }
