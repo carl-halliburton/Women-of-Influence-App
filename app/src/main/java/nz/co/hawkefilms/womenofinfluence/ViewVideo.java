@@ -201,6 +201,7 @@ public class ViewVideo extends AppCompatActivity {
                 //Proceed to Search Results
                 Intent intent = new Intent(ViewVideo.this, SearchResults.class);
                 intent.putExtra("searchInput", searchView.getQuery().toString());
+                searchView.clearFocus();
                 startActivity(intent);
                 return false;
             }

@@ -94,6 +94,7 @@ public class SearchResults extends AppCompatActivity {
                 //Proceed to Search Results
                 Intent intent = new Intent(SearchResults.this, SearchResults.class);
                 intent.putExtra("searchInput", searchView.getQuery().toString());
+                searchView.clearFocus();
                 startActivity(intent);
                 return false;
             }
@@ -105,8 +106,6 @@ public class SearchResults extends AppCompatActivity {
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search_black);
         searchView.setIconifiedByDefault(false);
-        searchView.setFocusable(true);
-        searchView.requestFocusFromTouch();
         return true;
     }
 

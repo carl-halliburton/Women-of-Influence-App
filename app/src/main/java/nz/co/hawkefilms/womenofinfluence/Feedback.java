@@ -99,6 +99,7 @@ public class Feedback extends AppCompatActivity {
                 //Proceed to Search Results
                 Intent intent = new Intent(Feedback.this, SearchResults.class);
                 intent.putExtra("searchInput", searchView.getQuery().toString());
+                searchView.clearFocus();
                 startActivity(intent);
                 return false;
             }
@@ -110,8 +111,6 @@ public class Feedback extends AppCompatActivity {
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search_black);
         searchView.setIconifiedByDefault(false);
-        searchView.setFocusable(true);
-        searchView.requestFocusFromTouch();
         return true;
     }
 

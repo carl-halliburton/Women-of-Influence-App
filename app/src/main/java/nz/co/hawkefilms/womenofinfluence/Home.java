@@ -6,10 +6,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,11 +18,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import static android.R.attr.id;
-import static android.R.attr.searchIcon;
+import android.widget.Toast;
 
 /**
  * Description:
@@ -87,6 +82,7 @@ public class Home extends AppCompatActivity {
                 //Proceed to Search Results
                 Intent intent = new Intent(Home.this, SearchResults.class);
                 intent.putExtra("searchInput", searchView.getQuery().toString());
+                searchView.clearFocus();
                 startActivity(intent);
                 return false;
             }
