@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
@@ -175,6 +176,11 @@ public class VideoGallery extends AppCompatActivity {
             String buttonText = link.getName();
             galleryLinks.get(i).setText(buttonText);
             galleryLinks.get(i).setId(i);
+
+            //use this for pre v21 devices
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            }
 
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.MenuItemCompat;
@@ -209,6 +210,11 @@ public class SearchResults extends AppCompatActivity {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             layoutParams.setMargins(0, 0, 0, 20);
             resultLinks.get(i).setLayoutParams(layoutParams);
+
+            //use this for pre v21 devices
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                resultLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            }
 
             resultsView.addView(resultLinks.get(i));
 
