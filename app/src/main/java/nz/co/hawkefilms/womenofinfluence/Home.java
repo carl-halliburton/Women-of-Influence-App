@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -69,6 +70,8 @@ public class Home extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -93,6 +96,26 @@ public class Home extends AppCompatActivity {
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
         v.setImageResource(R.drawable.ic_search_black);
         searchView.setIconifiedByDefault(false);
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                searchView.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                searchView.setIconifiedByDefault(false);
+                searchView.setFocusable(true);
+                searchView.requestFocusFromTouch();
+                return true;
+            }
+        });
+
         return true;
     }
 
@@ -111,14 +134,6 @@ public class Home extends AppCompatActivity {
                 return true;
             case R.id.menu_refresh:
                 refreshContent();
-                return true;
-            case R.id.search:
-                //open the keyboard and set focus to searchView EditText
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
-                searchView.setIconifiedByDefault(false);
-                searchView.setFocusable(true);
-                searchView.requestFocusFromTouch();
                 return true;
         }
         return super.onOptionsItemSelected(item);

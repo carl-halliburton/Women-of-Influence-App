@@ -38,6 +38,7 @@
         <activity
             android:name=".Home"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
@@ -45,10 +46,12 @@
         <activity
             android:name=".VideoGallery"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ViewVideo"
             android:label="@string/title_activity_view_video"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- Dropbox AuthActivity -->
@@ -71,7 +74,7 @@
             android:name=".Feedback"
             android:label="@string/title_activity_feedback"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!-- [START firebase_service] -->
         <service android:name=".MyFirebaseMessagingService">
@@ -91,6 +94,7 @@
             android:name=".SearchResults"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_search_results"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
