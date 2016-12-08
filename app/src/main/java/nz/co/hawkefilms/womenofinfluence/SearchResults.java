@@ -1,5 +1,6 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -65,6 +66,15 @@ public class SearchResults extends AppCompatActivity {
         loadMore = (Button) findViewById(R.id.loadMoreBtn);
 
         refreshContent();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        InputMethodManager inm = (InputMethodManager)  this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View focusedView = this.getCurrentFocus();
+        if(focusedView != null)
+            inm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package nz.co.hawkefilms.womenofinfluence;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,6 +48,8 @@ public class Home extends AppCompatActivity {
 
         featureVideo = (Button) findViewById(R.id.featureVideoBtn);
         refreshContent();
+
+
     }
 
   /*  //refreshes feature video automatically if required when resuming the Home screen
@@ -56,6 +60,15 @@ public class Home extends AppCompatActivity {
             refreshContent();
         }
     }*/
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        InputMethodManager inm = (InputMethodManager)  this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View focusedView = this.getCurrentFocus();
+        if(focusedView != null)
+            inm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,8 +120,8 @@ public class Home extends AppCompatActivity {
 
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                InputMethodManager inm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
                 searchView.setIconifiedByDefault(false);
                 searchView.setFocusable(true);
                 searchView.requestFocusFromTouch();

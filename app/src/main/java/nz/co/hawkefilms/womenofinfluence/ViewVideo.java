@@ -158,6 +158,15 @@ public class ViewVideo extends AppCompatActivity {
         PlayVideo();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        InputMethodManager inm = (InputMethodManager)  this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View focusedView = this.getCurrentFocus();
+        if(focusedView != null)
+            inm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+    }
+
 
     // Save UI state changes to the savedInstanceState.
     // This bundle will be passed to onCreate if the process is
