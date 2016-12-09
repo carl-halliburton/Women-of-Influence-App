@@ -51,7 +51,8 @@
             android:scaleType="fitXY"
             android:textSize="@dimen/btn_feature_vid_text_size"
             android:layout_marginTop="30dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +70,12 @@
             android:textSize="@dimen/btn_text_size"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:typeface="normal"/>
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp"
+            android:paddingRight="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,6 +97,11 @@
             android:onClick="feedbackButtonOnClick"
             android:textSize="@dimen/btn_text_size"
             android:layout_gravity="center"
-            android:typeface="normal"/>
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:paddingStart="15dp"
+            android:paddingLeft="15dp"
+            android:paddingEnd="15dp"
+            android:paddingRight="15dp" />
     </LinearLayout>
 </ScrollView>
