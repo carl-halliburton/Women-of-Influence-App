@@ -30,7 +30,6 @@
             android:id="@+id/textView2"
             android:layout_marginTop="@dimen/activity_titles_marginTop"
             android:layout_marginBottom="@dimen/activity_titles_marginBottom"
-            android:paddingBottom="30sp"
             android:gravity="center" />
 
         <TextView
@@ -38,8 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@string/text_video_gallery_desc"
             android:id="@+id/videoGalleryText"
-            android:textSize="@dimen/description_text_size"
-            android:paddingBottom="15sp" />
+            android:textSize="@dimen/description_text_size" />
 
         <View
             android:layout_width="fill_parent"
