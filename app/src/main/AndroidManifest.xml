@@ -21,7 +21,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <provider android:authorities="com.facebook.app.FacebookContentProvider1787791634841715"
+        <provider android:authorities="com.facebook.app.FacebookContentProvider573770112816147"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
 
@@ -62,7 +62,7 @@
             <intent-filter>
 
                 <!-- Insert your app key after “db-  ...” -->
-                <data android:scheme="db-kisksq4wddv8ymj" />
+                <data android:scheme="db-@string/DROPBOX_APP_KEY" />
 
                 <action android:name="android.intent.action.VIEW" />
 

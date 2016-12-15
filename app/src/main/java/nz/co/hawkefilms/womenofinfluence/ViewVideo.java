@@ -284,14 +284,8 @@ public class ViewVideo extends AppCompatActivity {
 
                     @Override
                     public void show() {
-                        super.show(0);
+                        super.show(5000);
                     }
-                    //TODO uncomment this once media controller position is fixed
-                    //disable hide functionality
-                    //@Override
-                    //public void hide(){
-                       //super.show(1);
-                    //}
                 };
             } else { //if in landscape view
                 mediaController = new MediaController(ViewVideo.this) {
@@ -383,7 +377,7 @@ public class ViewVideo extends AppCompatActivity {
                 share.copyLink(setUpSharingLink());
                 break;
             case R.id.shareEmail:
-                share.sendEmailIntent(setUpSharingLink());
+                share.sendEmailIntent(setUpSharingLink(), videoData.getName());
                 break;
 
             case R.id.shareFacebook:

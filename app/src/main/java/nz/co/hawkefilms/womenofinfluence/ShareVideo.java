@@ -37,10 +37,10 @@ public class ShareVideo
         Toast.makeText(curContext, "Link Copied!", Toast.LENGTH_SHORT).show();
     }
 
-    public void sendEmailIntent(String link) {
+    public void sendEmailIntent(String link, String videoTitle) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("text/html");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Subject - Name of Video");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Ascend - " + videoTitle);
         intent.putExtra(Intent.EXTRA_TEXT, "You might be interested in this video " + "- " + link);
         intent.setData(Uri.parse("mailto:"));
         curContext.startActivity(Intent.createChooser(intent, "Send Email"));
