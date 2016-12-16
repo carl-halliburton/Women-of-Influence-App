@@ -48,8 +48,6 @@ public class Home extends AppCompatActivity {
 
         featureVideo = (Button) findViewById(R.id.featureVideoBtn);
         refreshContent();
-
-
     }
 
   /*  //refreshes feature video automatically if required when resuming the Home screen
@@ -83,7 +81,9 @@ public class Home extends AppCompatActivity {
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
-
+        //the search functionality is out of scope for the moment,
+        // it will be re-enabled in a future update
+        menu.findItem(R.id.search).setVisible(false);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 

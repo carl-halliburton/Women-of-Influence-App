@@ -10,6 +10,7 @@ import com.dropbox.core.v2.sharing.ResolvedVisibility;
 import com.dropbox.core.v2.sharing.SharedLinkMetadata;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**

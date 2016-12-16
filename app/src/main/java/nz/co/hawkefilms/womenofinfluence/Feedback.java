@@ -89,6 +89,10 @@ public class Feedback extends AppCompatActivity {
         item = menu.findItem(R.id.menu_feedback);
         item.setVisible(false);
 
+        //the search functionality is out of scope for the moment,
+        // it will be re-enabled in a future update
+        menu.findItem(R.id.search).setVisible(false);
+
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
