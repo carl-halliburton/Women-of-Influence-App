@@ -62,7 +62,6 @@ public class FileLister extends AsyncTask {
                     //contains metadata for all contents in the folder such as the URI links to each file.
                     folderContents = dbxClient.files().listFolder("/videos/").getEntries();
                 }
-
             } else {
                 if (videosLoaded == 0) {
                     //contains metadata for all contents in the folder such as the URI links to each file.
@@ -76,9 +75,12 @@ public class FileLister extends AsyncTask {
                             resultsList.add(video);
                         }
                     }
+                    //reverse metadata list so that latest video is always the feature and
+                    // the video gallery is ordered from recent to least recent
                     folderContents = resultsList;
                 }
             }
+            Collections.reverse(folderContents);
 
             //create temporary links for the next few files in the folder
             for (int i = 0; i < LOADAMOUNT; i++) {
