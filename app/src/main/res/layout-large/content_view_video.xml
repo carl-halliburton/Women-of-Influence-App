@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBody"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="nz.co.hawkefilms.womenofinfluence.ViewVideo"
+    tools:showIn="@layout/activity_view_video">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:foregroundGravity="center_horizontal" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtVideoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shareSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/sharing_title"
+                android:textSize="@dimen/subTitle_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/shareLink"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/Sharing_Error_Text"
+                    android:textSize="@dimen/fb_email_text_size" />
+
+                <ImageButton
+                    android:id="@+id/copyBtn"
+                    style="@style/AppTheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/copy_Btn_Desc"
+                    android:onClick="onClick"
+                    app:srcCompat="@drawable/ic_action_copy" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/GridLayoutShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:columnCount="8"
+                    android:orientation="horizontal"
+                    android:rowCount="1"
+                    android:scrollbars="horizontal"
+                    tools:context=".GridXMLActivity">
+
+                    <ImageButton
+                        android:id="@+id/shareEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_email"
+                        android:onClick="onClick"
+                        android:paddingEnd="@dimen/padding_end"
+                        android:paddingLeft="@dimen/padding_left"
+                        android:paddingRight="@dimen/padding_right"
+                        android:paddingStart="@dimen/padding_start"
+                        android:src="@mipmap/ic_email_share" />
+
+                    <ImageButton
+                        android:id="@+id/shareFacebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_facebook"
+                        android:onClick="onClick"
+                        android:paddingEnd="@dimen/padding_end"
+                        android:paddingLeft="@dimen/padding_left"
+                        android:paddingRight="@dimen/padding_right"
+                        android:paddingStart="@dimen/padding_start"
+                        android:src="@mipmap/ic_facebook_share" />
+
+                    <ImageButton
+                        android:id="@+id/shareGooglePlus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_google_plus"
+                        android:onClick="onClick"
+                        android:paddingEnd="@dimen/padding_end"
+                        android:paddingLeft="@dimen/padding_left"
+                        android:paddingRight="@dimen/padding_right"
+                        android:paddingStart="@dimen/padding_start"
+                        android:src="@mipmap/ic_google_plus_share" />
+
+                </GridLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
