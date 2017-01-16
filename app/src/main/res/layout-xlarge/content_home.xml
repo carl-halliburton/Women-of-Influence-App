@@ -42,14 +42,12 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hm_feature_video_aut_text"
             android:id="@+id/featureVideoBtn"
@@ -58,7 +56,10 @@
             android:textSize="@dimen/btn_feature_vid_text_size"
             android:layout_marginTop="30dp"
             android:gravity="center"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,9 +69,8 @@
             android:id="@+id/textFeatureTitle" />
 
         <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="false"
-            android:layout_weight="0.5"
             android:text="@string/title_activity_video_gallery"
             android:id="@+id/button2"
             android:onClick="videoGalleryButtonOnClick"
@@ -82,8 +82,12 @@
             android:paddingStart="15dp"
             android:paddingLeft="15dp"
             android:paddingEnd="15dp"
-            android:paddingRight="15dp" />
-        </LinearLayout>
+            android:paddingRight="15dp"
+            android:layout_alignBaseline="@+id/featureVideoBtn"
+            android:layout_alignBottom="@+id/featureVideoBtn"
+            android:layout_toRightOf="@+id/featureVideoBtn"
+            android:layout_toEndOf="@+id/featureVideoBtn"/>
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -98,9 +102,8 @@
             android:layout_gravity="center" />
 
         <Button
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5"
             android:text="@string/hm_btn_contact_us"
             android:id="@+id/button3"
             android:onClick="feedbackButtonOnClick"

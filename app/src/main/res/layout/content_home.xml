@@ -61,8 +61,17 @@
             android:text=""
             android:id="@+id/textFeatureTitle" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_border"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" >
+
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/title_activity_video_gallery"
             android:id="@+id/button2"
@@ -78,7 +87,7 @@
             android:paddingRight="15dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/hm_feedback_text"
@@ -90,7 +99,7 @@
             android:layout_gravity="center" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/hm_btn_contact_us"
             android:id="@+id/button3"
@@ -102,6 +111,7 @@
             android:paddingStart="15dp"
             android:paddingLeft="15dp"
             android:paddingEnd="15dp"
-            android:paddingRight="15dp" />
+            android:paddingRight="15dp"/>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
