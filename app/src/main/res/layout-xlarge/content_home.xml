@@ -21,99 +21,105 @@
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
+            android:id="@+id/textSubTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/sub_title"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
-            android:id="@+id/textSubTitle"
             android:gravity="center"
             android:layout_marginTop="@dimen/activity_titles_marginTop"
             android:layout_marginBottom="@dimen/activity_titles_marginBottom" />
 
         <TextView
+            android:id="@+id/textBlurb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/blurb"
             android:textSize="@dimen/description_text_size"
-            android:id="@+id/textBlurb"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/btnFeatureVideo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/hm_feature_video_aut_text"
-            android:id="@+id/featureVideoBtn"
             android:onClick="viewVideoFeaturedLink"
             android:scaleType="fitXY"
             android:textSize="@dimen/btn_feature_vid_text_size"
             android:layout_marginTop="30dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"/>
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/txtFeatureTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text=""
-            android:id="@+id/textFeatureTitle" />
+            android:text="" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_activity_video_gallery"
-            android:id="@+id/button2"
-            android:onClick="videoGalleryButtonOnClick"
-            android:textSize="@dimen/btn_text_size"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:typeface="normal"
-            android:textStyle="bold"
-            android:paddingStart="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp"
-            android:paddingRight="15dp"
-            android:layout_alignBaseline="@+id/featureVideoBtn"
-            android:layout_alignBottom="@+id/featureVideoBtn"
-            android:layout_toRightOf="@+id/featureVideoBtn"
-            android:layout_toEndOf="@+id/featureVideoBtn"/>
-        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:background="@drawable/background_border">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/hm_feedback_text"
-            android:id="@+id/textView5"
-            android:textStyle="italic"
-            android:textSize="@dimen/description_text_size"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center" />
+             <Button
+                android:id="@+id/btnVideoGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_activity_video_gallery"
+                android:onClick="videoGalleryButtonOnClick"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hm_btn_contact_us"
-            android:id="@+id/button3"
-            android:onClick="feedbackButtonOnClick"
-            android:textSize="@dimen/btn_text_size"
-            android:layout_gravity="center"
-            android:typeface="normal"
-            android:textStyle="bold"
-            android:paddingStart="15dp"
-            android:paddingLeft="15dp"
-            android:paddingEnd="15dp"
-            android:paddingRight="15dp" />
+            <TextView
+                android:id="@+id/txtContactText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/hm_feedback_text"
+                android:textStyle="italic"
+                android:textSize="@dimen/description_text_size"
+                android:paddingRight="220dp"
+                android:paddingLeft="220dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp" />
+
+            <Button
+                android:id="@+id/btnContactUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hm_btn_contact_us"
+                android:onClick="feedbackButtonOnClick"
+                android:textSize="@dimen/btn_text_size"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:typeface="normal"
+                android:textStyle="bold"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

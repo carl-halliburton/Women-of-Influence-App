@@ -16,7 +16,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,7 +45,7 @@ public class Home extends AppCompatActivity {
         setSupportActionBar(toolbar);
         refreshing = false;
 
-        featureVideo = (Button) findViewById(R.id.featureVideoBtn);
+        featureVideo = (Button) findViewById(R.id.btnFeatureVideo);
         refreshContent();
     }
 
