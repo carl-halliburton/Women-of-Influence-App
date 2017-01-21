@@ -11,8 +11,8 @@
     <dimen name="subTitle_text_size">20sp</dimen>
 
     <!--Margins-->
-    <dimen name="activity_titles_marginTop">2dp</dimen>
-    <dimen name="activity_titles_marginBottom">3dp</dimen>
+    <dimen name="activity_titles_marginTop">4dp</dimen>
+    <dimen name="activity_titles_marginBottom">5dp</dimen>
 
     <!--Video share buttons padding-->
     <dimen name="padding_left">5dp</dimen>
