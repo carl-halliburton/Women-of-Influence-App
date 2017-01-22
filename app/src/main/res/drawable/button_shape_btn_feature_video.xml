@@ -1,0 +1,10 @@
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/background_shadow_btn_feature_video"/>
+    <item
+        android:drawable="@drawable/background_btn_feature_video"
+        android:bottom="4px" />
+
+</layer-list>

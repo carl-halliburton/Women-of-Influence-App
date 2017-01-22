@@ -43,15 +43,20 @@
 
     //buttons
     <string name="fb_btn_submit">Submit</string>
-    <string name="hm_btn_contact_us">Contact Us</string>
-    <string name="hm_feature_video_aut_text">Feature Video</string>
+    <string name="hm_btn_contact_us">Contact Us:</string>
+    <string name="hm_feature_video_aut_text">Feature Video:</string>
+
+    //button descriptions
+    <string name="desc_btn_feature_video">Opens the most recent video to be uploaded</string>
+    <string name="desc_btn_copy">Copies the URL link for the video being played to clipboard.</string>
+    <string name="desc_btn_video_gallery">Opens the video gallery screen</string>
+    <string name="desc_btn_contact_us">Opens the feedback screen</string>
 
     //text
     <string name="hm_feedback_text">Give us your feedback or share your stories</string>
     <string name="text_video_gallery_desc">Browse our videos below.</string>
     <string name="Sharing_Error_Text">Error Finding Link</string>
     <string name="sharing_title">Sharing</string>
-    <string name="copy_Btn_Desc">Copies the URL link for the video being played to clipboard.</string>
     <string name="loadBtnName">Load More Videos</string>
     <string name="title_activity_search_results">SearchResults</string>
     <string name="search_title">Search For...</string>

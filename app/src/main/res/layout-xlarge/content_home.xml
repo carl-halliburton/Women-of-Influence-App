@@ -46,6 +46,7 @@
 
         <Button
             android:id="@+id/btnFeatureVideo"
+            android:contentDescription="@string/desc_btn_feature_video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/hm_feature_video_aut_text"
@@ -56,7 +57,10 @@
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
             android:gravity="center"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/button_shape_btn_feature_video" />
 
         <TextView
             android:id="@+id/txtFeatureTitle"
@@ -76,19 +80,20 @@
             android:background="@drawable/background_border">
 
              <Button
-                android:id="@+id/btnVideoGallery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_activity_video_gallery"
-                android:onClick="videoGalleryButtonOnClick"
-                android:textSize="@dimen/btn_text_size"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:typeface="normal"
-                android:textStyle="bold"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp" />
+                 android:id="@+id/btnVideoGallery"
+                 android:contentDescription="@string/desc_btn_video_gallery"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/title_activity_video_gallery"
+                 android:onClick="videoGalleryButtonOnClick"
+                 android:textSize="@dimen/btn_text_size"
+                 android:layout_marginTop="10dp"
+                 android:gravity="center"
+                 android:layout_gravity="center"
+                 android:typeface="normal"
+                 android:textStyle="bold"
+                 android:layout_marginLeft="40dp"
+                 android:layout_marginRight="40dp" />
 
             <TextView
                 android:id="@+id/txtContactText"
@@ -107,6 +112,7 @@
 
             <Button
                 android:id="@+id/btnContactUs"
+                android:contentDescription="@string/desc_btn_contact_us"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hm_btn_contact_us"

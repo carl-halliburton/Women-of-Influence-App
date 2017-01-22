@@ -71,7 +71,7 @@
                     style="@style/AppTheme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/copy_Btn_Desc"
+                    android:contentDescription="@string/desc_btn_copy"
                     android:onClick="onClick"
                     app:srcCompat="@drawable/ic_action_copy" />
             </LinearLayout>

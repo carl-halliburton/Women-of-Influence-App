@@ -44,6 +44,7 @@
 
         <Button
             android:id="@+id/btnFeatureVideo"
+            android:contentDescription="@string/desc_btn_feature_video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/hm_feature_video_aut_text"
@@ -52,7 +53,10 @@
             android:textSize="@dimen/btn_feature_vid_text_size"
             android:layout_marginTop="15dp"
             android:gravity="center"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/button_shape_btn_feature_video" />
 
         <TextView
             android:id="@+id/txtFeatureTitle"
@@ -73,6 +77,7 @@
 
         <Button
             android:id="@+id/btnVideoGallery"
+            android:contentDescription="@string/desc_btn_video_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_activity_video_gallery"
@@ -100,6 +105,7 @@
 
         <Button
             android:id="@+id/btnContactUs"
+            android:contentDescription="@string/desc_btn_contact_us"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hm_btn_contact_us"
