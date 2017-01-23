@@ -58,14 +58,14 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/loadMoreBtn"
                 android:layout_height="wrap_content"
                 android:layout_width="200dp"
                 android:text="@string/loadBtnName"
+                android:layout_gravity="center"
                 android:onClick="onClick" />
         </LinearLayout>
 

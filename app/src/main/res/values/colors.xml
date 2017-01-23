@@ -6,4 +6,5 @@
     <color name="colorBody">#e0f7ff</color>
     <color name="black">#000000</color>
     <color name="ruled_line">#000000</color>
+    <color name="button_shadow">#b3b3b3</color>
 </resources>
