@@ -34,7 +34,6 @@ import android.widget.Toast;
 public class Feedback extends AppCompatActivity {
 
     private GlobalAppData appData;
-    private Button submitButton;
     private SearchView searchView;
 
     //EditText fields
@@ -51,6 +50,7 @@ public class Feedback extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
 
+        Button submitButton;
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), Feedback.this, "");
 
         //initialize edittext fields
@@ -211,23 +211,6 @@ public class Feedback extends AppCompatActivity {
         }
         else
             return false; //errors displayed
-    }
-
-    //TODO possibly remove
-    public void successDialog(View view) {
-
-        clearFields();
-
-        new AlertDialog.Builder(this)
-                .setTitle("Feedback Sent")
-                .setMessage("Thank-you for sending feedback.")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // continue with delete
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
     }
 
     public void clearFields() {

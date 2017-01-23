@@ -20,32 +20,32 @@
         android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
+            android:id="@+id/txtScreenTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/title_activity_feedback"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
-            android:id="@+id/txtScreenTitle"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/activity_titles_marginTop"
             android:layout_marginBottom="@dimen/activity_titles_marginBottom" />
 
         <TextView
+            android:id="@+id/txtHelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/fb_text_desc"
-            android:textSize="@dimen/description_text_size"
-            android:id="@+id/txtHelp" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/description_text_size"/>
 
         <TextView
+            android:id="@+id/txtEmailAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/email_address"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="@dimen/fb_email_text_size"
-            android:id="@+id/txtEmailAddress"
             android:layout_marginTop="15dp"
             android:layout_gravity="center" />
 
@@ -57,39 +57,39 @@
             android:layout_marginBottom="15dp" />
 
         <EditText
+            android:id="@+id/fieldName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/fieldName"
             android:hint="@string/fb_hint_name" />
 
         <EditText
+            android:id="@+id/fieldSubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fieldSubject"
             android:inputType="textEmailSubject"
             android:hint="@string/fb_hint_subject"/>
 
         <EditText
+            android:id="@+id/fieldMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
             android:gravity="top"
-            android:id="@+id/fieldMessage"
-            android:hint="@string/fb_hint_message"
-            android:minLines="5" />
+            android:minLines="5"
+            android:hint="@string/fb_hint_message"/>
 
         <Button
+            android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fb_btn_submit"
-            android:id="@+id/btnSubmit"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center"
             android:textSize="@dimen/btn_text_size"
             android:typeface="normal"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center" />
     </LinearLayout>
 </ScrollView>

@@ -24,8 +24,8 @@
             android:id="@+id/textSubTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/sub_title"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             android:gravity="center"
@@ -36,8 +36,8 @@
             android:id="@+id/textBlurb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/blurb"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="@dimen/description_text_size"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"/>
@@ -62,8 +62,8 @@
             android:id="@+id/txtFeatureTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="" />
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -75,45 +75,46 @@
             android:paddingRight="3dp"
             android:background="@drawable/background_border">
 
-        <Button
-            android:id="@+id/btnVideoGallery"
-            android:contentDescription="@string/desc_btn_video_gallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_activity_video_gallery"
-            android:onClick="videoGalleryButtonOnClick"
-            android:textSize="@dimen/btn_text_size"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:typeface="normal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp" />
+            <Button
+                android:id="@+id/btnVideoGallery"
+                android:contentDescription="@string/desc_btn_video_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_activity_video_gallery"
+                android:onClick="videoGalleryButtonOnClick"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:typeface="normal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp" />
 
-        <TextView
-            android:id="@+id/txtContactText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/hm_feedback_text"
-            android:textStyle="italic"
-            android:textSize="@dimen/description_text_size"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center" />
+            <TextView
+                android:id="@+id/txtContactText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/hm_feedback_text"
+                android:textStyle="italic"
+                android:textSize="@dimen/description_text_size"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center" />
 
-        <Button
-            android:id="@+id/btnContactUs"
-            android:contentDescription="@string/desc_btn_contact_us"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hm_btn_contact_us"
-            android:onClick="feedbackButtonOnClick"
-            android:textSize="@dimen/btn_text_size"
-            android:layout_gravity="center"
-            android:typeface="normal"
-            android:layout_marginBottom="10dp"/>
+            <Button
+                android:id="@+id/btnContactUs"
+                android:contentDescription="@string/desc_btn_contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hm_btn_contact_us"
+                android:onClick="feedbackButtonOnClick"
+                android:textSize="@dimen/btn_text_size"
+                android:layout_gravity="center"
+                android:typeface="normal"
+                android:layout_marginBottom="10dp" />
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

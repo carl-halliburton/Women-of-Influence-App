@@ -113,7 +113,7 @@
                 android:layout_gravity="center"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp" />
 
         </LinearLayout>
     </LinearLayout>
