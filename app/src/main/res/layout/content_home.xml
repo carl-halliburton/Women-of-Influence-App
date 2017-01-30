@@ -87,7 +87,11 @@
                 android:layout_gravity="center"
                 android:typeface="normal"
                 android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp" />
+                android:layout_marginRight="40dp"
+                android:background="@drawable/button_shape_btn_feature_video"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/txtContactText"
@@ -113,7 +117,11 @@
                 android:textSize="@dimen/btn_text_size"
                 android:layout_gravity="center"
                 android:typeface="normal"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_shape_btn_feature_video"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </LinearLayout>
