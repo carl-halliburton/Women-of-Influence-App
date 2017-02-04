@@ -56,7 +56,7 @@
             android:textStyle="bold"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:background="@drawable/button_shape_btn_feature_video" />
+            android:background="@drawable/background_for_buttons" />
 
         <TextView
             android:id="@+id/txtFeatureTitle"
@@ -88,7 +88,7 @@
                 android:typeface="normal"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:background="@drawable/button_shape_btn_feature_video"
+                android:background="@drawable/background_for_buttons"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"/>
@@ -118,7 +118,7 @@
                 android:layout_gravity="center"
                 android:typeface="normal"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/button_shape_btn_feature_video"
+                android:background="@drawable/background_for_buttons"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:textStyle="bold"/>
