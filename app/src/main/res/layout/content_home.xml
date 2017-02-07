@@ -121,7 +121,7 @@
                 android:background="@drawable/background_for_buttons"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
     </LinearLayout>

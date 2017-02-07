@@ -7,6 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -192,13 +194,23 @@ public class VideoGallery extends AppCompatActivity {
             galleryLinks.get(i).setId(i);
 
             //use this for pre v21 devices
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            //if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                //galleryLinks.get(i).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            //}
+
+            final int sdk = android.os.Build.VERSION.SDK_INT;
+            if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                galleryLinks.get(i).setBackgroundDrawable( getResources().getDrawable(R.drawable.background_for_buttons) );
+            } else {
+                galleryLinks.get(i).setBackground( getResources().getDrawable(R.drawable.background_for_buttons));
             }
+            galleryLinks.get(i).setTypeface(Typeface.DEFAULT_BOLD);
+            galleryLinks.get(i).setTextSize(TypedValue.COMPLEX_UNIT_SP, 25);
+
 
             //set button size
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            layoutParams.setMargins(0, 0, 0, 20);
+            layoutParams.setMargins(40, 0, 40, 20);
             galleryLinks.get(i).setLayoutParams(layoutParams);
 
             galleryView.addView(galleryLinks.get(i));
