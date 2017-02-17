@@ -160,7 +160,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void viewVideoFeaturedLink(View v) {
-        if (appData.getVideoData().size() == 0) {
+       if (appData.getVideoData().size() == 0) {
             new AlertDialog.Builder(Home.this)
                     .setTitle(getString(R.string.server_connection_error_title))
                     .setMessage(getString(R.string.server_connection_error))

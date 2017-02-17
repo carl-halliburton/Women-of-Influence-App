@@ -43,8 +43,8 @@
 
     //buttons
     <string name="fb_btn_submit">Submit</string>
-    <string name="hm_btn_contact_us">Contact Us:</string>
-    <string name="hm_feature_video_aut_text">Feature Video:</string>
+    <string name="hm_btn_contact_us">Contact Us</string>
+    <string name="hm_feature_video_aut_text">Feature Video</string>
 
     //button descriptions
     <string name="desc_btn_feature_video">Opens the most recent video to be uploaded</string>

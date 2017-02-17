@@ -89,6 +89,7 @@
             android:textSize="@dimen/btn_text_size"
             android:typeface="normal"
             android:textStyle="bold"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:background="@drawable/background_for_buttons" />

@@ -26,11 +26,13 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/sub_title"
-            android:textSize="@dimen/title_text_size"
+            android:textSize="@dimen/title_text_size_xlarge"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginTop="@dimen/activity_titles_marginTop"
-            android:layout_marginBottom="@dimen/activity_titles_marginBottom" />
+            android:layout_marginBottom="@dimen/activity_titles_marginBottom"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="200dp" />
 
         <TextView
             android:id="@+id/textBlurb"
@@ -38,9 +40,9 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/blurb"
-            android:textSize="@dimen/description_text_size"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:textSize="@dimen/description_text_size_xlarge"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"/>
 
         <Button
             android:id="@+id/btnFeatureVideo"
@@ -50,8 +52,10 @@
             android:text="@string/hm_feature_video_aut_text"
             android:onClick="viewVideoFeaturedLink"
             android:scaleType="fitXY"
-            android:textSize="@dimen/btn_feature_vid_text_size"
-            android:layout_marginTop="15dp"
+            android:textSize="@dimen/btn_feature_vid_text_size_xlarge"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
             android:gravity="center"
             android:textStyle="bold"
             android:paddingTop="8dp"
@@ -71,27 +75,31 @@
             android:orientation="vertical"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
-            android:paddingLeft="3dp"
-            android:paddingRight="3dp"
+            android:layout_marginLeft="135dp"
+            android:layout_marginRight="135dp"
+            android:layout_marginTop="110dp"
             android:background="@drawable/background_border">
 
             <Button
                 android:id="@+id/btnVideoGallery"
                 android:contentDescription="@string/desc_btn_video_gallery"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title_activity_video_gallery"
                 android:onClick="videoGalleryButtonOnClick"
-                android:textSize="@dimen/btn_text_size"
+                android:textSize="@dimen/btn_text_size_xlarge"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:layout_gravity="center"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginRight="110dp"
                 android:background="@drawable/background_for_buttons"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
 
             <TextView
                 android:id="@+id/txtContactText"
@@ -100,26 +108,34 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="@string/hm_feedback_text"
                 android:textStyle="italic"
-                android:textSize="@dimen/description_text_size"
+                android:textSize="@dimen/description_text_size_xlarge"
+                android:paddingRight="40dp"
+                android:paddingLeft="40dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:layout_gravity="center" />
 
             <Button
                 android:id="@+id/btnContactUs"
                 android:contentDescription="@string/desc_btn_contact_us"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/hm_btn_contact_us"
                 android:onClick="feedbackButtonOnClick"
-                android:textSize="@dimen/btn_text_size"
+                android:textSize="@dimen/btn_text_size_xlarge"
+                android:gravity="center"
                 android:layout_gravity="center"
                 android:typeface="normal"
                 android:textStyle="bold"
+                android:layout_marginLeft="110dp"
+                android:layout_marginRight="110dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/background_for_buttons"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"/>
+                android:paddingTop="13dp"
+                android:paddingBottom="13dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
 
         </LinearLayout>
     </LinearLayout>
