@@ -76,6 +76,13 @@
                     app:srcCompat="@drawable/ic_action_copy" />
             </LinearLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/ruled_line"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp" />
+
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
@@ -100,10 +107,10 @@
                         android:clickable="true"
                         android:contentDescription="@string/desc_share_email"
                         android:onClick="onClick"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:paddingLeft="@dimen/padding_left"
-                        android:paddingRight="@dimen/padding_right"
-                        android:paddingStart="@dimen/padding_start"
+                        android:paddingLeft="@dimen/padding_left_first_btn"
+                        android:paddingStart="@dimen/padding_left_first_btn"
+                        android:paddingRight="@dimen/padding_right_end"
+                        android:paddingEnd="@dimen/padding_right_end"
                         android:src="@mipmap/ic_email_share" />
 
                     <ImageButton
@@ -114,10 +121,10 @@
                         android:clickable="true"
                         android:contentDescription="@string/desc_share_facebook"
                         android:onClick="onClick"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:paddingLeft="@dimen/padding_left"
-                        android:paddingRight="@dimen/padding_right"
-                        android:paddingStart="@dimen/padding_start"
+                        android:paddingLeft="@dimen/padding_left_start"
+                        android:paddingStart="@dimen/padding_left_start"
+                        android:paddingRight="@dimen/padding_right_end"
+                        android:paddingEnd="@dimen/padding_right_end"
                         android:src="@mipmap/ic_facebook_share" />
 
                     <ImageButton
@@ -128,10 +135,10 @@
                         android:clickable="true"
                         android:contentDescription="@string/desc_share_google_plus"
                         android:onClick="onClick"
-                        android:paddingEnd="@dimen/padding_end"
-                        android:paddingLeft="@dimen/padding_left"
-                        android:paddingRight="@dimen/padding_right"
-                        android:paddingStart="@dimen/padding_start"
+                        android:paddingLeft="@dimen/padding_left_start"
+                        android:paddingStart="@dimen/padding_left_start"
+                        android:paddingRight="@dimen/padding_right_end"
+                        android:paddingEnd="@dimen/padding_right_end"
                         android:src="@mipmap/ic_google_plus_share" />
 
                 </GridLayout>

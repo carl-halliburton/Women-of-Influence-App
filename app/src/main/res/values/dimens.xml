@@ -25,9 +25,9 @@
     <dimen name="activity_titles_marginBottom">5dp</dimen>
 
     <!--Video share buttons padding-->
-    <dimen name="padding_left">5dp</dimen>
-    <dimen name="padding_right">5dp</dimen>
-    <dimen name="padding_start">5dp</dimen>
-    <dimen name="padding_end">5dp</dimen>
+    <dimen name="padding_left_first_btn">10dp</dimen>
+    <dimen name="padding_left_start">5dp</dimen>
+    <dimen name="padding_right_end">5dp</dimen>
+
     <dimen name="fab_margin">16dp</dimen>
 </resources>
