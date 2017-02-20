@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/desc_btn_copy"
-                    android:onClick="onClick"
+                    android:onClick="shareOnClick"
                     app:srcCompat="@drawable/ic_action_copy" />
             </LinearLayout>
 
@@ -107,7 +107,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:contentDescription="@string/desc_share_email"
-                        android:onClick="onClick"
+                        android:onClick="shareOnClick"
                         android:paddingLeft="@dimen/padding_left_first_btn"
                         android:paddingStart="@dimen/padding_left_first_btn"
                         android:paddingRight="@dimen/padding_right_end"
@@ -121,7 +121,7 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:contentDescription="@string/desc_share_facebook"
-                        android:onClick="onClick"
+                        android:onClick="shareOnClick"
                         android:paddingLeft="@dimen/padding_left_start"
                         android:paddingStart="@dimen/padding_left_start"
                         android:paddingRight="@dimen/padding_right_end"
@@ -135,16 +135,29 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:contentDescription="@string/desc_share_google_plus"
-                        android:onClick="onClick"
+                        android:onClick="shareOnClick"
                         android:paddingLeft="@dimen/padding_left_start"
                         android:paddingStart="@dimen/padding_left_start"
                         android:paddingRight="@dimen/padding_right_end"
                         android:paddingEnd="@dimen/padding_right_end"
                         android:src="@mipmap/ic_google_plus_share" />
 
+                    <ImageButton
+                        android:id="@+id/shareTwitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_google_plus"
+                        android:onClick="shareOnClick"
+                        android:paddingLeft="@dimen/padding_left_start"
+                        android:paddingStart="@dimen/padding_left_start"
+                        android:paddingRight="@dimen/padding_right_end"
+                        android:paddingEnd="@dimen/padding_right_end"
+                        android:src="@mipmap/ic_twitter_share" />
+
                 </GridLayout>
             </HorizontalScrollView>
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>

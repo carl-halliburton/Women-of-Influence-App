@@ -77,7 +77,6 @@ public class ViewVideo extends AppCompatActivity {
 
         share = new ShareVideo(this);
         share = new ShareVideo(this);
-        share.facebookSDKInitialize();
         shareDialogFB = new ShareDialog(this);
 
 
@@ -375,7 +374,7 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
-    public void onClick(View v) {
+    public void shareOnClick(View v) {
         switch (v.getId()) {
             case R.id.copyBtn:
                 share.copyLink(setUpSharingLink());
@@ -400,6 +399,9 @@ public class ViewVideo extends AppCompatActivity {
                 startActivityForResult(shareIntent, 0);
                 //share.shareGooglePlus(setUpSharingLink(), videoData.getName());
                 break;
+
+            case R.id.shareTwitter:
+                share.shareWithTwitter(setUpSharingLink(), shareDialogFB, videoData.getName());
         }
     }
 

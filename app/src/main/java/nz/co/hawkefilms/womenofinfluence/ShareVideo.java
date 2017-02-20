@@ -58,17 +58,11 @@ public class ShareVideo
         }
     }
 
-    protected void facebookSDKInitialize() {
+    public void shareGooglePlus(String link, String videoTitle) {
 
-        CallbackManager callbackManager;
-
-        FacebookSdk.sdkInitialize(curContext);
-
-        callbackManager = CallbackManager.Factory.create();
     }
 
-
-    public void shareGooglePlus(String link, String videoTitle) {
+    public void shareWithTwitter(String link, ShareDialog facebookShareDialog, String videoTitle) {
 
     }
 }
