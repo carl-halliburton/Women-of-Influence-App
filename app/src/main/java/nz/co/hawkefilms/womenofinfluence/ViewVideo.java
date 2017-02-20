@@ -387,7 +387,7 @@ public class ViewVideo extends AppCompatActivity {
                 share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
-            //case R.id.shareMessanger:
+            //case R.id.shareFacebookMessenger:
                 //break;
 
             case R.id.shareGooglePlus:
@@ -404,7 +404,8 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareTwitter:
-                share.shareWithTwitter(setUpSharingLink(), videoData.getName());
+                //share.shareWithTwitter(setUpSharingLink(), videoData.getName());
+                break;
         }
     }
 

@@ -155,6 +155,18 @@
                         android:paddingEnd="@dimen/padding_right_end"
                         android:src="@mipmap/ic_twitter_share" />
 
+                    <include
+                        android:id="@+id/shareFacebookMessenger"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/desc_share_google_plus"
+                        android:onClick="shareOnClick"
+                        android:paddingLeft="@dimen/padding_left_start"
+                        android:paddingStart="@dimen/padding_left_start"
+                        android:paddingRight="@dimen/padding_right_end"
+                        android:paddingEnd="@dimen/padding_right_end"
+                        layout="@layout/messenger_button_send_blue_round" />
+
                 </GridLayout>
             </HorizontalScrollView>
         </LinearLayout>
