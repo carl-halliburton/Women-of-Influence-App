@@ -387,6 +387,9 @@ public class ViewVideo extends AppCompatActivity {
                 share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
+            //case R.id.shareMessanger:
+                //break;
+
             case R.id.shareGooglePlus:
                 Intent shareIntent = new PlusShare.Builder(this)
                         .setText("Ascend - Woman of Influence Video - " + videoData.getName())
@@ -401,7 +404,7 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareTwitter:
-                share.shareWithTwitter(setUpSharingLink(), shareDialogFB, videoData.getName());
+                share.shareWithTwitter(setUpSharingLink(), videoData.getName());
         }
     }
 

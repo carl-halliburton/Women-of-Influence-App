@@ -13,10 +13,13 @@ import android.os.Parcelable;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
+import com.facebook.FacebookDialog;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.plus.PlusShare;
+
+import static android.R.attr.description;
 
 /**
  * Created by carl on 31/10/2016.
@@ -58,11 +61,15 @@ public class ShareVideo
         }
     }
 
+    public void shareFacebookMessanger(String link, String videoTitle) {
+
+    }
+
     public void shareGooglePlus(String link, String videoTitle) {
 
     }
 
-    public void shareWithTwitter(String link, ShareDialog facebookShareDialog, String videoTitle) {
+    public void shareWithTwitter(String link, String videoTitle) {
 
     }
 }
