@@ -403,9 +403,9 @@ public class ViewVideo extends AppCompatActivity {
                 //share.shareGooglePlus(setUpSharingLink(), videoData.getName());
                 break;
 
-            case R.id.shareTwitter:
+            //case R.id.shareTwitter:
                 //share.shareWithTwitter(setUpSharingLink(), videoData.getName());
-                break;
+                //break;
         }
     }
 
