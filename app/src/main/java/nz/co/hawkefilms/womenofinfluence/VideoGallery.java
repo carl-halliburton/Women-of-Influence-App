@@ -84,6 +84,7 @@ public class VideoGallery extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.menu_video_gallery);
         item.setVisible(false);
 
+//-------------------------------------------------------------------------------------------------
         //the search functionality is out of scope for the moment,
         // it will be re-enabled in a future update
         menu.findItem(R.id.search).setVisible(false);
@@ -140,7 +141,7 @@ public class VideoGallery extends AppCompatActivity {
                 return true;
             }
         });
-
+//-------------------------------------------------------------------------------------------------
         return true;
     }
 

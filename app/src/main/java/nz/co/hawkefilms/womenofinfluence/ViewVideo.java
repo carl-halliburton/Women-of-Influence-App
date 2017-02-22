@@ -168,6 +168,12 @@ public class ViewVideo extends AppCompatActivity {
             inm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        videoView.resume();
+    }
+
 
     // Save UI state changes to the savedInstanceState.
     // This bundle will be passed to onCreate if the process is
@@ -191,6 +197,7 @@ public class ViewVideo extends AppCompatActivity {
         item = menu.findItem(R.id.menu_refresh);
         item.setVisible(false);
 
+//-------------------------------------------------------------------------------------------------
         //the search functionality is out of scope for the moment,
         // it will be re-enabled in a future update
         menu.findItem(R.id.search).setVisible(false);
@@ -222,6 +229,7 @@ public class ViewVideo extends AppCompatActivity {
             }
         });
 
+        //NOTE the search functionality is currently  out of scope
         //customise the search view
         int searchImgId = getResources().getIdentifier("android:id/search_button", null, null);
         ImageView v = (ImageView) searchView.findViewById(searchImgId);
@@ -246,7 +254,7 @@ public class ViewVideo extends AppCompatActivity {
                 return true;
             }
         });
-
+//-------------------------------------------------------------------------------------------------
         return true;
     }
 
@@ -352,6 +360,8 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
+
+
     //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
@@ -386,6 +396,7 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareFacebook:
+                pauseVideo();
                 share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
@@ -395,6 +406,7 @@ public class ViewVideo extends AppCompatActivity {
                 break;
 
             case R.id.shareGooglePlus:
+                pauseVideo();
                 Intent shareIntent = new PlusShare.Builder(this)
                         .setText("Ascend - Woman of Influence Video - " + videoData.getName())
                         .setType("video/mp4")
@@ -409,6 +421,11 @@ public class ViewVideo extends AppCompatActivity {
 
             case R.id.shareTwitter:
                 share.shareWithTwitter(setUpSharingLink(), videoData.getName());
+                break;
+
+            case R.id.shareHangouts:
+                pauseVideo();
+                share.shareWithHangouts(setUpSharingLink(), videoData.getName());
                 break;
         }
     }
@@ -432,5 +449,9 @@ public class ViewVideo extends AppCompatActivity {
         return videoData.getSharingUrl();
     }
 
+    public void pauseVideo() {
+        videoView.requestFocus();
+        videoView.pause();
+    }
 
 }

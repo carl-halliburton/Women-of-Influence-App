@@ -73,6 +73,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/desc_btn_copy"
+                    android:layout_marginRight="110dp"
+                    android:layout_marginEnd="110dp"
                     android:onClick="shareOnClick"
                     app:srcCompat="@drawable/ic_action_copy" />
             </LinearLayout>
@@ -155,19 +157,19 @@
                         android:layout_marginEnd="@dimen/margin_right_end"
                         android:src="@mipmap/ic_google_plus_share" />
 
-                    <include
-                        android:id="@+id/shareFacebookMessenger"
+                    <ImageButton
+                        android:id="@+id/shareHangouts"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:clickable="true"
                         android:contentDescription="@string/desc_share_google_plus"
-                        android:background="?attr/selectableItemBackgroundBorderless"
                         android:onClick="shareOnClick"
                         android:layout_marginLeft="@dimen/margin_left_start"
                         android:layout_marginStart="@dimen/margin_left_start"
                         android:layout_marginRight="@dimen/margin_right_end"
                         android:layout_marginEnd="@dimen/margin_right_end"
-                        layout="@layout/messenger_button_send_blue_round" />
+                        android:src="@mipmap/ic_hangout_share" />
 
                 </GridLayout>
             </HorizontalScrollView>

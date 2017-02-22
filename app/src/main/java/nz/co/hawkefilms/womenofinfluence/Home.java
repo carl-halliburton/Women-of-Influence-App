@@ -73,6 +73,7 @@ public class Home extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
 
+//-------------------------------------------------------------------------------------------------
         // Associate searchable configuration with the SearchView
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -128,7 +129,7 @@ public class Home extends AppCompatActivity {
                 return true;
             }
         });
-
+//-------------------------------------------------------------------------------------------------
         return true;
     }
 
@@ -162,7 +163,7 @@ public class Home extends AppCompatActivity {
 
     public void viewVideoFeaturedLink(View v) {
        if (appData.getVideoData().size() == 0) {
-            new AlertDialog.Builder(Home.this)
+           new AlertDialog.Builder(Home.this)
                     .setTitle(getString(R.string.server_connection_error_title))
                     .setMessage(getString(R.string.server_connection_error))
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

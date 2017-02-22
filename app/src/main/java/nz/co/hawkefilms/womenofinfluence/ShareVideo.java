@@ -55,15 +55,6 @@ class ShareVideo
     }
 
     void shareGooglePlus(String link, String videoTitle) {
-       /* Intent shareIntent = new PlusShare.Builder(curContext)
-                .setText("Ascend - Woman of Influence Video - " + videoTitle)
-                .setType("video/mp4")
-                .setContentDeepLinkId("testID",
-                        "Test Title",
-                        "Test Description",
-                        Uri.parse(link))
-                .getIntent();
-        curContext.startActivityForResult(shareIntent, 0);*/
     }
 
     void shareWithTwitter(String link, String videoTitle) {
@@ -71,5 +62,14 @@ class ShareVideo
                 + "Ascend video - " + videoTitle + ": " + link;
         Uri uri = Uri.parse(tweetUrl);
         curContext.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
+
+    void shareWithHangouts(String link, String videoTitle) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video; " + videoTitle + " " + link);
+        sendIntent.setType("text/plain");
+        sendIntent.setPackage("com.google.android.talk");
+        curContext.startActivity(sendIntent);
     }
 }
