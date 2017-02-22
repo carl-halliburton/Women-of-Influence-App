@@ -7,7 +7,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -29,11 +28,14 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
+
+import com.facebook.share.widget.SendButton;
+import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.plus.PlusShare;
 import com.google.firebase.analytics.FirebaseAnalytics;
-
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -387,8 +389,10 @@ public class ViewVideo extends AppCompatActivity {
                 share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
-            //case R.id.shareFacebookMessenger:
-                //break;
+            case R.id.messenger_send_button:
+                //share.shareFacebookMessanger(setUpSharingLink(), videoData.getName());
+                Toast.makeText(getApplicationContext(), "FB messanger", Toast.LENGTH_LONG).show();
+                break;
 
             case R.id.shareGooglePlus:
                 Intent shareIntent = new PlusShare.Builder(this)
@@ -403,9 +407,9 @@ public class ViewVideo extends AppCompatActivity {
                 //share.shareGooglePlus(setUpSharingLink(), videoData.getName());
                 break;
 
-            //case R.id.shareTwitter:
-                //share.shareWithTwitter(setUpSharingLink(), videoData.getName());
-                //break;
+            case R.id.shareTwitter:
+                share.shareWithTwitter(setUpSharingLink(), videoData.getName());
+                break;
         }
     }
 
