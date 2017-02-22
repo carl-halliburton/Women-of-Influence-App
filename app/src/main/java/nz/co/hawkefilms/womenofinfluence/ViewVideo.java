@@ -400,11 +400,6 @@ public class ViewVideo extends AppCompatActivity {
                 share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
                 break;
 
-            case R.id.messenger_send_button:
-                //share.shareFacebookMessanger(setUpSharingLink(), videoData.getName());
-                Toast.makeText(getApplicationContext(), "FB messanger", Toast.LENGTH_LONG).show();
-                break;
-
             case R.id.shareGooglePlus:
                 pauseVideo();
                 Intent shareIntent = new PlusShare.Builder(this)
@@ -426,6 +421,11 @@ public class ViewVideo extends AppCompatActivity {
             case R.id.shareHangouts:
                 pauseVideo();
                 share.shareWithHangouts(setUpSharingLink(), videoData.getName());
+                break;
+
+            case R.id.shareWhatsApp:
+                pauseVideo();
+                share.shareWithWhatsApp(setUpSharingLink(), videoData.getName());
                 break;
         }
     }

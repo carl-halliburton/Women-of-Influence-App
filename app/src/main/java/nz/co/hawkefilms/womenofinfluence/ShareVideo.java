@@ -50,10 +50,6 @@ class ShareVideo
         }
     }
 
-    void shareFacebookMessanger(String link, String videoTitle) {
-
-    }
-
     void shareGooglePlus(String link, String videoTitle) {
     }
 
@@ -71,5 +67,17 @@ class ShareVideo
         sendIntent.setType("text/plain");
         sendIntent.setPackage("com.google.android.talk");
         curContext.startActivity(sendIntent);
+    }
+
+    void shareWithWhatsApp(String link, String videoTitle) {
+        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+        whatsappIntent.setType("text/plain");
+        whatsappIntent.setPackage("com.whatsapp");
+        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video: " + videoTitle + " " + link);
+        try {
+            curContext.startActivity(whatsappIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(curContext, "WhatsApp not installed", Toast.LENGTH_LONG).show();
+        }
     }
 }
