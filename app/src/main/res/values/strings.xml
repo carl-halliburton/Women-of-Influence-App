@@ -64,4 +64,12 @@
     <string name="search_dialog">Search Results for</string>
     <string name="msg_splash_loading">Loading</string>
 
+    <!--Sare button label-->
+    <string name="label_email_share">email</string>
+    <string name="label_facebook_share">facebook</string>
+    <string name="label_twitter_share">twitter</string>
+    <string name="label_google_plus_share">google+</string>
+    <string name="label_hangouts_share">hangouts</string>
+    <string name="label_whatsapp_share">whatsApp</string>
+
 </resources>

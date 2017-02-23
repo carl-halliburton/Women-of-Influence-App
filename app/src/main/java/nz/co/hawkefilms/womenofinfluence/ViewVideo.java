@@ -7,6 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -24,6 +25,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SearchView;
@@ -72,7 +74,7 @@ public class ViewVideo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
-
+        isInstalled();
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
         refreshed = false;
@@ -454,4 +456,31 @@ public class ViewVideo extends AppCompatActivity {
         videoView.pause();
     }
 
+    //Checks if Hangouts and WhatsApp are Installed
+    //hides share icon if not
+    public void isInstalled() {
+        if (appInstalledOrNot("com.whatsapp")) {
+            Toast.makeText(this, "WhatsApp not Found", Toast.LENGTH_LONG).show();
+            ImageButton imgWhatsApp = (ImageButton) findViewById(R.id.shareWhatsApp);
+            imgWhatsApp.setVisibility(View.INVISIBLE);
+        }
+
+        if (appInstalledOrNot("com.hangouts")) {
+            ImageButton imgHangouts = (ImageButton) findViewById(R.id.shareHangouts);
+            imgHangouts.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private boolean appInstalledOrNot(String uri) {
+        PackageManager pm = getPackageManager();
+        boolean app_installed;
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            app_installed = false;
+        }
+        return app_installed;
+    }
 }

@@ -66,7 +66,11 @@ class ShareVideo
         sendIntent.putExtra(Intent.EXTRA_TEXT, "Ascend Video; " + videoTitle + " " + link);
         sendIntent.setType("text/plain");
         sendIntent.setPackage("com.google.android.talk");
-        curContext.startActivity(sendIntent);
+        try {
+            curContext.startActivity(sendIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(curContext, "Hangouts not installed", Toast.LENGTH_LONG).show();
+        }
     }
 
     void shareWithWhatsApp(String link, String videoTitle) {

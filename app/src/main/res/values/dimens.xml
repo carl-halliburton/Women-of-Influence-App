@@ -28,10 +28,28 @@
     <dimen name="activity_titles_marginTop">4dp</dimen>
     <dimen name="activity_titles_marginBottom">5dp</dimen>
 
-    <!--Video share buttons padding-->
+    <!--Video share buttons margins normal layout-->
     <dimen name="margin_left_first_btn">20dp</dimen>
-    <dimen name="margin_left_start">5dp</dimen>
-    <dimen name="margin_right_end">5dp</dimen>
+    <dimen name="margin_right_last_btn">20dp</dimen>
+    <dimen name="margin_left_start">10dp</dimen>
+    <dimen name="margin_right_end">10dp</dimen>
+
+    <!--Video share buttons margins sw600dp layout-->
+    <dimen name="margin_left_first_btn_sw600dp">30dp</dimen>
+    <dimen name="margin_right_last_btn_sw600dp">30dp</dimen>
+    <dimen name="margin_left_start_sw600dp">15dp</dimen>
+    <dimen name="margin_right_end_sw600dp">15dp</dimen>
+
+    <!--Video share buttons margins sw720dp layout-->
+    <dimen name="margin_left_first_btn_sw720dp">30dp</dimen>
+    <dimen name="margin_right_last_btn_sw720dp">30dp</dimen>
+    <dimen name="margin_left_start_sw720dp">15dp</dimen>
+    <dimen name="margin_right_end_sw720dp">15dp</dimen>
+
+    <!--label text size-->
+    <dimen name="share_button_label_text_size">13sp</dimen>
+    <dimen name="share_button_label_text_size_sw600dp">16sp</dimen>
+    <dimen name="share_button_label_text_size_sw720dp">16sp</dimen>
 
     <dimen name="fab_margin">16dp</dimen>
 </resources>
