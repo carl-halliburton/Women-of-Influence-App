@@ -459,15 +459,19 @@ public class ViewVideo extends AppCompatActivity {
     //Checks if Hangouts and WhatsApp are Installed
     //hides share icon if not
     public void isInstalled() {
-        if (appInstalledOrNot("com.whatsapp")) {
+        if (!appInstalledOrNot("com.whatsapp")) {
             Toast.makeText(this, "WhatsApp not Found", Toast.LENGTH_LONG).show();
             ImageButton imgWhatsApp = (ImageButton) findViewById(R.id.shareWhatsApp);
             imgWhatsApp.setVisibility(View.INVISIBLE);
+            TextView textWhatsApp = (TextView) findViewById(R.id.txtShareWhatApp);
+            textWhatsApp.setVisibility(View.INVISIBLE);
         }
 
-        if (appInstalledOrNot("com.hangouts")) {
+        if (!appInstalledOrNot("com.google.android.talk")) {
             ImageButton imgHangouts = (ImageButton) findViewById(R.id.shareHangouts);
             imgHangouts.setVisibility(View.INVISIBLE);
+            TextView textHangouts = (TextView) findViewById(R.id.txtShareHangouts);
+            textHangouts.setVisibility(View.INVISIBLE);
         }
     }
 
