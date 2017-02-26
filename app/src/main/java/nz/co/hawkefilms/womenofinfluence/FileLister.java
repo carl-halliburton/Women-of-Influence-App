@@ -80,15 +80,15 @@ public class FileLister extends AsyncTask {
                     folderContents = resultsList;
                 }
             }
-            Collections.reverse(folderContents);
 
             //create temporary links for the next few files in the folder
             for (int i = 0; i < LOADAMOUNT; i++) {
                 //to store temporary urls into a list
                 if (videosLoaded < folderContents.size()) {
-                    videoInfoList.add(new VideoData(folderContents.get(videosLoaded).getName(), dbxClient.files()
-                            .getTemporaryLink(folderContents.get(videosLoaded).getPathLower()).getLink(),
-                            folderContents.get(videosLoaded).getPathLower()));
+                    int entryToLoad = folderContents.size() - 1 - videosLoaded; //load in reverse
+                    videoInfoList.add(new VideoData(folderContents.get(entryToLoad).getName(), dbxClient.files()
+                            .getTemporaryLink(folderContents.get(entryToLoad).getPathLower()).getLink(),
+                            folderContents.get(entryToLoad).getPathLower()));
                     videosLoaded++;
                     remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / (float) LOADAMOUNT);
                 }
