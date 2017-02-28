@@ -51,5 +51,7 @@
     <dimen name="share_button_label_text_size_sw600dp">16sp</dimen>
     <dimen name="share_button_label_text_size_sw720dp">19sp</dimen>
 
+    <dimen name="video_view_height">500dp</dimen>
+
     <dimen name="fab_margin">16dp</dimen>
 </resources>

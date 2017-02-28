@@ -56,7 +56,7 @@ public class ViewVideo extends AppCompatActivity {
     private VideoView videoView;
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
-    private boolean portraitView;
+    private boolean orientation;
     private TextView sharingUrl;
     private ShareDialog shareDialogFB;
     private FileSharer fileSharer;
@@ -65,16 +65,17 @@ public class ViewVideo extends AppCompatActivity {
     //Video Stats Analytics
     private FirebaseAnalytics mFirebaseAnalytics;
     private SearchView searchView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_video);
         setTitle(R.string.app_name);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_home_black);
-        isInstalled();
+
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
         refreshed = false;
@@ -82,6 +83,7 @@ public class ViewVideo extends AppCompatActivity {
         share = new ShareVideo(this);
         share = new ShareVideo(this);
         shareDialogFB = new ShareDialog(this);
+        orientation = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
 
         Bundle extras = getIntent().getExtras();
@@ -114,7 +116,7 @@ public class ViewVideo extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Reload ViewVideo
                                     dialogIsOpen = false;
-                                    if (portraitView) {
+                                    if (orientation) {
                                         sharingUrl = (TextView) findViewById(R.id.shareLink);
                                         sharingUrl.setText(setUpSharingLink());
                                     }
@@ -136,20 +138,18 @@ public class ViewVideo extends AppCompatActivity {
             }
         });
 
-        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN),
-                ViewVideo.this, "");
-
-        portraitView = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+        appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this, "");
 
         TextView videoTitle;
         //Check if in portrait or landscape
-        if (portraitView) {
+        if (orientation) { //portrait
             videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
             videoTitle.setText(videoData.getName());
             toolbar.setVisibility(View.VISIBLE);
             sharingUrl = (TextView) findViewById(R.id.shareLink);
             sharingUrl.setText(setUpSharingLink());
-        } else {
+            isInstalled();
+        } else { //landscape
             View decorView = getWindow().getDecorView();
 
             //hide toolbar and status bar
@@ -287,7 +287,7 @@ public class ViewVideo extends AppCompatActivity {
             MediaController mediaController;
 
             //define media controller behaviour based on screen orientation
-            if (portraitView) {
+            if (orientation) {
                 mediaController = new MediaController(this) {
                     public boolean dispatchKeyEvent(KeyEvent event) {
                         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction()
@@ -331,7 +331,7 @@ public class ViewVideo extends AppCompatActivity {
                     }
 
                     //Simulates the onTouchEvent to show the Media controller
-                    if (portraitView) {
+                    if (orientation) {
                         videoView.dispatchTouchEvent(MotionEvent.obtain(
                                 SystemClock.uptimeMillis(),
                                 SystemClock.uptimeMillis() + 100,
@@ -460,7 +460,6 @@ public class ViewVideo extends AppCompatActivity {
     //hides share icon if not
     public void isInstalled() {
         if (!appInstalledOrNot("com.whatsapp")) {
-            Toast.makeText(this, "WhatsApp not Found", Toast.LENGTH_LONG).show();
             ImageButton imgWhatsApp = (ImageButton) findViewById(R.id.shareWhatsApp);
             imgWhatsApp.setVisibility(View.INVISIBLE);
             TextView textWhatsApp = (TextView) findViewById(R.id.txtShareWhatApp);
