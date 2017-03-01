@@ -15,254 +15,267 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/videoViewArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:background="@color/black"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:gravity="center_vertical">
 
             <VideoView
                 android:id="@+id/videoView"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/video_view_height" />
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/txtVideoTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text=""
-            android:textSize="@dimen/video_title_text_size"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2dp"
-            android:background="@color/ruled_line"
-            android:layout_marginTop="15dp" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/video_view_height"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:foregroundGravity="center" />
+        </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/portraitItems"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/shareSection"
+                android:id="@+id/txtVideoTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="@string/sharing_title"
-                android:textSize="@dimen/subTitle_text_size" />
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/video_title_text_size" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/ruled_line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/shareLink"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="@string/Sharing_Error_Text"
-                    android:textSize="@dimen/fb_email_text_size" />
-
-                <ImageButton
-                    android:id="@+id/copyBtn"
-                    style="@style/AppTheme"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/desc_btn_copy"
-                    android:onClick="shareOnClick"
-                    app:srcCompat="@drawable/ic_action_copy" />
-            </LinearLayout>
-
-            <HorizontalScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@+id/GridLayoutShare"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/shareSection"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="horizontal"
-                    android:columnCount="6"
-                    android:rowCount="2"
-                    android:scrollbars="horizontal"
-                    tools:context=".GridXMLActivity">
+                    android:gravity="center"
+                    android:text="@string/sharing_title"
+                    android:textSize="@dimen/subTitle_text_size" />
 
-                    <ImageButton
-                        android:id="@+id/shareEmail"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/desc_share_email"
-                        android:onClick="shareOnClick"
-                        android:layout_column="0"
-                        android:layout_row="0"
-                        android:layout_marginLeft="@dimen/margin_left_first_btn"
-                        android:layout_marginStart="@dimen/margin_left_first_btn"
-                        android:layout_marginRight="@dimen/margin_right_end"
-                        android:layout_marginEnd="@dimen/margin_right_end"
-                        android:src="@mipmap/ic_email_share" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txtShareEmail"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/shareLink"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_email_share"
-                        android:textSize="@dimen/share_button_label_text_size"
-                        android:layout_column="0"
-                        android:layout_row="1"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="@string/Sharing_Error_Text"
+                        android:textSize="@dimen/fb_email_text_size" />
 
                     <ImageButton
-                        android:id="@+id/shareFacebook"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/desc_share_facebook"
-                        android:onClick="shareOnClick"
-                        android:layout_column="1"
-                        android:layout_row="0"
-                        android:layout_marginLeft="@dimen/margin_left_start"
-                        android:layout_marginStart="@dimen/margin_left_start"
-                        android:layout_marginRight="@dimen/margin_right_end"
-                        android:layout_marginEnd="@dimen/margin_right_end"
-                        android:src="@mipmap/ic_facebook_share" />
-
-                    <TextView
-                        android:id="@+id/txtShareFacebook"
+                        android:id="@+id/copyBtn"
+                        style="@style/AppTheme"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_facebook_share"
-                        android:textSize="@dimen/share_button_label_text_size"
-                        android:layout_column="1"
-                        android:layout_row="1"
-                        android:layout_gravity="center_horizontal" />
-
-                    <ImageButton
-                        android:id="@+id/shareTwitter"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/desc_share_google_plus"
+                        android:contentDescription="@string/desc_btn_copy"
                         android:onClick="shareOnClick"
-                        android:layout_column="2"
-                        android:layout_row="0"
-                        android:layout_marginLeft="@dimen/margin_left_start"
-                        android:layout_marginStart="@dimen/margin_left_start"
-                        android:layout_marginRight="@dimen/margin_right_end"
-                        android:layout_marginEnd="@dimen/margin_right_end"
-                        android:src="@mipmap/ic_twitter_share" />
+                        app:srcCompat="@drawable/ic_action_copy" />
+                </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtShareTwitter"
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:id="@+id/GridLayoutShare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:text="@string/label_twitter_share"
-                        android:textSize="@dimen/share_button_label_text_size"
-                        android:layout_column="2"
-                        android:layout_row="1"
-                        android:layout_gravity="center_horizontal" />
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="10dp"
+                        android:columnCount="6"
+                        android:orientation="horizontal"
+                        android:rowCount="2"
+                        android:scrollbars="horizontal"
+                        tools:context=".GridXMLActivity">
 
-                    <ImageButton
-                        android:id="@+id/shareGooglePlus"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/desc_share_google_plus"
-                        android:onClick="shareOnClick"
-                        android:layout_column="3"
-                        android:layout_row="0"
-                        android:layout_marginLeft="@dimen/margin_left_start"
-                        android:layout_marginStart="@dimen/margin_left_start"
-                        android:layout_marginRight="@dimen/margin_right_end"
-                        android:layout_marginEnd="@dimen/margin_right_end"
-                        android:src="@mipmap/ic_google_plus_share" />
+                        <ImageButton
+                            android:id="@+id/shareEmail"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_column="0"
+                            android:layout_marginEnd="@dimen/margin_right_end"
+                            android:layout_marginLeft="@dimen/margin_left_first_btn"
+                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_marginStart="@dimen/margin_left_first_btn"
+                            android:layout_row="0"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/desc_share_email"
+                            android:onClick="shareOnClick"
+                            android:src="@mipmap/ic_email_share" />
 
-                    <TextView
-                        android:id="@+id/txtShareGooglePlus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_google_plus_share"
-                        android:textSize="@dimen/share_button_label_text_size"
-                        android:layout_column="3"
-                        android:layout_row="1"
-                        android:layout_gravity="center_horizontal" />
+                        <TextView
+                            android:id="@+id/txtShareEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_row="1"
+                            android:text="@string/label_email_share"
+                            android:textSize="@dimen/share_button_label_text_size" />
 
-                    <ImageButton
-                        android:id="@+id/shareHangouts"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/desc_share_google_plus"
-                        android:onClick="shareOnClick"
-                        android:layout_column="4"
-                        android:layout_row="0"
-                        android:layout_marginLeft="@dimen/margin_left_start"
-                        android:layout_marginStart="@dimen/margin_left_start"
-                        android:layout_marginRight="@dimen/margin_right_end"
-                        android:layout_marginEnd="@dimen/margin_right_end"
-                        android:src="@mipmap/ic_hangout_share" />
+                        <ImageButton
+                            android:id="@+id/shareFacebook"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_column="1"
+                            android:layout_marginEnd="@dimen/margin_right_end"
+                            android:layout_marginLeft="@dimen/margin_left_start"
+                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_marginStart="@dimen/margin_left_start"
+                            android:layout_row="0"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/desc_share_facebook"
+                            android:onClick="shareOnClick"
+                            android:src="@mipmap/ic_facebook_share" />
 
-                    <TextView
-                        android:id="@+id/txtShareHangouts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_hangouts_share"
-                        android:textSize="@dimen/share_button_label_text_size"
-                        android:layout_column="4"
-                        android:layout_row="1"
-                        android:layout_gravity="center_horizontal" />
+                        <TextView
+                            android:id="@+id/txtShareFacebook"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_row="1"
+                            android:text="@string/label_facebook_share"
+                            android:textSize="@dimen/share_button_label_text_size" />
 
-                    <ImageButton
-                        android:id="@+id/shareWhatsApp"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:clickable="true"
-                        android:contentDescription="@string/desc_share_google_plus"
-                        android:onClick="shareOnClick"
-                        android:layout_column="5"
-                        android:layout_row="0"
-                        android:layout_marginLeft="@dimen/margin_left_start"
-                        android:layout_marginStart="@dimen/margin_left_start"
-                        android:layout_marginRight="@dimen/margin_right_end"
-                        android:layout_marginEnd="@dimen/margin_right_last_btn"
-                        android:src="@mipmap/ic_share_whatsapp" />
+                        <ImageButton
+                            android:id="@+id/shareTwitter"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_column="2"
+                            android:layout_marginEnd="@dimen/margin_right_end"
+                            android:layout_marginLeft="@dimen/margin_left_start"
+                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_marginStart="@dimen/margin_left_start"
+                            android:layout_row="0"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/desc_share_google_plus"
+                            android:onClick="shareOnClick"
+                            android:src="@mipmap/ic_twitter_share" />
 
-                    <TextView
-                        android:id="@+id/txtShareWhatApp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/label_whatsapp_share"
-                        android:textSize="@dimen/share_button_label_text_size"
-                        android:layout_column="5"
-                        android:layout_row="1"
-                        android:layout_marginRight="@dimen/margin_right_end"
-                        android:layout_marginEnd="@dimen/margin_right_last_btn"
-                        android:layout_gravity="center_horizontal" />
-                </GridLayout>
-            </HorizontalScrollView>
+                        <TextView
+                            android:id="@+id/txtShareTwitter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_row="1"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:text="@string/label_twitter_share"
+                            android:textSize="@dimen/share_button_label_text_size" />
+
+                        <ImageButton
+                            android:id="@+id/shareGooglePlus"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_column="3"
+                            android:layout_marginEnd="@dimen/margin_right_end"
+                            android:layout_marginLeft="@dimen/margin_left_start"
+                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_marginStart="@dimen/margin_left_start"
+                            android:layout_row="0"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/desc_share_google_plus"
+                            android:onClick="shareOnClick"
+                            android:src="@mipmap/ic_google_plus_share" />
+
+                        <TextView
+                            android:id="@+id/txtShareGooglePlus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="3"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_row="1"
+                            android:text="@string/label_google_plus_share"
+                            android:textSize="@dimen/share_button_label_text_size" />
+
+                        <ImageButton
+                            android:id="@+id/shareHangouts"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_column="4"
+                            android:layout_marginEnd="@dimen/margin_right_end"
+                            android:layout_marginLeft="@dimen/margin_left_start"
+                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_marginStart="@dimen/margin_left_start"
+                            android:layout_row="0"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/desc_share_google_plus"
+                            android:onClick="shareOnClick"
+                            android:src="@mipmap/ic_hangout_share" />
+
+                        <TextView
+                            android:id="@+id/txtShareHangouts"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="4"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_row="1"
+                            android:text="@string/label_hangouts_share"
+                            android:textSize="@dimen/share_button_label_text_size" />
+
+                        <ImageButton
+                            android:id="@+id/shareWhatsApp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_column="5"
+                            android:layout_marginEnd="@dimen/margin_right_last_btn"
+                            android:layout_marginLeft="@dimen/margin_left_start"
+                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_marginStart="@dimen/margin_left_start"
+                            android:layout_row="0"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:clickable="true"
+                            android:contentDescription="@string/desc_share_google_plus"
+                            android:onClick="shareOnClick"
+                            android:src="@mipmap/ic_share_whatsapp" />
+
+                        <TextView
+                            android:id="@+id/txtShareWhatApp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="5"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginEnd="@dimen/margin_right_last_btn"
+                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_row="1"
+                            android:text="@string/label_whatsapp_share"
+                            android:textSize="@dimen/share_button_label_text_size" />
+                    </GridLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

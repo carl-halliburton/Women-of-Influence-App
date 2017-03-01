@@ -18,15 +18,19 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -56,7 +60,6 @@ public class ViewVideo extends AppCompatActivity {
     private VideoView videoView;
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
-    private boolean orientation;
     private TextView sharingUrl;
     private ShareDialog shareDialogFB;
     private FileSharer fileSharer;
@@ -66,6 +69,9 @@ public class ViewVideo extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private SearchView searchView;
     private Toolbar toolbar;
+
+    private LinearLayout portraitItems;
+    private boolean isPortrait;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +84,13 @@ public class ViewVideo extends AppCompatActivity {
 
         //vid view imp onCreate code
         videoView = (VideoView) findViewById(R.id.videoView);
+        portraitItems = (LinearLayout) findViewById(R.id.portraitItems);
         refreshed = false;
 
         share = new ShareVideo(this);
         share = new ShareVideo(this);
         shareDialogFB = new ShareDialog(this);
-        orientation = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+        isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
 
 
         Bundle extras = getIntent().getExtras();
@@ -116,7 +123,7 @@ public class ViewVideo extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Reload ViewVideo
                                     dialogIsOpen = false;
-                                    if (orientation) {
+                                    if (isPortrait) {
                                         sharingUrl = (TextView) findViewById(R.id.shareLink);
                                         sharingUrl.setText(setUpSharingLink());
                                     }
@@ -141,22 +148,15 @@ public class ViewVideo extends AppCompatActivity {
         appData = GlobalAppData.getInstance(getString(R.string.ACCESS_TOKEN), ViewVideo.this, "");
 
         TextView videoTitle;
-        //Check if in portrait or landscape
-        if (orientation) { //portrait
-            videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
-            videoTitle.setText(videoData.getName());
-            toolbar.setVisibility(View.VISIBLE);
-            sharingUrl = (TextView) findViewById(R.id.shareLink);
-            sharingUrl.setText(setUpSharingLink());
-            isInstalled();
-        } else { //landscape
-            View decorView = getWindow().getDecorView();
 
-            //hide toolbar and status bar
-            toolbar.setVisibility(View.GONE);
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
+        videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
+        videoTitle.setText(videoData.getName());
+        toolbar.setVisibility(View.VISIBLE);
+        sharingUrl = (TextView) findViewById(R.id.shareLink);
+        sharingUrl.setText(setUpSharingLink());
+        isInstalled();
+
+        setOrientation();
 
         PlayVideo();
     }
@@ -287,7 +287,7 @@ public class ViewVideo extends AppCompatActivity {
             MediaController mediaController;
 
             //define media controller behaviour based on screen orientation
-            if (orientation) {
+            if (isPortrait) {
                 mediaController = new MediaController(this) {
                     public boolean dispatchKeyEvent(KeyEvent event) {
                         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction()
@@ -331,7 +331,7 @@ public class ViewVideo extends AppCompatActivity {
                     }
 
                     //Simulates the onTouchEvent to show the Media controller
-                    if (orientation) {
+                    if (isPortrait) {
                         videoView.dispatchTouchEvent(MotionEvent.obtain(
                                 SystemClock.uptimeMillis(),
                                 SystemClock.uptimeMillis() + 100,
@@ -343,6 +343,7 @@ public class ViewVideo extends AppCompatActivity {
                         );
                     }
 
+                    //setOrientation();
                     progressDialog.dismiss();
                     videoView.start();
 
@@ -485,5 +486,66 @@ public class ViewVideo extends AppCompatActivity {
             app_installed = false;
         }
         return app_installed;
+    }
+
+    //Runs when screen orientation is changed.
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        setOrientation();
+    }
+
+    //sets the width, height and visibility of views depending on the orientation of the screen.
+    //Note that for videoView the params
+    public void setOrientation(){
+        LinearLayout videoViewArea = (LinearLayout) findViewById(R.id.videoViewArea);
+        isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+
+        View decorView = getWindow().getDecorView();
+
+        ViewGroup.LayoutParams videoParams = videoView.getLayoutParams();
+
+        ViewGroup.LayoutParams videoAreaParams = videoViewArea.getLayoutParams();
+
+        TextView videoTitle;
+        //Check if in portrait or landscape
+        if (isPortrait) {
+            //in portrait view
+            videoTitle = (TextView) findViewById(R.id.txtVideoTitle);
+            videoTitle.setText(videoData.getName());
+            toolbar.setVisibility(View.VISIBLE);
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            portraitItems.setVisibility(View.VISIBLE);
+
+            int videoviewHeight = (int) (getResources().getDimension(R.dimen.video_view_height)
+                    / getResources().getDisplayMetrics().density);
+
+            videoParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                    videoviewHeight, getResources().getDisplayMetrics());
+            videoAreaParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+            videoView.setLayoutParams(videoParams);
+            videoViewArea.setLayoutParams(videoAreaParams);
+        } else {
+            //in landscape view
+            //hide toolbar and status bar
+            toolbar.setVisibility(View.GONE);
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            portraitItems.setVisibility(View.GONE);
+
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+            videoParams.height = displayMetrics.heightPixels;
+            videoAreaParams.height = displayMetrics.heightPixels;
+
+            videoView.setLayoutParams(videoParams);
+            videoViewArea.setLayoutParams(videoAreaParams);
+        }
     }
 }
