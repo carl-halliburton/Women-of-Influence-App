@@ -107,7 +107,8 @@ public class ViewVideo extends AppCompatActivity {
 
         //progress dialog shows when video is buffering
         progressDialog = ProgressDialog.show(ViewVideo.this, "", "Buffering video...", true);
-        progressDialog.setCancelable(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
 
         //set up lister to handle VideoView errors
         videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -154,7 +155,6 @@ public class ViewVideo extends AppCompatActivity {
         toolbar.setVisibility(View.VISIBLE);
         sharingUrl = (TextView) findViewById(R.id.shareLink);
         sharingUrl.setText(setUpSharingLink());
-        isInstalled();
 
         setOrientation();
 
@@ -363,8 +363,6 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
-
-
     //Opens the app setting so the user can turn notifications on or off
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
@@ -529,6 +527,7 @@ public class ViewVideo extends AppCompatActivity {
 
             videoView.setLayoutParams(videoParams);
             videoViewArea.setLayoutParams(videoAreaParams);
+            isInstalled();
         } else {
             //in landscape view
             //hide toolbar and status bar
