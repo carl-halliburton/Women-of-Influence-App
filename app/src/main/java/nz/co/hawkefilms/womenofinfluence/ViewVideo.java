@@ -108,7 +108,7 @@ public class ViewVideo extends AppCompatActivity {
         //progress dialog shows when video is buffering
         progressDialog = ProgressDialog.show(ViewVideo.this, "", "Buffering video...", true);
         progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
+
 
         //set up lister to handle VideoView errors
         videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
