@@ -23,6 +23,7 @@
     <dimen name="margins_description_text">10dp</dimen>
     <dimen name="video_title_text_size">25sp</dimen>
     <dimen name="fb_email_text_size">20sp</dimen>
+    <dimen name="sharing_section_title">23sp</dimen>
 
     <!--title margins-->
     <dimen name="margin_top_sub_titles">4dp</dimen>
