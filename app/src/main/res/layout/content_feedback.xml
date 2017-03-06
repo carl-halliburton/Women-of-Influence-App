@@ -28,7 +28,7 @@
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/activity_titles_marginTop"
+            android:layout_marginTop="@dimen/margin_top_sub_titles"
             android:layout_marginBottom="@dimen/activity_titles_marginBottom" />
 
         <TextView

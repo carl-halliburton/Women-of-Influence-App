@@ -29,7 +29,7 @@
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_marginTop="@dimen/activity_titles_marginTop"
+            android:layout_marginTop="@dimen/margin_top_sub_titles"
             android:layout_marginBottom="@dimen/activity_titles_marginBottom" />
 
         <TextView
@@ -73,8 +73,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
+            android:paddingTop="@dimen/layout_padding_top"
+            android:paddingBottom="@dimen/layout_padding_bottom"
+            android:layout_marginLeft="@dimen/layout_margin_left"
+            android:layout_marginStart="@dimen/layout_margin_left"
+            android:layout_marginRight="@dimen/layout_margin_right"
+            android:layout_marginEnd="@dimen/layout_margin_right"
+            android:layout_marginTop="@dimen/layout_margin_top"
             android:background="@drawable/background_border">
 
             <Button
@@ -88,9 +93,11 @@
                 android:scaleType="fitXY"
                 android:layout_gravity="center"
                 android:typeface="normal"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/btn_layout_margin_left"
+                android:layout_marginStart="@dimen/btn_layout_margin_left"
+                android:layout_marginRight="@dimen/btn_layout_margin_right"
+                android:layout_marginEnd="@dimen/btn_layout_margin_right"
+                android:layout_marginTop="@dimen/btn_layout_margin_top"
                 android:background="@drawable/background_for_buttons"
                 android:textStyle="bold"/>
 
@@ -102,10 +109,12 @@
                 android:text="@string/hm_feedback_text"
                 android:textStyle="italic"
                 android:textSize="@dimen/description_text_size"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="@dimen/tv_layout_margin_top"
+                android:layout_marginBottom="@dimen/tv_layout_margin_bottom"
+                android:layout_marginLeft="@dimen/tv_layout_margin_left"
+                android:layout_marginStart="@dimen/tv_layout_margin_left"
+                android:layout_marginRight="@dimen/tv_layout_margin_right"
+                android:layout_marginEnd="@dimen/tv_layout_margin_right"
                 android:gravity="center" />
 
             <Button
@@ -119,9 +128,12 @@
                 android:scaleType="fitXY"
                 android:layout_gravity="center"
                 android:typeface="normal"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/btn_layout_margin_left"
+                android:layout_marginStart="@dimen/btn_layout_margin_left"
+                android:layout_marginRight="@dimen/btn_layout_margin_right"
+                android:layout_marginEnd="@dimen/btn_layout_margin_right"
+                android:layout_marginTop="@dimen/btn_layout_margin_top"
+                android:layout_marginBottom="@dimen/btn_layout_margin_bottom"
                 android:background="@drawable/background_for_buttons"
                 android:textStyle="bold" />
 

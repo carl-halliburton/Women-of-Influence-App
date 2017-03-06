@@ -22,7 +22,7 @@
             android:id="@+id/resultsDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_titles_marginTop"
+            android:layout_marginTop="@dimen/margin_top_sub_titles"
             android:paddingBottom="15dp"
             android:text="@string/search_dialog"
             android:textSize="24sp" />
