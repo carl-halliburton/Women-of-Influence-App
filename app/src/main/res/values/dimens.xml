@@ -38,8 +38,8 @@
     <dimen name="layout_margin_right">20dp</dimen>
     <dimen name="layout_margin_top">10dp</dimen>
 
-    <dimen name="btn_layout_margin_left">30dp</dimen>
-    <dimen name="btn_layout_margin_right">30dp</dimen>
+    <dimen name="btn_layout_margin_left">50dp</dimen>
+    <dimen name="btn_layout_margin_right">50dp</dimen>
     <dimen name="btn_layout_margin_top">10dp</dimen>
     <dimen name="btn_layout_margin_bottom">10dp</dimen>
 
@@ -53,7 +53,6 @@
     <dimen name="share_link_cpy_btn_margin_left">0dp</dimen>
     <dimen name="share_link_cpy_btn_margin_right">10dp</dimen>
 
-
     <!--Video share buttons margins normal layout-->
     <dimen name="margin_left_first_btn">20dp</dimen>
     <dimen name="margin_right_last_btn">20dp</dimen>
@@ -62,5 +61,13 @@
 
     <dimen name="video_view_height">500dp</dimen>
 
-    <dimen name="fab_margin">16dp</dimen>
+    <!--Splash Screen Margins-->
+    <dimen name="screen_title_margin_top">50dp</dimen>
+    <dimen name="splash_image_width">200dp</dimen>
+    <dimen name="splash_image_height">200dp</dimen>
+    <dimen name="splash_image_margin_top">10dp</dimen>
+    <dimen name="splash_progress_bar_margin_top">10dp</dimen>
+    <dimen name="splash_loading_text_size">24sp</dimen>
+    <dimen name="splash_loading_margin_top">10dp</dimen>
+
 </resources>

@@ -10,18 +10,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtSplashTitle"
         android:text="@string/app_name"
-        android:textSize="42sp"
+        android:textSize="@dimen/title_text_size"
         android:gravity="center"
         android:textStyle="bold"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="@dimen/screen_title_margin_top" />
 
     <ImageView
         android:contentDescription="@string/app_icon_description"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="@dimen/splash_image_width"
+        android:layout_height="@dimen/splash_image_height"
         android:layout_gravity="center"
         android:id="@+id/imgSplash"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/splash_image_margin_top"
         android:src="@drawable/splash_screen_logo" />
 
     <ProgressBar
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/splash_progress_bar_margin_top"
         android:layout_gravity="center" />
 
     <TextView
@@ -37,9 +37,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLoading"
         android:text="@string/msg_splash_loading"
-        android:textSize="24sp"
+        android:textSize="@dimen/splash_loading_text_size"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/splash_loading_margin_top"
         android:gravity="center" />
 
 </LinearLayout>
