@@ -6,7 +6,7 @@
     <!--margins-->
     <dimen name="margin_left_feature_vid">20dp</dimen>
     <dimen name="margin_right_feature_vid">20dp</dimen>
-    <dimen name="margin_top_feature_vid">15dp</dimen>
+    <dimen name="margin_top_feature_vid">35dp</dimen>
     <!--padding-->
     <dimen name="padding_top_feature_vid">8dp</dimen>
     <dimen name="padding_bottom_feature_vid">8dp</dimen>
