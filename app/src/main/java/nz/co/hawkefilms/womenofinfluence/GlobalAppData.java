@@ -47,9 +47,7 @@ public class GlobalAppData {
             fileLister.execute();
             try {
                 fileLister.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
 
@@ -91,9 +89,7 @@ public class GlobalAppData {
 
         try {
             fileLister.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -116,9 +112,7 @@ public class GlobalAppData {
 
         try {
             fileLister.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 

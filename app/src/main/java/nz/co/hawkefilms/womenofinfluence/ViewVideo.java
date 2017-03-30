@@ -445,9 +445,7 @@ public class ViewVideo extends AppCompatActivity {
             fileSharer.execute();
             try {
                 fileSharer.get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
 

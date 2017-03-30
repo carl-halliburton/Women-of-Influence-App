@@ -9,10 +9,11 @@ import com.dropbox.core.v2.sharing.ResolvedVisibility;
 import com.dropbox.core.v2.sharing.SharedLinkMetadata;
 
 /**
- * Created by nick- on 8/11/2016.
+ * Creates  or sets existing sharing urls for dropbox files.
+ * Created by nick on 8/11/2016.
  */
 
-public class FileSharer extends AsyncTask {
+public class FileSharer extends AsyncTask<Object, Void, Object> {
     private DbxClientV2 dbxClient;
     private VideoData video; //target video for sharing
 

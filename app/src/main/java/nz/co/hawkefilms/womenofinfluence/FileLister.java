@@ -20,7 +20,7 @@ import java.util.List;
  * See Developer Support Manual for details on video storage management
  */
 
-public class FileLister extends AsyncTask {
+public class FileLister extends AsyncTask<Object, Void, Object>{
 
     private DbxClientV2 dbxClient;
     private List<VideoData> videoInfoList;
@@ -43,12 +43,7 @@ public class FileLister extends AsyncTask {
         remainingLoads = (int) Math.ceil((folderContents.size() - videosLoaded) / (float) LOADAMOUNT);
         searchString = searchInput;
 
-        if (searchString.equals("")) {
-            searchEnabled = false;
-        } else
-        {
-            searchEnabled = true;
-        }
+        searchEnabled = !searchString.equals("");
         dbSuccess = false;
     }
 

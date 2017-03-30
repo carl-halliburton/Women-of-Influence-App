@@ -206,12 +206,8 @@ public class Feedback extends AppCompatActivity {
 
     //checks if any error message visible before submitting
     boolean isErrorFree() {
-        if (TextUtils.isEmpty(editName.getError()) &&
-                (TextUtils.isEmpty(editMessage.getError()))) {
-            return true; //no errors displayed
-        }
-        else
-            return false; //errors displayed
+        return TextUtils.isEmpty(editName.getError()) &&
+                (TextUtils.isEmpty(editMessage.getError()));
     }
 
     public void clearFields() {
