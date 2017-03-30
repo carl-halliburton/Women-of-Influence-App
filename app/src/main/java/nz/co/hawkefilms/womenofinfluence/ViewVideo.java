@@ -512,6 +512,9 @@ public class ViewVideo extends AppCompatActivity {
         ViewGroup.LayoutParams videoAreaParams = videoViewArea.getLayoutParams();
 
         TextView videoTitle;
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         //Check if in portrait or landscape
         if (isPortrait) {
             //in portrait view
@@ -528,8 +531,8 @@ public class ViewVideo extends AppCompatActivity {
 
             videoAreaParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                     videoviewHeight, getResources().getDisplayMetrics());
-            videoParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-            videoParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            videoParams.height = LinearLayout.LayoutParams.MATCH_PARENT;
+            videoParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
 
             videoView.setLayoutParams(videoParams);
             videoViewArea.setLayoutParams(videoAreaParams);
@@ -542,9 +545,6 @@ public class ViewVideo extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
             portraitItems.setVisibility(View.GONE);
-
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
             videoParams.height = displayMetrics.heightPixels;
             videoAreaParams.height = displayMetrics.heightPixels;
