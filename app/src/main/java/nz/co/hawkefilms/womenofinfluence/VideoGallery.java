@@ -26,6 +26,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class VideoGallery extends AppCompatActivity {
     private boolean refreshing;
     private Button loadMore;
     private SearchView searchView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,8 @@ public class VideoGallery extends AppCompatActivity {
         refreshing = false;
         //load more button
         loadMore = (Button) findViewById(R.id.loadMoreBtn);
+        progressBar = (ProgressBar)  findViewById(R.id.loadAdditonalProg);
+        progressBar.setVisibility(View.VISIBLE);
 
         refreshContent();
     }
@@ -229,6 +233,9 @@ public class VideoGallery extends AppCompatActivity {
             i++;
         }
 
+        //end of loading
+        progressBar.setVisibility(View.GONE);
+
         //if Dropbox connection has failed.
         if(!appData.dbSuccess())
         {
@@ -366,6 +373,7 @@ public class VideoGallery extends AppCompatActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.loadMoreBtn:
+                progressBar.setVisibility(View.VISIBLE);
                 loadMore.setVisibility(View.GONE);
                 loadInBackground();
                 break;
