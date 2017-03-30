@@ -61,10 +61,10 @@
     <dimen name="margin_left_start">15dp</dimen>
     <dimen name="margin_right_end">15dp</dimen>
 
+    <dimen name="videoMaximumHeight">400dp</dimen>
+
     <!--label text size-->
     <dimen name="share_button_label_text_size">16sp</dimen>
-
-    <dimen name="video_view_height">500dp</dimen>
 
     <!--Splash Screen Margins-->
     <dimen name="screen_title_margin_top">90dp</dimen>

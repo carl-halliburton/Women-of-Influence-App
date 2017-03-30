@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -32,6 +33,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +58,7 @@ public class ViewVideo extends AppCompatActivity {
     private VideoData videoData; //single video data object
     private Boolean dialogIsOpen; //ensure that only one video/wifi error dialog is displayed
 
-    private static ProgressDialog progressDialog;
+    private ProgressBar progressBar;
     private VideoView videoView;
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
@@ -105,10 +107,8 @@ public class ViewVideo extends AppCompatActivity {
         }
         dialogIsOpen = false;
 
-        //progress dialog shows when video is buffering
-        progressDialog = ProgressDialog.show(ViewVideo.this, "", "Buffering video...", true);
-        progressDialog.setCancelable(false);
-        progressDialog.setCanceledOnTouchOutside(false);
+        //progress bar shows when video is buffering
+        progressBar = (ProgressBar) findViewById(R.id.videoLoadingBar);
 
         //set up lister to handle VideoView errors
         videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -173,7 +173,11 @@ public class ViewVideo extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        videoView.resume();
+        //TODO videoview.resume() currently does nothing as the videoview is refreshed when onResume is called.
+        //videoView.resume();
+
+        //show progressbar because videoView is reloaded on onResume()
+        progressBar.setVisibility(View.VISIBLE);
     }
 
 
@@ -282,6 +286,9 @@ public class ViewVideo extends AppCompatActivity {
 
     //video view imp play method
     private void PlayVideo() {
+        progressBar.setVisibility(View.VISIBLE);
+        //to resolve see through video view issue
+        videoView.setBackgroundColor(Color.BLACK);
         try {
             getWindow().setFormat(PixelFormat.TRANSLUCENT);
             MediaController mediaController;
@@ -342,9 +349,10 @@ public class ViewVideo extends AppCompatActivity {
                                 )
                         );
                     }
-
                     //setOrientation();
-                    progressDialog.dismiss();
+                    progressBar.setVisibility(View.GONE);
+                    //remove black background so that video can be seen.
+                    videoView.setBackgroundColor(Color.TRANSPARENT);
                     videoView.start();
 
                     // Obtain the FirebaseAnalytics instance.
@@ -357,7 +365,6 @@ public class ViewVideo extends AppCompatActivity {
                 }
             });
         } catch (Exception e) {
-            progressDialog.dismiss();
             System.out.println("Video Play Error :" + e.toString());
             finish();
         }
@@ -518,12 +525,13 @@ public class ViewVideo extends AppCompatActivity {
 
             portraitItems.setVisibility(View.VISIBLE);
 
-            int videoviewHeight = (int) (getResources().getDimension(R.dimen.video_view_height)
+            int videoviewHeight = (int) (getResources().getDimension(R.dimen.videoMaximumHeight)
                     / getResources().getDisplayMetrics().density);
 
-            videoParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+            videoAreaParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                     videoviewHeight, getResources().getDisplayMetrics());
-            videoAreaParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            videoParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+            videoParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
 
             videoView.setLayoutParams(videoParams);
             videoViewArea.setLayoutParams(videoAreaParams);

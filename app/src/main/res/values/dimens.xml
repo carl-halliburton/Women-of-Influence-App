@@ -59,7 +59,7 @@
     <dimen name="margin_left_start">10dp</dimen>
     <dimen name="margin_right_end">10dp</dimen>
 
-    <dimen name="video_view_height">500dp</dimen>
+    <dimen name="videoMaximumHeight">200dp</dimen>
 
     <!--Splash Screen Margins-->
     <dimen name="screen_title_margin_top">50dp</dimen>
