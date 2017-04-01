@@ -71,5 +71,6 @@
     <string name="label_google_plus_share">google+</string>
     <string name="label_hangouts_share">hangouts</string>
     <string name="label_whatsapp_share">whatsApp</string>
+    <string name="sharing_refresh_desc">Attempts to load a sharing url for this video</string>
 
 </resources>

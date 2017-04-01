@@ -58,7 +58,10 @@ public class ViewVideo extends AppCompatActivity {
     private VideoData videoData; //single video data object
     private Boolean dialogIsOpen; //ensure that only one video/wifi error dialog is displayed
 
-    private ProgressBar progressBar;
+    private ProgressBar videoProgressBar;
+    private ProgressBar sharingProgressBar;
+    private LinearLayout sharingLayout;
+    private LinearLayout shareFailLayout;
     private VideoView videoView;
     private Integer savedVideoPosition; //the current position of the video
     private boolean refreshed;
@@ -108,7 +111,8 @@ public class ViewVideo extends AppCompatActivity {
         dialogIsOpen = false;
 
         //progress bar shows when video is buffering
-        progressBar = (ProgressBar) findViewById(R.id.videoLoadingBar);
+        videoProgressBar = (ProgressBar) findViewById(R.id.videoLoadingBar);
+        sharingProgressBar = (ProgressBar) findViewById(R.id.shareLoadBar);
 
         //set up lister to handle VideoView errors
         videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
@@ -124,10 +128,7 @@ public class ViewVideo extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     //Reload ViewVideo
                                     dialogIsOpen = false;
-                                    if (isPortrait) {
-                                        sharingUrl = (TextView) findViewById(R.id.shareLink);
-                                        sharingUrl.setText(setUpSharingLink());
-                                    }
+                                    setSharingLink();
                                     PlayVideo();
                                 }
                             })
@@ -154,7 +155,10 @@ public class ViewVideo extends AppCompatActivity {
         videoTitle.setText(videoData.getName());
         toolbar.setVisibility(View.VISIBLE);
         sharingUrl = (TextView) findViewById(R.id.shareLink);
-        sharingUrl.setText(setUpSharingLink());
+        sharingLayout = (LinearLayout) findViewById(R.id.shareMenu);
+        shareFailLayout = (LinearLayout) findViewById(R.id.shareFailLayout);
+
+        setSharingLink();
 
         setOrientation();
 
@@ -177,7 +181,7 @@ public class ViewVideo extends AppCompatActivity {
         //videoView.resume();
 
         //show progressbar because videoView is reloaded on onResume()
-        progressBar.setVisibility(View.VISIBLE);
+        videoProgressBar.setVisibility(View.VISIBLE);
     }
 
 
@@ -286,7 +290,7 @@ public class ViewVideo extends AppCompatActivity {
 
     //video view imp play method
     private void PlayVideo() {
-        progressBar.setVisibility(View.VISIBLE);
+        videoProgressBar.setVisibility(View.VISIBLE);
         //to resolve see through video view issue
         videoView.setBackgroundColor(Color.BLACK);
         try {
@@ -350,7 +354,7 @@ public class ViewVideo extends AppCompatActivity {
                         );
                     }
                     //setOrientation();
-                    progressBar.setVisibility(View.GONE);
+                    videoProgressBar.setVisibility(View.GONE);
                     //remove black background so that video can be seen.
                     videoView.setBackgroundColor(Color.TRANSPARENT);
                     videoView.start();
@@ -394,18 +398,19 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
+    /*onClick functionality relating to video sharing*/
     public void shareOnClick(View v) {
         switch (v.getId()) {
             case R.id.copyBtn:
-                share.copyLink(setUpSharingLink());
+                share.copyLink(videoData.getSharingUrl());
                 break;
             case R.id.shareEmail:
-                share.sendEmailIntent(setUpSharingLink(), videoData.getName());
+                share.sendEmailIntent(videoData.getSharingUrl(), videoData.getName());
                 break;
 
             case R.id.shareFacebook:
                 pauseVideo();
-                share.shareWithFacebook(setUpSharingLink(), shareDialogFB, videoData.getName());
+                share.shareWithFacebook(videoData.getSharingUrl(), shareDialogFB, videoData.getName());
                 break;
 
             case R.id.shareGooglePlus:
@@ -416,43 +421,82 @@ public class ViewVideo extends AppCompatActivity {
                         .setContentDeepLinkId("testID",
                                 "Test Title",
                                 "Test Description",
-                                Uri.parse(setUpSharingLink()))
+                                Uri.parse(videoData.getSharingUrl()))
                         .getIntent();
                 startActivityForResult(shareIntent, 0);
                 //share.shareGooglePlus(setUpSharingLink(), videoData.getName());
                 break;
 
             case R.id.shareTwitter:
-                share.shareWithTwitter(setUpSharingLink(), videoData.getName());
+                share.shareWithTwitter(videoData.getSharingUrl(), videoData.getName());
                 break;
 
             case R.id.shareHangouts:
                 pauseVideo();
-                share.shareWithHangouts(setUpSharingLink(), videoData.getName());
+                share.shareWithHangouts(videoData.getSharingUrl(), videoData.getName());
                 break;
 
             case R.id.shareWhatsApp:
                 pauseVideo();
-                share.shareWithWhatsApp(setUpSharingLink(), videoData.getName());
+                share.shareWithWhatsApp(videoData.getSharingUrl(), videoData.getName());
+                break;
+
+            case R.id.refreshSharingBtn:
+                setSharingLink();
                 break;
         }
     }
 
-    private String setUpSharingLink() {
-        if (videoData.getSharingUrl().equals("Error: cannot find url")) {
-            fileSharer = new FileSharer(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
-                    videoData);
-            fileSharer.execute();
-            try {
-                fileSharer.get();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+    /*This method connects to dropbox to fetch a dropbox sharing link for the video*/
+    private void setSharingLink() {
+        sharingLayout.setVisibility(View.GONE);
+        sharingProgressBar.setVisibility(View.VISIBLE);
+        shareFailLayout.setVisibility(View.GONE);
+        //Run on a separate thread to reduce load times.
+        final Thread loadTask = new Thread() {
+            public void run() {
+                    fileSharer = new FileSharer(DropboxClient.getClient(getString(R.string.ACCESS_TOKEN)),
+                            videoData);
+                    fileSharer.execute();
+                    try {
+                        fileSharer.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                    videoData = fileSharer.getVideoData();
+                    appData.updateVideoUrl(videoData);
+            }
+        };
+
+        //Loading UI Elements in this thread
+        final Thread setTask = new Thread() {
+            public void run() {
+                if (!videoData.getSharingUrl().equals(VideoData.SHARINGFAILMESSAGE)) {
+                    sharingLayout.setVisibility(View.VISIBLE);
+                    sharingUrl.setText(videoData.getSharingUrl());
+                } else {
+                    shareFailLayout.setVisibility(View.VISIBLE);
+                }
+                sharingProgressBar.setVisibility(View.GONE);
+            }
+        };
+
+        //start background loader in a separate thread
+        final Thread startLoad = new Thread() {
+            public void run() {
+                loadTask.start();
+                try {
+                    loadTask.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(setTask);
             }
 
-            videoData = fileSharer.getVideoData();
-            appData.updateVideoUrl(videoData);
-        }
-        return videoData.getSharingUrl();
+        };
+
+        startLoad.start();
     }
 
     public void pauseVideo() {

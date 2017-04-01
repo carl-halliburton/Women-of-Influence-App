@@ -96,6 +96,7 @@ public class GlobalAppData {
         refreshVideoList();
     }
 
+    /*url is saved for reuse.*/
     public void updateVideoUrl (VideoData video){
         for (VideoData videoData : videoInfoList){
             if (video.getDbUri().equals(videoData.getDbUri())){

@@ -69,6 +69,42 @@
                 android:background="@color/ruled_line" />
 
             <LinearLayout
+                android:id="@+id/shareFailLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:id="@+id/shareFailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Sharing_Error_Text" />
+
+                <ImageButton
+                    android:id="@+id/refreshSharingBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/share_link_cpy_btn_margin_left"
+                    android:layout_marginLeft="@dimen/share_link_cpy_btn_margin_right"
+                    android:layout_marginRight="@dimen/share_link_cpy_btn_margin_left"
+                    android:layout_marginStart="@dimen/share_link_cpy_btn_margin_right"
+                    android:onClick="shareOnClick"
+                    app:srcCompat="@drawable/ic_refresh_black"
+                    android:contentDescription="@string/sharing_refresh_desc" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/shareLoadBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/shareMenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -91,10 +127,10 @@
                         android:id="@+id/shareLink"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
                         android:layout_marginLeft="@dimen/share_link_margin_left"
                         android:layout_marginStart="@dimen/share_link_margin_left"
+                        android:layout_weight="1"
+                        android:ems="10"
                         android:text="@string/Sharing_Error_Text"
                         android:textSize="@dimen/share_link_text_size" />
 
@@ -103,12 +139,12 @@
                         style="@style/AppTheme"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@string/desc_btn_copy"
-                        android:onClick="shareOnClick"
-                        android:layout_marginRight="@dimen/share_link_cpy_btn_margin_left"
                         android:layout_marginEnd="@dimen/share_link_cpy_btn_margin_left"
                         android:layout_marginLeft="@dimen/share_link_cpy_btn_margin_right"
+                        android:layout_marginRight="@dimen/share_link_cpy_btn_margin_left"
                         android:layout_marginStart="@dimen/share_link_cpy_btn_margin_right"
+                        android:contentDescription="@string/desc_btn_copy"
+                        android:onClick="shareOnClick"
                         app:srcCompat="@drawable/ic_action_copy" />
                 </LinearLayout>
 
