@@ -69,7 +69,7 @@ class ShareVideo
         try {
             curContext.startActivity(sendIntent);
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(curContext, "Hangouts not installed", Toast.LENGTH_LONG).show();
+            Toast.makeText(curContext, "Hangouts not available", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -81,7 +81,7 @@ class ShareVideo
         try {
             curContext.startActivity(whatsappIntent);
         } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(curContext, "WhatsApp not installed", Toast.LENGTH_LONG).show();
+            Toast.makeText(curContext, "WhatsApp not available", Toast.LENGTH_LONG).show();
         }
     }
 }

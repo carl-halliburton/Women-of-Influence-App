@@ -7,6 +7,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -38,9 +39,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
-import com.facebook.share.widget.SendButton;
-import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.plus.PlusShare;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -288,7 +286,12 @@ public class ViewVideo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //video view imp play method
+    /*
+	Description:
+		video view imp play method
+	Parameters: void
+	Return Type: void
+	*/
     private void PlayVideo() {
         videoProgressBar.setVisibility(View.VISIBLE);
         //to resolve see through video view issue
@@ -374,7 +377,12 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
-    //Opens the app setting so the user can turn notifications on or off
+    /*
+	Description:
+		Opens the app setting so the user can turn notifications on or off
+	Parameters: void
+	Return Type: void
+	*/
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
 
@@ -398,7 +406,12 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
-    /*onClick functionality relating to video sharing*/
+    /*
+	Description:
+		onClick functionality relating to video sharing
+	Parameters: current View
+	Return Type: void
+	*/
     public void shareOnClick(View v) {
         switch (v.getId()) {
             case R.id.copyBtn:
@@ -447,7 +460,12 @@ public class ViewVideo extends AppCompatActivity {
         }
     }
 
-    /*This method connects to dropbox to fetch a dropbox sharing link for the video*/
+	/*
+	Description:
+		This method connects to dropbox to fetch a dropbox sharing link for the video
+	Parameters: void
+	Return Type: void
+	*/
     private void setSharingLink() {
         sharingLayout.setVisibility(View.GONE);
         sharingProgressBar.setVisibility(View.VISIBLE);
@@ -504,37 +522,6 @@ public class ViewVideo extends AppCompatActivity {
         videoView.pause();
     }
 
-    //Checks if Hangouts and WhatsApp are Installed
-    //hides share icon if not
-    public void isInstalled() {
-        if (!appInstalledOrNot("com.whatsapp")) {
-            ImageButton imgWhatsApp = (ImageButton) findViewById(R.id.shareWhatsApp);
-            imgWhatsApp.setVisibility(View.INVISIBLE);
-            TextView textWhatsApp = (TextView) findViewById(R.id.txtShareWhatApp);
-            textWhatsApp.setVisibility(View.INVISIBLE);
-        }
-
-        if (!appInstalledOrNot("com.google.android.talk")) {
-            ImageButton imgHangouts = (ImageButton) findViewById(R.id.shareHangouts);
-            imgHangouts.setVisibility(View.INVISIBLE);
-            TextView textHangouts = (TextView) findViewById(R.id.txtShareHangouts);
-            textHangouts.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    private boolean appInstalledOrNot(String uri) {
-        PackageManager pm = getPackageManager();
-        boolean app_installed;
-        try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            app_installed = true;
-        }
-        catch (PackageManager.NameNotFoundException e) {
-            app_installed = false;
-        }
-        return app_installed;
-    }
-
     //Runs when screen orientation is changed.
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -543,8 +530,13 @@ public class ViewVideo extends AppCompatActivity {
         setOrientation();
     }
 
-    //sets the width, height and visibility of views depending on the orientation of the screen.
-    //Note that for videoView the params
+    /*
+    Description:
+        Sets the width, height and visibility of views depending on the orientation of the screen.
+        Note that for videoView the params
+    Parameters: void
+    Return Type: void
+    */
     public void setOrientation(){
         LinearLayout videoViewArea = (LinearLayout) findViewById(R.id.videoViewArea);
         isPortrait = getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
@@ -595,6 +587,74 @@ public class ViewVideo extends AppCompatActivity {
 
             videoView.setLayoutParams(videoParams);
             videoViewArea.setLayoutParams(videoAreaParams);
+        }
+    }
+
+//-------------------------------------------------------------------------------------------------
+    /*
+    Description:
+        Checks if Hangouts and WhatsApp are Installed
+        hides share icon if not
+        used in conjunction with isAppInstalled(String packageName)
+        and isEnabled(String packageName)
+    Parameters: void
+    Return Type: void
+    */
+    public void isInstalled() {
+        if (!isAppInstalled("com.whatsapp")) {
+            ImageButton imgWhatsApp = (ImageButton) findViewById(R.id.shareWhatsApp);
+            imgWhatsApp.setVisibility(View.GONE);
+            TextView textWhatsApp = (TextView) findViewById(R.id.txtShareWhatApp);
+            textWhatsApp.setVisibility(View.GONE);
+        }
+
+        if (!isEnabled("com.google.android.talk")) {
+            ImageButton imgHangouts = (ImageButton) findViewById(R.id.shareHangouts);
+            imgHangouts.setVisibility(View.GONE);
+            TextView textHangouts = (TextView) findViewById(R.id.txtShareHangouts);
+            textHangouts.setVisibility(View.GONE);
+        }
+
+        if (!isEnabled("com.google.android.apps.plus")) {
+            ImageButton imgGooglePlus = (ImageButton) findViewById(R.id.shareGooglePlus);
+            imgGooglePlus.setVisibility(View.GONE);
+            TextView textGooglePlus = (TextView) findViewById(R.id.txtShareGooglePlus);
+            textGooglePlus.setVisibility(View.GONE);
+        }
+
+    }
+
+    /*
+    Description:
+        Checks if share app is enabled or disabled
+    Parameters: String containing share app package name
+    Return Type: Boolean, true if enabled, false if disabled
+    */
+    public boolean isEnabled(String packageName) {
+
+        try {
+            ApplicationInfo ai = this.getPackageManager().getApplicationInfo(packageName,0);
+            return ai.enabled;
+
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
+
+    /*
+    Description:
+        Checks if share app is installed
+    Parameters: String containing share app package name
+    Return Type: Boolean, true if installed, false if not installed
+    */
+    public boolean isAppInstalled(String packageName) {
+        PackageManager pm = getPackageManager();
+
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
         }
     }
 }
