@@ -137,7 +137,7 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_notification:
+            case R.id.action_app_settings:
                 openAppSettings();
                 return true;
             case R.id.menu_video_gallery:

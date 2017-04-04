@@ -158,7 +158,7 @@ public class Feedback extends AppCompatActivity {
             case android.R.id.home:
                 startActivity(new Intent(Feedback.this, Home.class));
                 return true;
-            case R.id.action_notification:
+            case R.id.action_app_settings:
                 openAppSettings();
                 return true;
             case R.id.menu_video_gallery:

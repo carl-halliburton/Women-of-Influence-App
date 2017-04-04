@@ -11,7 +11,7 @@
         throughout New Zealand.\nThe latest video can be seen below or you can go to the gallery
         to view the entire collection.</string>
 
-    <string name="action_notification">Notifications</string>
+    <string name="action_app_settings">App Settings</string>
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_video_gallery">Video Gallery</string>
     <string name="title_activity_view_video">Video Player</string>

@@ -155,7 +155,7 @@ public class VideoGallery extends AppCompatActivity {
                 searchView.clearFocus();
                 startActivity(new Intent(VideoGallery.this, Home.class));
                 return true;
-            case R.id.action_notification:
+            case R.id.action_app_settings:
                 openAppSettings();
                 return true;
             case R.id.menu_feedback:

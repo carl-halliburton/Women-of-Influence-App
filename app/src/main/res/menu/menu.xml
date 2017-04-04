@@ -29,9 +29,9 @@
         <menu>
 
     <item
-        android:id="@+id/action_notification"
-        android:title="@string/action_notification"
-        android:icon="@drawable/ic_notifications_black"
+        android:id="@+id/action_app_settings"
+        android:title="@string/action_app_settings"
+        android:icon="@drawable/ic_settings_black"
         android:orderInCategory="3"
         app:showAsAction="never" />
     <item
