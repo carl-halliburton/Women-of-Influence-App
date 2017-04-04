@@ -20,8 +20,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
-
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -74,7 +72,9 @@ public class Home extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
 
 //-------------------------------------------------------------------------------------------------
-        // Associate searchable configuration with the SearchView
+        //the search functionality is out of scope for the moment,
+        // it will be re-enabled in a future update
+        // to re-enable uncomment the searchView widget int eh menu.xml file
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView =
@@ -181,8 +181,13 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    /*This method handles the refreshing of content in other threads while displaying a progress dialog
-    * in the current thread.*/
+    /*
+    Description:
+        This method handles the refreshing of content in other threads while displaying
+        a progress dialog in the current thread.
+    Parameters: void
+    Return Type: void
+    */
     public void refreshContent() {
         if (!refreshing) {
             refreshing = true;
@@ -233,6 +238,12 @@ public class Home extends AppCompatActivity {
         }
     }
 
+    /*
+    Description:
+        sets video link fo feature video
+    Parameters: void
+    Return Type: void
+    */
     public void setFeatureVideoLink() {
 
         if (appData.getVideoData().size() == 0) {
@@ -257,7 +268,12 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    //Opens the app setting so the user can turn notifications on or off
+        /*
+    Description:
+        Opens the app setting so the user can turn notifications on or off
+    Parameters: void
+    Return Type: void
+    */
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
 

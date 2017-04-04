@@ -92,6 +92,7 @@ public class Feedback extends AppCompatActivity {
 //-------------------------------------------------------------------------------------------------
         //the search functionality is out of scope for the moment,
         // it will be re-enabled in a future update
+        // to re-enable uncomment the searchView widget int eh menu.xml file
         menu.findItem(R.id.search).setVisible(false);
 
         // Associate searchable configuration with the SearchView
@@ -167,8 +168,13 @@ public class Feedback extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //Gathers form data and sends it to email intent
-    //intent opens email client chooser
+    /*
+    Description:
+        Gathers form data and sends it to email intent
+        intent opens email client chooser
+    Parameters: View the current view
+    Return Type: void
+    */
     public void sendFeedback(View view) {
 
         String subject = "Ascend - Women of Influence - Feedback from " + editName.getText()
@@ -188,8 +194,13 @@ public class Feedback extends AppCompatActivity {
         }
     }
 
-    //checks whether EditText fields are empty or not
-    //if so display error message
+    /*
+    Description:
+        checks whether EditText fields are empty or not
+        if so display error message
+    Parameters: void
+    Return Type: void
+    */
     public boolean validateFields() {
         if (editName.getText().toString().equals(""))
             editName.setError("Name is Required");
@@ -204,12 +215,23 @@ public class Feedback extends AppCompatActivity {
         return isErrorFree();
     }
 
-    //checks if any error message visible before submitting
+    /*
+    Description:
+        checks if any error message visible before submitting
+    Parameters: void
+    Return Type: void
+    */
     boolean isErrorFree() {
         return TextUtils.isEmpty(editName.getError()) &&
                 (TextUtils.isEmpty(editMessage.getError()));
     }
 
+    /*
+    Description:
+        Clears fields in feedback form
+    Parameters: void
+    Return Type: void
+    */
     public void clearFields() {
         EditText name = (EditText)findViewById(R.id.fieldName);
         name.setText("");
@@ -221,7 +243,12 @@ public class Feedback extends AppCompatActivity {
         message.setText("");
     }
 
-    //Opens the app setting so the user can turn notifications on or off
+    /*
+    Description:
+        Opens the app setting so the user can turn notifications on or off
+    Parameters: void
+    Return Type: void
+    */
     public void openAppSettings() {
         String packageName = getString(R.string.package_name);
 

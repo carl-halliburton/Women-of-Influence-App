@@ -1,7 +1,6 @@
 package nz.co.hawkefilms.womenofinfluence;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -37,7 +36,6 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.plus.PlusShare;
@@ -50,7 +48,8 @@ import java.util.concurrent.ExecutionException;
  * the videoView activity.
  */
 
-public class ViewVideo extends AppCompatActivity {
+public class
+ViewVideo extends AppCompatActivity {
 
     private GlobalAppData appData; //singleton instance of globalAppData
     private VideoData videoData; //single video data object
@@ -208,6 +207,7 @@ public class ViewVideo extends AppCompatActivity {
 //-------------------------------------------------------------------------------------------------
         //the search functionality is out of scope for the moment,
         // it will be re-enabled in a future update
+        // to re-enable uncomment the searchView widget int eh menu.xml file
         menu.findItem(R.id.search).setVisible(false);
 
         // Associate searchable configuration with the SearchView
