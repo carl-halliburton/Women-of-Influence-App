@@ -129,10 +129,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:paddingEnd="@dimen/share_link_padding_right"
-                        android:paddingLeft="@dimen/share_link_padding_left"
-                        android:paddingRight="@dimen/share_link_padding_right"
-                        android:paddingStart="@dimen/share_link_padding_left"
                         android:text="@string/Sharing_Error_Text"
                         android:textSize="@dimen/fb_email_text_size" />
 

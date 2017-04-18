@@ -30,7 +30,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginTop="@dimen/margin_top_sub_titles"
-            android:layout_marginBottom="@dimen/activity_titles_marginBottom"
+            android:layout_marginBottom="@dimen/margin_bottom_sub_titles"
             android:layout_marginLeft="@dimen/margin_left_sub_titles"
             android:layout_marginStart="@dimen/margin_left_sub_titles"
             android:layout_marginRight="@dimen/margin_right_sub_titles"

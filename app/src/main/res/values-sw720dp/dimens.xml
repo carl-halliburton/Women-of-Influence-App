@@ -24,6 +24,7 @@
     <dimen name="video_title_text_size">25sp</dimen>
     <dimen name="fb_email_text_size">20sp</dimen>
     <dimen name="sharing_section_title">23sp</dimen>
+    <dimen name="share_link_text_size">12sp</dimen>
 
     <!--title margins-->
     <dimen name="margin_top_sub_titles">4dp</dimen>
@@ -38,6 +39,8 @@
     <!--homeScreenBtn layout dimensions-->
     <dimen name="layout_padding_top">15dp</dimen>
     <dimen name="layout_padding_bottom">15dp</dimen>
+    <dimen name="layout_padding_left">15dp</dimen>
+    <dimen name="layout_padding_right">15dp</dimen>
 
     <!--Margins-->
     <dimen name="layout_margin_left">140dp</dimen>
@@ -60,6 +63,11 @@
     <dimen name="margin_right_last_btn">30dp</dimen>
     <dimen name="margin_left_start">15dp</dimen>
     <dimen name="margin_right_end">15dp</dimen>
+
+    <!--Copy link-->
+    <dimen name="share_link_margin_left">10dp</dimen>
+    <dimen name="share_link_cpy_btn_margin_left">0dp</dimen>
+    <dimen name="share_link_cpy_btn_margin_right">10dp</dimen>
 
     <dimen name="videoMaximumHeight">400dp</dimen>
 
