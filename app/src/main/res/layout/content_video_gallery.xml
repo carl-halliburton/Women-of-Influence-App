@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/title_activity_video_gallery"
-            android:textSize="@dimen/title_text_size"
+            android:textSize="@dimen/app_subTitle_text_size"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/margin_top_sub_titles"
             android:layout_marginBottom="@dimen/margin_bottom_sub_titles"
