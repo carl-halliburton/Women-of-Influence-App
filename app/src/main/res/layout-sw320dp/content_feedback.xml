@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollViewFb"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="nz.co.hawkefilms.womenofinfluence.Feedback"
+    tools:showIn="@layout/activity_feedback"
+    android:background="@color/colorBody">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:id="@+id/txtScreenTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_feedback"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/title_text_size"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_top_sub_titles"
+            android:layout_marginBottom="@dimen/margin_bottom_sub_titles" />
+
+        <TextView
+            android:id="@+id/txtHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fb_text_desc"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/description_text_size"/>
+
+        <TextView
+            android:id="@+id/txtEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email_address"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="@dimen/fb_email_text_size"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/ruled_line"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp" />
+
+        <EditText
+            android:id="@+id/fieldName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:textSize="@dimen/fb_field_text_size"
+            android:hint="@string/fb_hint_name" />
+
+        <EditText
+            android:id="@+id/fieldSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailSubject"
+            android:textSize="@dimen/fb_field_text_size"
+            android:hint="@string/fb_hint_subject"/>
+
+        <EditText
+            android:id="@+id/fieldMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:gravity="top"
+            android:minLines="5"
+            android:textSize="@dimen/fb_field_text_size"
+            android:hint="@string/fb_hint_message"/>
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fb_btn_submit"
+            android:textSize="@dimen/btn_text_size"
+            android:typeface="normal"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/background_for_buttons" />
+    </LinearLayout>
+</ScrollView>
