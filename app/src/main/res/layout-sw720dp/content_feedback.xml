@@ -62,6 +62,7 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
+            android:textSize="@dimen/fb_field_text_size"
             android:hint="@string/fb_hint_name" />
 
         <EditText
@@ -69,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailSubject"
+            android:textSize="@dimen/fb_field_text_size"
             android:hint="@string/fb_hint_subject"/>
 
         <EditText
@@ -79,6 +81,7 @@
             android:ems="10"
             android:gravity="top"
             android:minLines="5"
+            android:textSize="@dimen/fb_field_text_size"
             android:hint="@string/fb_hint_message"/>
 
         <Button
