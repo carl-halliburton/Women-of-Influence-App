@@ -110,11 +110,7 @@
                 android:layout_marginStart="@dimen/btn_layout_margin_left"
                 android:layout_marginRight="@dimen/btn_layout_margin_right"
                 android:layout_marginEnd="@dimen/btn_layout_margin_right"
-                android:background="@drawable/background_for_buttons"
-                android:paddingTop="10dp"
-                android:paddingBottom="13dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"/>
+                android:background="@drawable/background_for_buttons" />
 
             <TextView
                 android:id="@+id/txtContactText"
@@ -150,11 +146,7 @@
                 android:layout_marginRight="@dimen/btn_layout_margin_right"
                 android:layout_marginEnd="@dimen/btn_layout_margin_right"
                 android:layout_marginBottom="@dimen/btn_layout_margin_bottom"
-                android:background="@drawable/background_for_buttons"
-                android:paddingTop="10dp"
-                android:paddingBottom="13dp"
-                android:paddingLeft="6dp"
-                android:paddingRight="6dp"/>
+                android:background="@drawable/background_for_buttons" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

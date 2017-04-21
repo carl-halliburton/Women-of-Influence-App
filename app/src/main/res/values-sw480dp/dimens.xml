@@ -22,8 +22,8 @@
     <!--title margins-->
     <dimen name="margin_top_sub_titles">4dp</dimen>
     <dimen name="margin_bottom_sub_titles">5dp</dimen>
-    <dimen name="margin_left_sub_titles">60dp</dimen>
-    <dimen name="margin_right_sub_titles">60dp</dimen>
+    <dimen name="margin_left_sub_titles">50dp</dimen>
+    <dimen name="margin_right_sub_titles">50dp</dimen>
 
     <!--blurb margins-->
     <dimen name="margin_left_blurb">30dp</dimen>
@@ -49,10 +49,10 @@
     <dimen name="layout_margin_top">20dp</dimen>
     <dimen name="layout_margin_bottom">10dp</dimen>
 
-    <dimen name="btn_layout_margin_left">30dp</dimen>
-    <dimen name="btn_layout_margin_right">30dp</dimen>
-    <dimen name="btn_layout_margin_top">10dp</dimen>
-    <dimen name="btn_layout_margin_bottom">10dp</dimen>
+    <dimen name="btn_layout_margin_left">40dp</dimen>
+    <dimen name="btn_layout_margin_right">40dp</dimen>
+    <dimen name="btn_layout_margin_top">5dp</dimen>
+    <dimen name="btn_layout_margin_bottom">5dp</dimen>
 
     <dimen name="tv_layout_margin_left">10dp</dimen>
     <dimen name="tv_layout_margin_right">10dp</dimen>
