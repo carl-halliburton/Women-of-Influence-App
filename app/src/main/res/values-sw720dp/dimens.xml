@@ -2,7 +2,7 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
 
     <!--margins-->
     <dimen name="margin_left_feature_vid">140dp</dimen>
@@ -28,7 +28,7 @@
     <dimen name="fb_field_text_size">17sp</dimen>
 
     <!--title margins-->
-    <dimen name="margin_top_sub_titles">4dp</dimen>
+    <dimen name="margin_top_sub_titles">0dp</dimen>
     <dimen name="margin_bottom_sub_titles">5dp</dimen>
     <dimen name="margin_left_sub_titles">100dp</dimen>
     <dimen name="margin_right_sub_titles">100dp</dimen>
