@@ -87,16 +87,18 @@
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/btn_layout_height"
             android:text="@string/fb_btn_submit"
             android:textSize="@dimen/btn_text_size"
             android:typeface="normal"
             android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="@dimen/fb_btn_margin_top"
+            android:layout_marginBottom="@dimen/fb_btn_margin_bottom"
             android:layout_gravity="center"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/fb_btn_padding_left"
+            android:paddingRight="@dimen/fb_btn_padding_right"
+            android:paddingStart="@dimen/fb_btn_padding_left"
+            android:paddingEnd="@dimen/fb_btn_padding_right"
             android:background="@drawable/background_for_buttons" />
     </LinearLayout>
 </ScrollView>

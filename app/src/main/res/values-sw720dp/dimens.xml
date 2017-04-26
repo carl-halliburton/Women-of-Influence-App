@@ -15,7 +15,7 @@
     <!--text size-->
     <dimen name="btn_feature_vid_text_size">35sp</dimen>
     <dimen name="feature_vid_text_size">30sp</dimen>
-    <dimen name="btn_text_size">30sp</dimen>
+    <dimen name="btn_text_size">28sp</dimen>
     <dimen name="btn_gallery_video_links_text_size">25sp</dimen>
     <dimen name="title_text_size">45sp</dimen>
     <dimen name="app_subTitle_text_size">40sp</dimen>
@@ -37,26 +37,28 @@
     <dimen name="margin_left_blurb">40dp</dimen>
     <dimen name="margin_right_blurb">40dp</dimen>
 
+    <dimen name="btn_layout_height">60dp</dimen>
+
     <!--homeScreenBtn layout dimensions-->
-    <dimen name="layout_padding_top">15dp</dimen>
-    <dimen name="layout_padding_bottom">15dp</dimen>
-    <dimen name="layout_padding_left">15dp</dimen>
-    <dimen name="layout_padding_right">15dp</dimen>
+    <dimen name="layout_padding_top">10dp</dimen>
+    <dimen name="layout_padding_bottom">10dp</dimen>
+    <dimen name="layout_padding_left">40dp</dimen>
+    <dimen name="layout_padding_right">40dp</dimen>
 
     <!--Margins-->
     <dimen name="layout_margin_left">140dp</dimen>
     <dimen name="layout_margin_right">140dp</dimen>
-    <dimen name="layout_margin_top">100dp</dimen>
-    <dimen name="layout_margin_bottom">10dp</dimen>
+    <dimen name="layout_margin_top">30dp</dimen>
+    <dimen name="layout_margin_bottom">0dp</dimen>
 
-    <dimen name="btn_layout_margin_left">90dp</dimen>
-    <dimen name="btn_layout_margin_right">90dp</dimen>
+    <dimen name="btn_layout_margin_left">50dp</dimen>
+    <dimen name="btn_layout_margin_right">50dp</dimen>
     <dimen name="btn_layout_margin_top">10dp</dimen>
     <dimen name="btn_layout_margin_bottom">10dp</dimen>
 
-    <dimen name="tv_layout_margin_left">40dp</dimen>
-    <dimen name="tv_layout_margin_right">40dp</dimen>
-    <dimen name="tv_layout_margin_top">7dp</dimen>
+    <dimen name="tv_layout_margin_left">20dp</dimen>
+    <dimen name="tv_layout_margin_right">20dp</dimen>
+    <dimen name="tv_layout_margin_top">10dp</dimen>
     <dimen name="tv_layout_margin_bottom">10dp</dimen>
 
     <!--Video share buttons margins-->
@@ -83,5 +85,11 @@
     <dimen name="splash_progress_bar_margin_top">50dp</dimen>
     <dimen name="splash_loading_text_size">44sp</dimen>
     <dimen name="splash_loading_margin_top">30dp</dimen>
+
+    <!--Feedback Activity-->
+    <dimen name="fb_btn_margin_top">20dp</dimen>
+    <dimen name="fb_btn_margin_bottom">20dp</dimen>
+    <dimen name="fb_btn_padding_left">20dp</dimen>
+    <dimen name="fb_btn_padding_right">20dp</dimen>
 
 </resources>
