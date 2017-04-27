@@ -128,6 +128,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/share_link_margin_left"
+                        android:layout_marginStart="@dimen/share_link_margin_left"
                         android:ems="10"
                         android:text="@string/Sharing_Error_Text"
                         android:textSize="@dimen/fb_email_text_size" />
