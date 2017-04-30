@@ -101,16 +101,15 @@
                 android:text="@string/title_activity_video_gallery"
                 android:onClick="videoGalleryButtonOnClick"
                 android:textSize="@dimen/btn_text_size"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:typeface="normal"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/btn_layout_margin_top"
                 android:layout_marginLeft="@dimen/btn_layout_margin_left"
                 android:layout_marginStart="@dimen/btn_layout_margin_left"
                 android:layout_marginRight="@dimen/btn_layout_margin_right"
                 android:layout_marginEnd="@dimen/btn_layout_margin_right"
-                android:scaleType="fitXY"
                 android:background="@drawable/background_for_buttons" />
 
             <TextView
@@ -147,7 +146,6 @@
                 android:layout_marginRight="@dimen/btn_layout_margin_right"
                 android:layout_marginEnd="@dimen/btn_layout_margin_right"
                 android:layout_marginBottom="@dimen/btn_layout_margin_bottom"
-                android:scaleType="fitXY"
                 android:background="@drawable/background_for_buttons" />
         </LinearLayout>
     </LinearLayout>

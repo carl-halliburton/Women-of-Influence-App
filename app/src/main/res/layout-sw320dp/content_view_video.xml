@@ -127,22 +127,22 @@
                         android:id="@+id/shareLink"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/share_link_margin_left"
-                        android:layout_marginStart="@dimen/share_link_margin_left"
                         android:layout_weight="1"
                         android:ems="10"
+                        android:layout_marginLeft="@dimen/share_link_margin_left"
+                        android:layout_marginStart="@dimen/share_link_margin_left"
                         android:text="@string/Sharing_Error_Text"
-                        android:textSize="@dimen/share_link_text_size" />
+                        android:textSize="@dimen/fb_email_text_size" />
 
                     <ImageButton
                         android:id="@+id/copyBtn"
                         style="@style/AppTheme"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/share_link_cpy_btn_margin_left"
-                        android:layout_marginLeft="@dimen/share_link_cpy_btn_margin_right"
-                        android:layout_marginRight="@dimen/share_link_cpy_btn_margin_left"
-                        android:layout_marginStart="@dimen/share_link_cpy_btn_margin_right"
+                        android:layout_marginStart="@dimen/share_link_cpy_btn_margin_left"
+                        android:layout_marginLeft="@dimen/share_link_cpy_btn_margin_left"
+                        android:layout_marginEnd="@dimen/share_link_cpy_btn_margin_right"
+                        android:layout_marginRight="@dimen/share_link_cpy_btn_margin_right"
                         android:contentDescription="@string/desc_btn_copy"
                         android:onClick="shareOnClick"
                         app:srcCompat="@drawable/ic_action_copy" />
@@ -187,8 +187,8 @@
                             android:layout_height="wrap_content"
                             android:layout_column="0"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginStart="15dp"
                             android:layout_row="1"
                             android:text="@string/label_email_share"
                             android:textSize="@dimen/share_button_label_text_size" />
@@ -320,11 +320,12 @@
                             android:layout_height="wrap_content"
                             android:layout_column="5"
                             android:layout_gravity="center_horizontal"
-                            android:layout_marginEnd="@dimen/margin_right_last_btn"
-                            android:layout_marginRight="@dimen/margin_right_end"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginRight="15dp"
                             android:layout_row="1"
                             android:text="@string/label_whatsapp_share"
                             android:textSize="@dimen/share_button_label_text_size" />
+
                     </GridLayout>
                 </HorizontalScrollView>
             </LinearLayout>
