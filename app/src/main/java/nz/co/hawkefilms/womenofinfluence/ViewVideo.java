@@ -368,7 +368,7 @@ ViewVideo extends AppCompatActivity {
                     //log when the video starts
                     Bundle params = new Bundle();
                     params.putDouble(FirebaseAnalytics.Param.VALUE, 1.0);
-                    //mFirebaseAnalytics.logEvent(videoData.getVideoStatsName(), params);
+                    mFirebaseAnalytics.logEvent(videoData.getVideoStatsName(), params);
                 }
             });
         } catch (Exception e) {
