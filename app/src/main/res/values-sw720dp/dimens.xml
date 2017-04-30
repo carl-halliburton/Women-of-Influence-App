@@ -20,7 +20,7 @@
     <dimen name="app_subTitle_text_size">40sp</dimen>
     <dimen name="description_text_size">35sp</dimen>
     <dimen name="margins_description_text">10dp</dimen>
-    <dimen name="video_title_text_size">25sp</dimen>
+    <dimen name="video_title_text_size">35sp</dimen>
     <dimen name="sharing_section_title">23sp</dimen>
     <dimen name="share_link_text_size">12sp</dimen>
     <dimen name="fb_email_text_size">30sp</dimen>
