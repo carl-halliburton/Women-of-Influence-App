@@ -1,8 +1,8 @@
 <resources>
     //API keys and access tokens
-    <string name="ACCESS_TOKEN">RYA-ZZchnMAAAAAAAAAAPHdwky5iFO_Hflf59BZxII4kxCxhd5cazHvjxnhBzdHY</string>
-    <string name="DROPBOX_APP_KEY">5d8hk2l9mhex86y</string>
-    <string name="FACEBOOK_APP_ID">573770112816147</string>
+    <string name="ACCESS_TOKEN"></string>
+    <string name="DROPBOX_APP_KEY"</string>
+    <string name="FACEBOOK_APP_ID"></string>
 
     <string name="package_name">"nz.co.hawkefilms.womenofinfluence"</string>
     <string name="app_name">Ascend</string>
