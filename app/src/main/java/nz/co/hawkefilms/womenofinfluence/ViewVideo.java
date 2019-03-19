@@ -279,6 +279,10 @@ ViewVideo extends AppCompatActivity {
             case R.id.menu_video_gallery:
                 startActivity(new Intent(ViewVideo.this, VideoGallery.class));
                 return true;
+            case R.id.menu_privacy_policy:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://hawkefilmsascend.wixsite.com/website/privacy-policy"));
+                startActivity(browserIntent);
+                return true;
             case R.id.menu_feedback:
                 startActivity(new Intent(ViewVideo.this, Feedback.class));
                 return true;

@@ -12,6 +12,7 @@
         to view the entire collection.</string>
 
     <string name="action_app_settings">App Settings</string>
+    <string name="title_link_privacy_policy">Privacy Policy</string>
     <string name="title_activity_feedback">Feedback</string>
     <string name="title_activity_video_gallery">Video Gallery</string>
     <string name="title_activity_view_video">Video Player</string>

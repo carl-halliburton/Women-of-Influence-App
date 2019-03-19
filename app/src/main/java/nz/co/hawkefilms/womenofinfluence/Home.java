@@ -143,6 +143,10 @@ public class Home extends AppCompatActivity {
             case R.id.menu_video_gallery:
                 startActivity(new Intent(Home.this, VideoGallery.class));
                 return true;
+            case R.id.menu_privacy_policy:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://hawkefilmsascend.wixsite.com/website/privacy-policy"));
+                startActivity(browserIntent);
+                return true;
             case R.id.menu_feedback:
                 startActivity(new Intent(Home.this, Feedback.class));
                 return true;

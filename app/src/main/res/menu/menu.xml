@@ -46,6 +46,11 @@
         android:icon="@drawable/ic_contact_calendar_black"
         android:orderInCategory="5"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_privacy_policy"
+        android:title="@string/title_link_privacy_policy"
+        android:orderInCategory="6"
+        app:showAsAction="never" />
         </menu>
     </item>
 </menu>
